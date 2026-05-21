@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "name": "mocha-v2.3",
+    "description": "모카 브라운 에디토리얼 — 2026년 확정 브랜드 테마",
+    "confirmed_at": "2026-05-16",
+    "confirmed_by": "사장님 최종 승인",
+    "source_reference": "instagram/content/003_투명한중문가격/preview.html",
+    "version": "2.3",
+    "note": "테마를 바꾸려면 이 파일의 tokens 값만 수정하고 generate_carousel.js를 재실행하면 됩니다."
+  },
+  "_theme_switch_guide": {
+    "how_to_change_theme": [
+      "1. 이 파일의 tokens 섹션 값만 수정한다",
+      "2. node scripts/generate_carousel.js NNN 을 실행한다",
+      "3. 새 테마로 전체 슬라이드가 자동 렌더링된다"
+    ],
+    "future_theme_candidates": [
+      "navy-minimal: 네이비 + 화이트 미니멀 (프리미엄 라인용)",
+      "sage-natural: 세이지 그린 + 오프화이트 (봄/여름 시즌용)",
+      "charcoal-bold: 차콜 + 오렌지 액센트 (강렬한 프로모션용)"
+    ]
+  },
+  "tokens": {
+    "accent":        "#8B7355",
+    "accentSoft":    "rgba(139,115,85,0.10)",
+    "mochaBorder":   "rgba(139,115,85,0.25)",
+    "mochaDark":     "#6B5840",
+    "mochaShadow":   "rgba(139,115,85,0.25)",
+    "gold":          "#D4B896",
+    "dkCover":       "#1E1C18",
+    "dk":            "#2A2622",
+    "tx":            "#2A2622",
+    "tx2":           "#4A4540",
+    "txm":           "#8B8680",
+    "txl":           "#B5B0A8",
+    "cream":         "#F5F0E8",
+    "cream2":        "#EDE8DD"
+  },
+  "typography": {
+    "fontKorean":    "Noto Sans KR",
+    "fontEn":        "Montserrat",
+    "fontFallback":  "Malgun Gothic, sans-serif",
+    "sizeHook":      "58px",
+    "sizeTitle":     "72px",
+    "sizeBody":      "30px",
+    "sizeTip":       "21px",
+    "sizeNum":       "52px",
+    "sizeBadge":     "22px",
+    "weightBlack":   "900",
+    "weightBold":    "700",
+    "weightMedium":  "500"
+  },
+  "brand": {
+    "name":              "문장군",
+    "nameEn":            "MUNJANGGUN",
+    "coverWatermarkNum": "01",
+    "coverWatermarkText":"MUNJANGGUN TIP",
+    "swipeText":         "SWIPE ──────→",
+    "tipLabel":          "TIP",
+    "defaultImageDesc":  "시공 현장 사진",
+    "trustBadges": [
+      { "icon": "✎", "label": "실측 기반", "desc": "정확한 상담" },
+      { "icon": "✓", "label": "공간 맞춤", "desc": "맞춤 제안"  },
+      { "icon": "♡", "label": "부담 없는", "desc": "1:1 상담"   }
+    ]
+  },
+  "layout": {
+    "canvasWidth":   1080,
+    "canvasHeight":  1350,
+    "paddingH":      80,
+    "paddingHCover": 72,
+    "paddingSafe":   64,
+    "imageSlotRatio": "50%",
+    "cornerMarkSize": "28px",
+    "tipBarBottom":  "32px",
+    "accentBarWidth": "5px"
+  }
+}

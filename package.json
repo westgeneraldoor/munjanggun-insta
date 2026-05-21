@@ -1,0 +1,1 @@
+{"name":"munjanggun-instagram","version":"1.0.0","description":"문장군 인스타그램 콘텐츠 자동화","dependencies":{"puppeteer":"^24.43.1","puppeteer-core":"^24.43.1"}}

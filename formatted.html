@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>
+001_좁은현관의기적 캐러셀</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Montserrat:wght@300;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* Reset & Container */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #EDE8DD;
+      padding: 50px;
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow-x: auto;
+    }
+    .carousel-container {
+      display: flex;
+      gap: 40px;
+    }
+    
+    /* Slide Base (1080x1350) */
+    .slide {
+      width: 1080px;
+      height: 1350px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, #F5F0E8 0%, #EDE8DD 100%);
+      box-shadow: 0 15px 45px rgba(30, 28, 24, 0.15);
+      border-radius: 12px;
+    }
+    
+    /* COVER Slide (Dark Theme) */
+    .slide.cover {
+      background: #1E1C18;
+    }
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(30,28,24,0.2) 30%, rgba(30,28,24,0.75) 65%, rgba(30,28,24,0.95) 100%);
+      z-index: 1;
+    }
+    .cover-line {
+      position: absolute;
+      left: 72px;
+      top: 160px;
+      bottom: 200px;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      z-index: 2;
+    }
+    .cover-watermark {
+      position: absolute;
+      top: 56px;
+      left: 72px;
+      z-index: 2;
+    }
+    .cover-watermark .num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 2px;
+    }
+    .cover-watermark .txt {
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.35);
+     
+<truncated 27128 bytes>
