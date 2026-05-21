@@ -88,7 +88,7 @@
 - **구성:** 대형5(10만+) + 중형10(1만~10만) + 소형/브랜드5~10(1만 이하)
 - **형태:** 모두 붙여쓰기 (#아파트중문 ✅)
 - **브랜드 고정:** #문장군 #문장군중문 #문장군시공 (최소 3개)
-- **위치:** caption.txt 하단에 별도 블록
+- **위치:** HTML 캡션 복사 카드 내 해시태그 영역에 포함
 - **상세 세트:** INSTAGRAM_HASHTAG_BANK.md에서 테마별 복붙
 
 ### 인스타 콘텐츠 저장 규칙
@@ -128,12 +128,11 @@
 6. 브랜드 규칙 + 인스타 전용 규칙 적용 (톤, CTA, AI 이미지)
 7. ★ 해시태그: INSTAGRAM_HASHTAG_BANK.md에서 해당 테마 세트 복붙 (HTML 캡션 영역에 삽입)
 8. ★★ 품질 채점: ENGINE 7 기준 80점 이상 필수
-```
-
 [저장 단계]
-9. 완성 패키지를 instagram/content/NNN_테마명/ 폴더에 저장
+9. 완성 파일을 instagram/content/ 에 저장
 10. ★★★ INSTAGRAM_POSTING_REGISTRY.md에 새 콘텐츠 등록
-11. 사용자에게 안내: "발행 후 URL과 성과 데이터를 레지스트리에 등록하세요"
+11. CONTENT_SCORECARD.md 기준으로 자체 채점 (B등급 56점 이상 필수)
+12. 사용자에게 안내: "발행 후 URL과 성과 데이터를 레지스트리에 등록하세요"
 ```
 
 ---
@@ -162,29 +161,33 @@
 ├── GEMINI.md                         ← 프로젝트 신분증
 ├── BRAND_CONTEXT.md                  ← 브랜드 정보 (블로그 원본 복사본)
 ├── DECISION_LOG.md                   ← 장기 결정 로그
+├── CONTENT_SCORECARD.md              ← ★ 콘텐츠 품질 평가 체계 (8차원 80점)
 ├── _context.md                       ← 현재 작업 상태 (30줄 이내)
 ├── INSTAGRAM_CONTENT_STRATEGY.md    ← ★ 수요 기반 콘텐츠 전략 12선
 ├── INSTAGRAM_HASHTAG_BANK.md        ← ★ 테마별 해시태그 뱅크
-├── INSTAGRAM_POSTING_REGISTRY.md    ← ★ 발행 이력 등록부
+├── INSTAGRAM_POSTING_REGISTRY.md    ← ★ 발행 이력 등록부 (성과 데이터 포함)
 ├── INSTAGRAM_OPERATING_GUIDE.md     ← 운영 규칙, DM 응대, 검수 기준
-├── INSTAGRAM_CAROUSEL_DESIGN_GUIDE.md ← 캐러셀 디자인 가이드
-├── PRD_인스타엔진_v2.0.md            ← 엔진 PRD (레퍼런스)
+├── INSTAGRAM_CAROUSEL_DESIGN_GUIDE.md ← 캐러셀 디자인 가이드 v3.0
 ├── PRD_인스타엔진_v3.0.md            ← 엔진 PRD v3.0 (현행)
-├── PROJECT_BRIEF_인스타엔진_v2.0.md  ← 프로젝트 브리프
-├── _playbook.md                      ← 인스타엔진 고도화 이력 (아카이브)
-├── package.json                      ← Node.js 의존성 (puppeteer)
+├── package.json                      ← Node.js (preview, validate, export)
 ├── .env                              ← API 키 (Gemini TTS 등)
 ├── .gitignore
 ├── scripts/
-│   ├── generate_carousel.js          ← 캐러셀 이미지 생성 (puppeteer)
-│   └── generate_tts.py               ← TTS 음성 생성 (Gemini)
+│   ├── generate_tts.py               ← TTS 음성 생성 (Gemini)
+│   └── validate_carousel.js          ← ★ 캐러셀 HTML 규격 검사기
+├── tools/
+│   └── export/
+│       └── render_png.js             ← HTML→PNG 슬라이스 유틸 (puppeteer)
+├── templates/
+│   └── CAROUSEL_HTML_TEMPLATE.html   ← v3.0 캐러셀 표준 템플릿
+├── _archive/                         ← 아카이브 (v2.0 PRD, 레거시 스크립트)
+│   ├── legacy_v2/                    ← v2.5 JSON+puppeteer 레거시
+│   └── ...기타 아카이브
 └── instagram/
     ├── content/                      ← 콘텐츠 산출물
-    │   ├── 001_좁은현관의기적/
-    │   ├── 002_투명한중문가격/
-    │   ├── 003_체리색방문의환생/
-    │   ├── 004_살면서시공/
-    │   └── 005_살면서시공/
+    │   ├── 001~012_*.pdf             ← v2.x 레퍼런스 (PDF)
+    │   ├── 003_체리색방문의환생.html   ← v3.0 HTML
+    │   └── 013_우리집중문선택가이드.html ← v3.0 HTML
     ├── performance_log.md            ← 성과 로그
     ├── content_calendar.md           ← 발행 캘린더
     └── experiment_log.md             ← 실험 로그

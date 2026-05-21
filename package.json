@@ -1,1 +1,14 @@
-{"name":"munjanggun-instagram","version":"1.0.0","description":"문장군 인스타그램 콘텐츠 자동화","dependencies":{"puppeteer":"^24.43.1","puppeteer-core":"^24.43.1"}}
+{
+  "name": "munjanggun-instagram",
+  "version": "3.0.0",
+  "description": "문장군 인스타그램 콘텐츠 운영 OS",
+  "scripts": {
+    "preview": "npx http-server ./instagram/content -p 8080 -o",
+    "preview:template": "npx http-server ./templates -p 8080 -o",
+    "validate": "node scripts/validate_carousel.js",
+    "export:png": "node tools/export/render_png.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.43.1"
+  }
+}

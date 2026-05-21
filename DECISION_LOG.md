@@ -81,3 +81,13 @@
 - **결정:** 캐러셀 단독 생성 시 `instagram/content/NNN_테마명.html` 단일 파일로 생성하고, 마지막 슬라이드는 JS 복사 기능이 들어간 인스타 본문 및 해시태그 UI로 구성한다.
 - **영향:** `AGENTS.md`, `PRD_인스타엔진_v3.0.md`, 전역 `인스타엔진/SKILL.md`
 - **재검토 조건:** 사용자가 다시 이미지 렌더링 파일이나 대본 결합 패키지 배포로 전환하고자 할 때.
+
+## DEC-024: v3.0 구조 청소 — 레거시 파일 정리 및 단일 HTML 제작 표준 최종 확정 — 2026-05-21
+- **배경:** v2.5(JSON+puppeteer)와 v3.0(HTML)의 혼재로 인한 AI 에이전트의 운영상 혼선을 완전히 제거하고 품질 평가와 검증 파이프라인을 체계화해야 함.
+- **결정:**
+  1. `CAROUSEL_TOKENS.json` 및 `generate_carousel.js` 등 레거시 도구를 `_archive/legacy_v2/`로 아카이브 처리.
+  2. `_order.md`, `_playbook.md` 등 루트의 임시/작업용 파일들도 `_archive/`로 이동.
+  3. `package.json`에서 puppeteer를 핵심 종속성에서 개발 의존성(`devDependencies`)으로 격리하고, 내보내기 보조 유틸(`tools/export/render_png.js`)로 구조 분리.
+  4. HTML 규격 검사기 `scripts/validate_carousel.js` 및 품질 평가 체계 `CONTENT_SCORECARD.md`를 신규 도입하여 콘텐츠 안정성 강제.
+- **영향:** `AGENTS.md`, `GEMINI.md`, `package.json`, `scripts/`, `tools/export/`, `instagram/content/`
+- **재검토 조건:** 퍼포먼스나 렌더링 방식의 근본적인 플랫폼 전환이 필요해질 때.

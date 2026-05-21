@@ -20,7 +20,9 @@ load_dotenv()
 # -- Config --
 API_KEY = os.environ.get("GEMINI_API_KEY")
 DEFAULT_VOICE = "Algieba"  # Gravelly, male
-MODEL = "gemini-3.1-flash-tts-preview"
+# TTS 모델명: .env 또는 환경변수로 오버라이드 가능
+# preview 모델은 변경/중단 가능성이 있으므로 env 우선 참조
+MODEL = os.environ.get("GEMINI_TTS_MODEL", "gemini-3.1-flash-tts-preview")
 SAMPLE_RATE = 24000
 CHANNELS = 1
 SAMPLE_WIDTH = 2
