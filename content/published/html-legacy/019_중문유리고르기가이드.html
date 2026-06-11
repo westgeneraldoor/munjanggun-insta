@@ -1,0 +1,962 @@
+<!--
+  문장군 캐러셀 HTML v3.0 — 019_중문유리고르기가이드
+  테마 6: 우리 집에 맞는 중문 유리 고르기
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>019 — 우리 집 맞춤 중문 유리 가이드 | 문장군</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   DESIGN TOKENS — mocha-v2.3
+   ══════════════════════════════════════════════ */
+:root {
+  --accent: #8B7355;
+  --accent-soft: rgba(139,115,85,0.10);
+  --mocha-border: rgba(139,115,85,0.25);
+  --mocha-dark: #6B5840;
+  --mocha-shadow: rgba(139,115,85,0.25);
+  --gold: #D4B896;
+  --dk-cover: #1E1C18;
+  --dk: #2A2622;
+  --tx: #2A2622;
+  --tx2: #4A4540;
+  --txm: #8B8680;
+  --txl: #B5B0A8;
+  --cream: #F5F0E8;
+  --cream2: #EDE8DD;
+
+  --font-kr: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-en: 'Montserrat', sans-serif;
+
+  --canvas-w: 1080px;
+  --canvas-h: 1350px;
+}
+
+/* ══════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2A2622;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: var(--font-kr);
+}
+
+/* slide label */
+.slide-label {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txm);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide {
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 1 — COVER (다크)
+   ══════════════════════════════════════════════ */
+.slide-cover {
+  background: var(--dk-cover);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 56px 72px 48px;
+}
+
+/* 세로 장식선 */
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* 그라데이션 오버레이 */
+.slide-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(30,28,24,0.95) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-cover > * { position: relative; z-index: 1; }
+
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 10px 28px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+.cover-hook {
+  font-size: 58px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.cover-hook .gold { color: var(--gold); }
+
+.cover-sub {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-brand {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 3px;
+}
+
+.cover-swipe {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   INNER SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide-inner {
+  background: linear-gradient(to bottom, var(--cream) 0%, var(--cream2) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 좌측 액센트 바 */
+.slide-inner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+  z-index: 2;
+}
+
+/* 코너마크 */
+.corner-mark {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--txl);
+  opacity: 0.5;
+  z-index: 2;
+}
+
+/* 텍스트 영역 */
+.text-area {
+  flex: 1;
+  padding: 64px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.category-tag {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 100px;
+  padding: 6px 20px;
+  margin-bottom: 28px;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+.num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.num {
+  font-family: var(--font-en);
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.sub {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--txm);
+}
+
+.deco-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.deco-line .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mocha-border);
+}
+
+.deco-line .line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--mocha-border);
+}
+
+.slide-title {
+  font-size: 68px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.15;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--dk);
+  margin-bottom: 16px;
+}
+
+.slide-body {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════
+   IMAGE SLOT
+   ══════════════════════════════════════════════ */
+.image-slot {
+  height: 50%;
+  background: var(--cream2);
+  border-top: 2.5px dashed var(--mocha-border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.image-slot.short { height: 32%; }
+
+.image-slot-icon {
+  font-size: 48px;
+  opacity: 0.15;
+}
+
+.image-slot-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--txm);
+  opacity: 0.6;
+  text-align: center;
+  padding: 0 60px;
+  line-height: 1.5;
+}
+
+.indicator {
+  position: absolute;
+  top: 16px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.indicator.check {
+  background: var(--accent);
+  color: #fff;
+}
+
+.indicator.x {
+  background: var(--dk);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   TIP BAR
+   ══════════════════════════════════════════════ */
+.tip-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.tip-label {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.tip-sep {
+  color: var(--mocha-border);
+  font-weight: 300;
+}
+
+.tip-text {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   COMPARE SLIDE
+   ══════════════════════════════════════════════ */
+.compare-area {
+  flex: 1;
+  padding: 64px 64px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.compare-title {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--tx);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+
+.compare-cols {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
+.compare-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-label {
+  font-size: 30px;
+  font-weight: 900;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.compare-col.left .compare-label {
+  color: var(--txm);
+  border-bottom: 2px solid var(--mocha-border);
+}
+
+.compare-col.right .compare-label {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.compare-item {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tx2);
+  padding: 14px 0;
+  line-height: 1.45;
+}
+
+.compare-col.left .compare-item::before {
+  content: '✕  ';
+  color: var(--txm);
+  font-weight: 700;
+}
+
+.compare-col.right .compare-item::before {
+  content: '✓  ';
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.compare-verdict {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mocha-border);
+}
+
+/* ══════════════════════════════════════════════
+   CHECKLIST SLIDE
+   ══════════════════════════════════════════════ */
+.check-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--tx2);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.check-item:first-child {
+  background: var(--accent-soft);
+  border: 1px solid var(--mocha-border);
+  color: var(--tx);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   CTA SLIDE
+   ══════════════════════════════════════════════ */
+.slide-cta {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 72px;
+  text-align: center;
+}
+
+.cta-quote {
+  font-size: 64px;
+  color: var(--mocha-border);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.cta-title {
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.2;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.cta-title .mocha { color: var(--accent); }
+
+.cta-body {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 900;
+  padding: 22px 56px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 24px var(--mocha-shadow);
+  margin-bottom: 48px;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 40px;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--mocha-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.trust-label {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--tx);
+}
+
+.trust-desc {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 7 — CAPTION COPY CARD
+   ══════════════════════════════════════════════ */
+.slide-caption-card {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 56px 64px;
+}
+
+.caption-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.caption-card-header-icon {
+  font-size: 28px;
+}
+
+.caption-card-header-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--tx);
+}
+
+.caption-text-area {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 16px;
+  padding: 32px;
+  overflow-y: auto;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  margin-bottom: 24px;
+}
+
+.caption-copy-btn {
+  align-self: center;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: var(--font-kr);
+  padding: 18px 56px;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--mocha-shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.caption-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--mocha-shadow);
+}
+
+.caption-copy-btn:active { transform: scale(0.97); }
+
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dk);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 100px;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .slide {
+    width: 540px;
+    height: 675px;
+    transform-origin: top center;
+  }
+  .slide-label { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1 — COVER ═══════════════════ -->
+<div class="slide-label">SLIDE 1 / 7 — COVER</div>
+<div class="slide slide-cover">
+  <span class="cover-badge">중문 선택 가이드</span>
+  <h1 class="cover-hook">
+    우리 집 첫인상 결정!<br><span class="gold">어울리는 중문 유리</span><br>고르는 법 4가지
+  </h1>
+  <p class="cover-sub">투명부터 모루유리까지 장단점 완벽 비교</p>
+  <div class="cover-bottom">
+    <span class="cover-brand">문장군 MUNJANGGUN</span>
+    <span class="cover-swipe">SWIPE ──────→</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 2 — POINT 01 ═══════════════════ -->
+<div class="slide-label">SLIDE 2 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">프라이버시 보호</span>
+    <div class="num-row">
+      <span class="num">01</span>
+      <span class="sub">지저분한 현관 숨기기</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">현관 신발 안 보이게!<br>모루 & 미스트 유리 추천</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      "퇴근하고 오면 널브러진 신발이 거실에서 바로 보여요..."<br>
+      현관 정리 정돈이 매번 스트레스라면?<br>
+      세로결이 세련된 모루유리나 불투명한 미스트유리로<br>
+      깔끔하게 시선을 차단하고 프라이버시를 지키세요.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[모루 유리가 적용되어 현관 신발장과 바닥의 신발이 은은하게 실루엣만 비치고 차단되는 화사한 중문 시공 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">모루유리는 세로 줄무늬 덕분에 천장이 높아 보이는 시각적 효과도 줍니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3 — POINT 02 ═══════════════════ -->
+<div class="slide-label">SLIDE 3 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">시원한 개방감</span>
+    <div class="num-row">
+      <span class="num">02</span>
+      <span class="sub">더 넓어 보이는 공간</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">좁은 현관을 두 배 넓게!<br>투명 & 브론즈 유리 추천</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      "중문을 달면 현관이 너무 답답해 보일까 봐 걱정이에요."<br>
+      공간이 협소해 시원한 개방감을 원하신다면?<br>
+      깨끗한 투명 유리나, 카페처럼 고급스럽고 은은한<br>
+      브론즈 유리를 매칭하여 넓어 보이는 효과를 낼 수 있습니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[투명 유리 및 브론즈 유리가 적용되어 중문 너머 거실이 투명하게 들여다보여 탁 트인 느낌을 주는 현관 중문 시공 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">브론즈 유리는 실내 조명 색상에 따라 한층 더 아늑하고 따뜻한 무드를 연출합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4 — COMPARE 03 ═══════════════════ -->
+<div class="slide-label">SLIDE 4 / 7 — COMPARE</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="compare-area">
+    <span class="category-tag" style="align-self:center;">중문 유리 비교</span>
+    <div class="num-row" style="justify-content:center;">
+      <span class="num">03</span>
+      <span class="sub">중문 유리 4종 한눈에 비교</span>
+    </div>
+    <div class="deco-line" style="justify-content:center;"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="compare-title">중문 유리 4종 한눈에 비교</h2>
+    <div class="compare-cols">
+      <div class="compare-col left">
+        <div class="compare-label">투명 & 브론즈 유리</div>
+        <div class="compare-item">시야를 가리지 않아 개방감 최고</div>
+        <div class="compare-item">현관 내부가 그대로 노출됨</div>
+        <div class="compare-item">지문이나 얼룩이 상대적으로 잘 보임</div>
+        <div class="compare-item">세련되고 모던한 인테리어 연출</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-label">모루 & 미스트 유리</div>
+        <div class="compare-item">현관의 불필요한 시선 완벽 차단</div>
+        <div class="compare-item">실루엣만 비쳐 깔끔함 유지</div>
+        <div class="compare-item">먼지나 오염이 덜 드러남</div>
+        <div class="compare-item">아늑하고 감각적인 인테리어 완성</div>
+      </div>
+    </div>
+    <div class="compare-verdict">→ 개방감은 투명/브론즈, 깔끔함은 모루/미스트가 정답!</div>
+  </div>
+  <div class="image-slot short">
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[투명 유리와 모루 유리를 반반 대비시켜 한눈에 프라이버시 차단을 체감할 수 있는 시각 샘플 이미지]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">어린아이나 반려견이 있다면 안전을 위해 100% 강화유리 옵션을 선택하세요.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5 — CHECKLIST 04 ═══════════════════ -->
+<div class="slide-label">SLIDE 5 / 7 — CHECKLIST</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">우리 집 자가진단</span>
+    <div class="num-row">
+      <span class="num">04</span>
+      <span class="sub">우리 집 중문 유리 진단</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title" style="font-size:56px;">우리 집 중문 유리 자가진단 5</h2>
+    <div class="check-items">
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        현관 입구에 신발이 늘 많아 거실에서 가리고 싶다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        좁은 복도형 구조라 현관이 최대한 넓어 보였으면 좋겠다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        평범한 유리보다 감각적인 포인트 인테리어를 원한다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        중문을 자주 여닫는데 유리 얼룩 청소가 귀찮다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        아이나 반려견이 부딪혀도 안 깨지는 안전한 유리가 필요하다
+      </div>
+    </div>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[거실 인테리어와 자연스럽게 어우러진 모루 유리 슬라이딩 중문 완성 실사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">1번과 4번에 해당한다면 모루/미스트를, 2번에 해당한다면 투명/브론즈를 권장합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6 — CTA 05 ═══════════════════ -->
+<div class="slide-label">SLIDE 6 / 7 — CTA</div>
+<div class="slide slide-cta">
+  <span class="corner-mark" style="color:var(--txl);">+</span>
+  <div class="cta-quote">"</div>
+  <div class="num-row" style="justify-content:center; margin-bottom:16px;">
+    <span class="num">05</span>
+    <span class="sub">실측 0원 서비스</span>
+  </div>
+  <h2 class="cta-title">
+    우리 집에 가장 어울리는 유리,<br><span class="mocha">방문 실측 무료로</span> 확인하세요
+  </h2>
+  <p class="cta-body">
+    유리는 화면으로 보는 것과 실제 질감이 많이 다릅니다.<br>
+    전문 매니저가 직접 유리 샘플북을 들고 방문하여<br>
+    현관 조명 아래에서 직접 대조해 드립니다. (부담 0원)
+  </p>
+  <div class="cta-button">무료 방문 실측 예약하기</div>
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="trust-icon">✎</div>
+      <span class="trust-label">실측 기반</span>
+      <span class="trust-desc">정확한 상담</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">✓</div>
+      <span class="trust-label">공간 맞춤</span>
+      <span class="trust-desc">맞춤 제안</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">♡</div>
+      <span class="trust-label">부담 없는</span>
+      <span class="trust-desc">1:1 상담</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7 — CAPTION COPY CARD ═══════════════════ -->
+<div class="slide-label">SLIDE 7 / 7 — 캡션 복사 카드</div>
+<div class="slide slide-caption-card">
+  <div class="caption-card-header">
+    <span class="caption-card-header-icon">📋</span>
+    <span class="caption-card-header-title">본문 캡션 (복사해서 인스타에 붙여넣기)</span>
+  </div>
+  <div class="caption-text-area" id="captionText">"중문 유리는 다 똑같은 투명 유리 아닌가요? 🧐"
+
+유리 하나만 잘 골라도 집의 첫인상이 180도 달라집니다!
+
+거실에서 현관 신발이 바로 보이는 지저분한 느낌이 싫다면? 프라이버시를 지켜주는 감각적인 '모루 유리'나 '미스트 유리'가 정답! ✨
+
+현관이 좁아서 무조건 넓어 보이는 탁 트인 개방감을 원하신다면? 깔끔한 '투명 유리'나 은은한 분위기의 '브론즈 유리'를 선택해 보세요. ☕
+
+💡 중문 설치할 때 유리 체크리스트!
+1️⃣ 프라이버시 차단: 모루/미스트 유리로 실루엣만 은은하게
+2️⃣ 개방감 연출: 투명/브론즈 유리로 더 넓고 시원하게
+3️⃣ 우리 가족 안전: 파손 방지를 위한 100% 강화유리 옵션
+
+"우리 집 현관 조명에는 어떤 유리가 예쁠까?"
+직접 조명 밑에 대보고 결정하세요! 전문 매니저가 유리 샘플북을 들고 무료로 찾아갑니다.
+
+🛠️ 문장군 특별 혜택
+• 전 품목 방문 실측 견적비 0원
+• 네이버 중문 리뷰 15,000개 돌파로 증명된 신뢰도
+• 외주 없이 100% 전속 시공팀이 책임 시공
+• 결정 후 1주일 내 빠른 설치 진행
+
+📍 시공 가능 지역:
+서울, 인천(영종도 제외), 경기(일부 제외: 연천/동두천/포천/양평/가평/여주), 천안, 아산, 청주, 세종, 대전
+
+👇 지금 바로 프로필 링크 클릭하고 무료 실측 상담 예약해 보세요!
+
+—
+
+#인테리어 #아파트인테리어 #홈스타일링 #집꾸미기 #랜선집들이 #현관중문 #중문인테리어 #모루유리 #브론즈유리 #투명유리 #현관인테리어 #3연동중문 #스윙도어 #간살중문 #아파트중문 #모루유리중문 #중문유리 #유리파티션 #불투명중문 #현관디자인 #중문추천 #문장군 #문장군중문 #문장군시공</div>
+  <button class="caption-copy-btn" onclick="copyCaption()">📋 캡션 복사하기</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ 캡션이 복사되었습니다!</div>
+
+<script>
+function copyCaption() {
+  const text = document.getElementById('captionText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = document.getElementById('captionText').innerText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>

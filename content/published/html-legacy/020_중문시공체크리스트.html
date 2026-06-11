@@ -1,0 +1,962 @@
+<!--
+  문장군 캐러셀 HTML v3.0 — 020_중문시공체크리스트
+  테마 7: 중문 시공, 이거 모르면 100% 후회
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>020 — 중문 시공 체크리스트 | 문장군</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   DESIGN TOKENS — mocha-v2.3
+   ══════════════════════════════════════════════ */
+:root {
+  --accent: #8B7355;
+  --accent-soft: rgba(139,115,85,0.10);
+  --mocha-border: rgba(139,115,85,0.25);
+  --mocha-dark: #6B5840;
+  --mocha-shadow: rgba(139,115,85,0.25);
+  --gold: #D4B896;
+  --dk-cover: #1E1C18;
+  --dk: #2A2622;
+  --tx: #2A2622;
+  --tx2: #4A4540;
+  --txm: #8B8680;
+  --txl: #B5B0A8;
+  --cream: #F5F0E8;
+  --cream2: #EDE8DD;
+
+  --font-kr: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-en: 'Montserrat', sans-serif;
+
+  --canvas-w: 1080px;
+  --canvas-h: 1350px;
+}
+
+/* ══════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2A2622;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: var(--font-kr);
+}
+
+/* slide label */
+.slide-label {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txm);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide {
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 1 — COVER (다크)
+   ══════════════════════════════════════════════ */
+.slide-cover {
+  background: var(--dk-cover);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 56px 72px 48px;
+}
+
+/* 세로 장식선 */
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* 그라데이션 오버레이 */
+.slide-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(30,28,24,0.95) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-cover > * { position: relative; z-index: 1; }
+
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 10px 28px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+.cover-hook {
+  font-size: 58px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.cover-hook .gold { color: var(--gold); }
+
+.cover-sub {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-brand {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 3px;
+}
+
+.cover-swipe {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   INNER SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide-inner {
+  background: linear-gradient(to bottom, var(--cream) 0%, var(--cream2) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 좌측 액센트 바 */
+.slide-inner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+  z-index: 2;
+}
+
+/* 코너마크 */
+.corner-mark {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--txl);
+  opacity: 0.5;
+  z-index: 2;
+}
+
+/* 텍스트 영역 */
+.text-area {
+  flex: 1;
+  padding: 64px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.category-tag {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 100px;
+  padding: 6px 20px;
+  margin-bottom: 28px;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+.num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.num {
+  font-family: var(--font-en);
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.sub {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--txm);
+}
+
+.deco-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.deco-line .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mocha-border);
+}
+
+.deco-line .line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--mocha-border);
+}
+
+.slide-title {
+  font-size: 68px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.15;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--dk);
+  margin-bottom: 16px;
+}
+
+.slide-body {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════
+   IMAGE SLOT
+   ══════════════════════════════════════════════ */
+.image-slot {
+  height: 50%;
+  background: var(--cream2);
+  border-top: 2.5px dashed var(--mocha-border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.image-slot.short { height: 32%; }
+
+.image-slot-icon {
+  font-size: 48px;
+  opacity: 0.15;
+}
+
+.image-slot-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--txm);
+  opacity: 0.6;
+  text-align: center;
+  padding: 0 60px;
+  line-height: 1.5;
+}
+
+.indicator {
+  position: absolute;
+  top: 16px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.indicator.check {
+  background: var(--accent);
+  color: #fff;
+}
+
+.indicator.x {
+  background: var(--dk);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   TIP BAR
+   ══════════════════════════════════════════════ */
+.tip-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.tip-label {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.tip-sep {
+  color: var(--mocha-border);
+  font-weight: 300;
+}
+
+.tip-text {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   COMPARE SLIDE
+   ══════════════════════════════════════════════ */
+.compare-area {
+  flex: 1;
+  padding: 64px 64px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.compare-title {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--tx);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+
+.compare-cols {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
+.compare-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-label {
+  font-size: 30px;
+  font-weight: 900;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.compare-col.left .compare-label {
+  color: var(--txm);
+  border-bottom: 2px solid var(--mocha-border);
+}
+
+.compare-col.right .compare-label {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.compare-item {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tx2);
+  padding: 14px 0;
+  line-height: 1.45;
+}
+
+.compare-col.left .compare-item::before {
+  content: '✕  ';
+  color: var(--txm);
+  font-weight: 700;
+}
+
+.compare-col.right .compare-item::before {
+  content: '✓  ';
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.compare-verdict {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mocha-border);
+}
+
+/* ══════════════════════════════════════════════
+   CHECKLIST SLIDE
+   ══════════════════════════════════════════════ */
+.check-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--tx2);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.check-item:first-child {
+  background: var(--accent-soft);
+  border: 1px solid var(--mocha-border);
+  color: var(--tx);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   CTA SLIDE
+   ══════════════════════════════════════════════ */
+.slide-cta {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 72px;
+  text-align: center;
+}
+
+.cta-quote {
+  font-size: 64px;
+  color: var(--mocha-border);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.cta-title {
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.2;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.cta-title .mocha { color: var(--accent); }
+
+.cta-body {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 900;
+  padding: 22px 56px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 24px var(--mocha-shadow);
+  margin-bottom: 48px;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 40px;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--mocha-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.trust-label {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--tx);
+}
+
+.trust-desc {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 7 — CAPTION COPY CARD
+   ══════════════════════════════════════════════ */
+.slide-caption-card {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 56px 64px;
+}
+
+.caption-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.caption-card-header-icon {
+  font-size: 28px;
+}
+
+.caption-card-header-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--tx);
+}
+
+.caption-text-area {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 16px;
+  padding: 32px;
+  overflow-y: auto;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  margin-bottom: 24px;
+}
+
+.caption-copy-btn {
+  align-self: center;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: var(--font-kr);
+  padding: 18px 56px;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--mocha-shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.caption-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--mocha-shadow);
+}
+
+.caption-copy-btn:active { transform: scale(0.97); }
+
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dk);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 100px;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .slide {
+    width: 540px;
+    height: 675px;
+    transform-origin: top center;
+  }
+  .slide-label { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1 — COVER ═══════════════════ -->
+<div class="slide-label">SLIDE 1 / 7 — COVER</div>
+<div class="slide slide-cover">
+  <span class="cover-badge">중문 시공 가이드</span>
+  <h1 class="cover-hook">
+    중문 설치하고<br><span class="gold">100% 후회하는</span><br>안 보이는 디테일 3가지
+  </h1>
+  <p class="cover-sub">댐퍼부터 천장보강까지 시공 필수 체크리스트</p>
+  <div class="cover-bottom">
+    <span class="cover-brand">문장군 MUNJANGGUN</span>
+    <span class="cover-swipe">SWIPE ──────→</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 2 — POINT 01 ═══════════════════ -->
+<div class="slide-label">SLIDE 2 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">소음 & 안전</span>
+    <div class="num-row">
+      <span class="num">01</span>
+      <span class="sub">쿵쿵 닫히는 중문?</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">하부 안전 댐퍼<br>기본 장착 여부 확인 필수!</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      "바람 불 때마다 문이 쾅쾅 닫혀서 불안해요."<br>
+      댐퍼가 없는 중문은 닫힐 때 강한 충격과 소음이 나며,<br>
+      아이와 반려동물의 손/꼬리 끼임 사고로 이어질 수 있습니다.<br>
+      문장군은 문이 끝에서 스르륵 부드럽게 멈추는<br>
+      양방향 안전 댐퍼를 기본 탑재해 소음과 안전을 모두 지킵니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator x">✕</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[댐퍼가 없어 문이 쾅쾅 세게 닫히며 위험하고 시끄러운 일반 중문 시공 사례]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">안전 댐퍼는 충격 흡수뿐만 아니라 중문 프레임 자체의 변형과 마모도 방지합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3 — POINT 02 ═══════════════════ -->
+<div class="slide-label">SLIDE 3 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">하중 & 처짐 방지</span>
+    <div class="num-row">
+      <span class="num">02</span>
+      <span class="sub">시간이 지나 문이 뻑뻑해진다면?</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">천장 & 벽면 목재 보강<br>작업 유무 확인 필수!</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      "처음엔 부드러웠는데 점점 문이 레일에 꽉 끼는 느낌이에요."<br>
+      중문 무게를 견디지 못하고 천장 석고보드가 주저앉으면 문이 처집니다.<br>
+      레이저 레벨기로 수평을 잡고, 천장과 벽면에 목재로 단단히<br>
+      보강 작업을 마친 후 조립해야 평생 뻑뻑함 없이 사용합니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[레이저 레벨기와 지지대로 상부 문틀과 천장 석고보드를 튼튼하게 보강 고정하는 정밀 시공 현장 실사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">벽면과 천장 수평을 확인하고 수평 보강판을 대는 기초 공정이 수명을 좌우합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4 — COMPARE 03 ═══════════════════ -->
+<div class="slide-label">SLIDE 4 / 7 — COMPARE</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="compare-area">
+    <span class="category-tag" style="align-self:center;">자재 및 시공 비교</span>
+    <div class="num-row" style="justify-content:center;">
+      <span class="num">03</span>
+      <span class="sub">안 보이는 디테일의 차이</span>
+    </div>
+    <div class="deco-line" style="justify-content:center;"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="compare-title">시공 디테일 차이가 수명을 결정합니다</h2>
+    <div class="compare-cols">
+      <div class="compare-col left">
+        <div class="compare-label">일반 저가 시공</div>
+        <div class="compare-item">보강 작업 없이 석고보드에 바로 문틀 고정</div>
+        <div class="compare-item">댐퍼 없이 플라스틱 고무 패드로 충격 흡수</div>
+        <div class="compare-item">얇고 약한 플라스틱 하부 레일 쉽게 파손</div>
+        <div class="compare-item">프리랜서 외주 시공으로 하자 보수 불분명</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-label">문장군 안심 시공</div>
+        <div class="compare-item">목재 합판 보강 후 문틀 견고하게 이중 고정</div>
+        <div class="compare-item">양방향 하부 안전 댐퍼 기본 무료 탑재</div>
+        <div class="compare-item">내구성 강한 알루미늄 슬림 레일 마모 제로</div>
+        <div class="compare-item">100% 전속 시공팀이 책임지고 직접 시공</div>
+      </div>
+    </div>
+    <div class="compare-verdict">→ 겉보기엔 같아 보여도, 1년 뒤 작동 상태는 완전히 다릅니다!</div>
+  </div>
+  <div class="image-slot short">
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[석고보드에 바로 고정한 약한 벽면과 목재 보강 후 이중 고정한 튼튼한 벽면의 구조 대비 그래픽/실사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">알루미늄 슬림 레일은 바닥과 밀착되어 턱 발걸림이 없고 청소하기도 간편합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5 — CHECKLIST 04 ═══════════════════ -->
+<div class="slide-label">SLIDE 5 / 7 — CHECKLIST</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">중문 안심 자가진단</span>
+    <div class="num-row">
+      <span class="num">04</span>
+      <span class="sub">중문 업체 선정 전 필수 체크</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title" style="font-size:56px;">중문 업체 계약 전 필수 체크리스트 5</h2>
+    <div class="check-items">
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        방문 실측 시 레이저 레벨기로 현장 수평을 정확히 재는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        댐퍼와 슬림 레일 같은 부자재를 추가금 없이 기본 제공하는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        현장 상태에 맞춰 천장과 벽면에 보강 작업을 실시하는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        외주 대행이 아닌 100% 본사 전속 시공팀이 방문하는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        시공 완료 후 책임 있는 무상 AS 관리가 보장되는가?
+      </div>
+    </div>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[문장군 전속 시공팀이 꼼꼼하게 마감 실리콘 작업을 마무리하며 시공 상태를 점검하는 안심 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">1~3번에 하나라도 해당되지 않는다면 시공 후 하자가 발생할 확률이 높습니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6 — CTA 05 ═══════════════════ -->
+<div class="slide-label">SLIDE 6 / 7 — CTA</div>
+<div class="slide slide-cta">
+  <span class="corner-mark" style="color:var(--txl);">+</span>
+  <div class="cta-quote">"</div>
+  <div class="num-row" style="justify-content:center; margin-bottom:16px;">
+    <span class="num">05</span>
+    <span class="sub">실측 0원 서비스</span>
+  </div>
+  <h2 class="cta-title">
+    평생 쓸 현관 중문,<br><span class="mocha">무료 방문 실측으로</span> 정확하게 체크하세요
+  </h2>
+  <p class="cta-body">
+    집집마다 벽면의 수평과 천장의 지지 상태가 제각각입니다.<br>
+    전문 실측 매니저가 직접 유리/자재 샘플북을 들고 방문해<br>
+    벽 수평도 측정과 보강 여부를 무상으로 진단해 드립니다. (비용 0원)
+  </p>
+  <div class="cta-button">무료 방문 실측 예약하기</div>
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="trust-icon">✎</div>
+      <span class="trust-label">실측 기반</span>
+      <span class="trust-desc">정확한 상담</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">✓</div>
+      <span class="trust-label">공간 맞춤</span>
+      <span class="trust-desc">맞춤 제안</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">♡</div>
+      <span class="trust-label">부담 없는</span>
+      <span class="trust-desc">1:1 상담</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7 — CAPTION COPY CARD ═══════════════════ -->
+<div class="slide-label">SLIDE 7 / 7 — 캡션 복사 카드</div>
+<div class="slide slide-caption-card">
+  <div class="caption-card-header">
+    <span class="caption-card-header-icon">📋</span>
+    <span class="caption-card-header-title">본문 캡션 (복사해서 인스타에 붙여넣기)</span>
+  </div>
+  <div class="caption-text-area" id="captionText">"중문 시공, 그냥 디자인만 보고 고르면 안 되나요? 🧐"
+
+현관 중문은 매일 수십 번씩 열고 닫는 가구이기 때문에, 눈에 보이지 않는 '시공 디테일'이 수명을 결정합니다. 
+
+꼼꼼하게 따져보지 않으면 설치 후 1년도 안 되어 문이 처지거나 뻑뻑해져 후회할 수 있어요! 
+
+💡 중문 설치 전 꼭 확인해야 할 핵심 디테일 3가지!
+
+1️⃣ 양방향 안전 댐퍼: 문이 쾅쾅 닫히지 않고 끝에서 스르륵 부드럽게 멈춰 소음과 손 끼임 사고를 막아줍니다. 🚪
+2️⃣ 천장 & 벽면 목재 보강: 무거운 중문 하중을 버티도록 석고보드 안쪽에 보강 작업을 튼튼히 해야 수년이 지나도 문 처짐이 없습니다. 💪
+3️⃣ 알루미늄 슬림 레일: 마모가 잦은 플라스틱 대신 내구성 높은 알루미늄 슬림 레일로 바닥 걸림 없이 청소도 편안하게! 🧹
+
+"우리 집 현관 천장도 보강이 필요할까?"
+고민하지 마시고 직접 진단받아보세요! 전문 매니저가 레이저 레벨기와 자재 샘플을 들고 무료로 찾아갑니다.
+
+🛠️ 문장군 특별 혜택
+• 전 품목 방문 실측 견적비 0원
+• 네이버 중문 리뷰 15,000개 돌파로 증명된 신뢰도
+• 외주 없이 100% 전속 시공팀이 책임 시공
+• 결정 후 1주일 내 빠른 설치 진행
+
+📍 시공 가능 지역:
+서울, 인천(영종도 제외), 경기(일부 제외: 연천/동두천/포천/양평/가평/여주), 천안, 아산, 청주, 세종, 대전
+
+👇 지금 바로 프로필 링크 클릭하고 무료 실측 상담 예약해 보세요!
+
+—
+
+#인테리어 #아파트인테리어 #리모델링 #인테리어팁 #셀프인테리어 #현관중문 #중문시공 #중문인테리어 #아파트중문 #3연동중문 #스윙중문 #인테리어꿀팁 #인테리어상담 #현관인테리어 #신혼집인테리어 #중문설치 #중문단점 #중문장점 #중문체크리스트 #천장보강 #중문댐퍼 #문장군 #문장군중문 #문장군시공</div>
+  <button class="caption-copy-btn" onclick="copyCaption()">📋 캡션 복사하기</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ 캡션이 복사되었습니다!</div>
+
+<script>
+function copyCaption() {
+  const text = document.getElementById('captionText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = document.getElementById('captionText').innerText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>

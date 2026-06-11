@@ -1,20 +1,29 @@
 # 현재 작업 상태 — 문장군 인스타그램
 
-> 30줄 이내 유지. 장기 결정은 DECISION_LOG.md에 보관.
-
 ## 프로젝트 상태
-- 단계: **v3.0 구조 청소 및 정비 완료** (DEC-024)
-- 표준: 캐러셀 = HTML 단독 / 숏폼 = 듀얼 패키지 (MP3+SRT)
-- 도구: 규격 검사(`validate`), 보조 PNG 추출(`export:png`) 구축
 
-## 현재 instagram/content/ 폴더 상태
-- 001~012 PDF 보관 중 (레퍼런스용, 레지스트리 경로 수정 완료)
-- v3.0 HTML 표준 적용: 003, 013 (단일 HTML 완료)
+- 2026-06-11 기준 v5 폴더 구조로 개편.
+- 현재 콘텐츠 표준: 캐러셀은 `content/source/carousel/*.md` MD/JSON 원본.
+- 신규 캐러셀은 `visual_intent` 필수.
+- v2 PDF와 v3 HTML은 `content/published/`에 발행 완료 레퍼런스로 보관.
+- v3 HTML 제작 도구는 `scripts/legacy/`, `templates/html-legacy/`로 격리.
 
-## 핵심 결정
-- DEC-024: 레거시 아카이브 격리, puppeteer 개발의존성 격리, validate 및 스코어카드 도입
-- DEC-022: 캐러셀 단독 생성 시 NNN_테마명.html 단일 파일 (7번째 캡션 복사기 포함)
+## 핵심 경로
+
+- 브랜드 기준: `data/brand/BRAND_CONTEXT.md`
+- 콘텐츠 전략: `docs/operating/INSTAGRAM_CONTENT_STRATEGY.md`
+- 운영 가이드: `docs/operating/INSTAGRAM_OPERATING_GUIDE.md`
+- 해시태그 뱅크: `data/hashtags/INSTAGRAM_HASHTAG_BANK.md`
+- 문제은행: `data/problems/PROBLEM_BANK.md`
+- 발행 등록부: `data/registry/INSTAGRAM_POSTING_REGISTRY.md`
+- 성과 로그: `data/registry/performance_log.md`
+
+## 검증
+
+- 기본 검증: `npm run validate`
+- 현재 검증기: `scripts/validators/validate_content.js`
 
 ## 다음 할 일
-- 사용자의 013 프리뷰 확인 피드백 및 발행 대기
-- 신규 숏폼 패키지 또는 캐러셀 제작 요청 대기 (B등급 56점 스코어카드 필수)
+
+- 새 콘텐츠 제작 시 `content/source/carousel/NNN_주제명.md`에 생성.
+- 발행 후 URL과 성과를 `data/registry` 문서에 반영.

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>문장군 인스타그램 콘텐츠 운영 OS</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1e2328;
+        --muted: #626b75;
+        --line: #d9ded7;
+        --paper: #faf8f2;
+        --panel: #ffffff;
+        --brand: #9c2f2f;
+        --olive: #59634c;
+        --gold: #b9863b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Pretendard,
+          "Noto Sans KR",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.6;
+      }
+
+      main {
+        width: min(1080px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 56px 0 72px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 18px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .eyebrow {
+        width: fit-content;
+        padding: 4px 10px;
+        border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+        color: var(--brand);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 820px;
+        font-size: clamp(34px, 5vw, 64px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 760px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 28px;
+      }
+
+      .card {
+        min-height: 170px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 17px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .section {
+        margin-top: 40px;
+      }
+
+      h2 {
+        margin: 0 0 14px;
+        font-size: 24px;
+      }
+
+      ul {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      code {
+        color: var(--olive);
+        font-family: "Cascadia Mono", Consolas, monospace;
+        font-size: 13px;
+      }
+
+      .status {
+        color: var(--gold);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 760px) {
+        main {
+          width: min(100% - 24px, 1080px);
+          padding-top: 32px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        li {
+          display: block;
+        }
+
+        .status {
+          display: block;
+          margin-top: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <span class="eyebrow">v5 structure / v4.2 content rules</span>
+        <h1>문장군 인스타그램 콘텐츠 운영 OS</h1>
+        <p class="lead">
+          문제 기반 주제 발굴, 캐러셀 MD/JSON 제작, 발행 레지스트리, 성과 기록을 한 저장소에서 관리합니다.
+          신규 제작은 HTML이 아니라 MD/JSON 원본을 기준으로 운영합니다.
+        </p>
+      </section>
+
+      <section class="grid" aria-label="핵심 영역">
+        <article class="card">
+          <strong>제작 원본</strong>
+          <p><code>content/source/carousel</code>에 신규 캐러셀 MD/JSON을 누적합니다.</p>
+        </article>
+        <article class="card">
+          <strong>운영 데이터</strong>
+          <p><code>data</code> 아래에서 브랜드, 문제은행, 해시태그, 레지스트리를 관리합니다.</p>
+        </article>
+        <article class="card">
+          <strong>검증 흐름</strong>
+          <p><code>npm run validate</code>로 JSON 구조, CTA, 해시태그, visual_intent를 점검합니다.</p>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>주요 경로</h2>
+        <ul>
+          <li><code>AGENTS.md</code><span class="status">에이전트 지침</span></li>
+          <li><code>docs/operating</code><span class="status">전략과 운영 문서</span></li>
+          <li><code>data/registry</code><span class="status">발행/성과 기록</span></li>
+          <li><code>content/published</code><span class="status">PDF/HTML 레거시</span></li>
+          <li><code>scripts/validators</code><span class="status">현재 검증기</span></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

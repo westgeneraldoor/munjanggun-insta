@@ -60,8 +60,15 @@ def find_package(arg):
     if os.path.isfile(arg):
         return os.path.abspath(arg)
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    # Current v4 structure: shortform source packages live under content/source/shortform.
+    shortform_dir = os.path.join(project_root, 'content', 'source', 'shortform')
+    pattern_shortform = os.path.join(shortform_dir, f"{arg}_*", "shortform_package.md")
+    matches_shortform = glob.glob(pattern_shortform)
+    if matches_shortform:
+        return matches_shortform[0]
     
-    # Check new instagram/content/ structure (v3.0)
+    # Legacy instagram/content/ structure (v3.0)
     insta_dir = os.path.join(project_root, 'instagram', 'content')
     pattern_insta = os.path.join(insta_dir, f"{arg}_*", "shortform_package.md")
     matches_insta = glob.glob(pattern_insta)

@@ -1,0 +1,975 @@
+<!--
+  문장군 캐러셀 HTML 016_중문견적추가금피하는법
+  버전: v3.0 (CSS 변수 내장 단일 HTML 표준)
+  사용법: 브라우저에서 더블클릭하여 프리뷰를 즉시 확인하고, 7번째 슬라이드에서 본문 캡션을 복사하여 인스타그램 발행에 활용합니다.
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>016 — 중문 추가금 피하는 법 | 문장군 캐러셀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   DESIGN TOKENS — mocha-v2.3
+   ══════════════════════════════════════════════ */
+:root {
+  --accent: #8B7355;
+  --accent-soft: rgba(139,115,85,0.10);
+  --mocha-border: rgba(139,115,85,0.25);
+  --mocha-dark: #6B5840;
+  --mocha-shadow: rgba(139,115,85,0.25);
+  --gold: #D4B896;
+  --dk-cover: #1E1C18;
+  --dk: #2A2622;
+  --tx: #2A2622;
+  --tx2: #4A4540;
+  --txm: #8B8680;
+  --txl: #B5B0A8;
+  --cream: #F5F0E8;
+  --cream2: #EDE8DD;
+
+  --font-kr: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-en: 'Montserrat', sans-serif;
+
+  --canvas-w: 1080px;
+  --canvas-h: 1350px;
+}
+
+/* ══════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2A2622;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: var(--font-kr);
+}
+
+/* slide label */
+.slide-label {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txm);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide {
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 1 — COVER (다크)
+   ══════════════════════════════════════════════ */
+.slide-cover {
+  background: var(--dk-cover);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 56px 72px 48px;
+}
+
+/* 세로 장식선 */
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* 그라데이션 오버레이 (배경 이미지용) */
+.slide-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(30,28,24,0.95) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-cover > * { position: relative; z-index: 1; }
+
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 10px 28px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+.cover-hook {
+  font-size: 58px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.cover-hook .gold { color: var(--gold); }
+
+.cover-sub {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-brand {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 3px;
+}
+
+.cover-swipe {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   INNER SLIDE COMMON (point / compare / checklist)
+   ══════════════════════════════════════════════ */
+.slide-inner {
+  background: linear-gradient(to bottom, var(--cream) 0%, var(--cream2) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 좌측 액센트 바 */
+.slide-inner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+  z-index: 2;
+}
+
+/* + 코너마크 */
+.corner-mark {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--txl);
+  opacity: 0.5;
+  z-index: 2;
+}
+
+/* 텍스트 영역 상단 */
+.text-area {
+  flex: 1;
+  padding: 64px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* 카테고리 필태그 */
+.category-tag {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 100px;
+  padding: 6px 20px;
+  margin-bottom: 28px;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+/* 넘버 + 서브 */
+.num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.num {
+  font-family: var(--font-en);
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.sub {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--txm);
+}
+
+/* 장식 구분선 */
+.deco-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.deco-line .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mocha-border);
+}
+
+.deco-line .line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--mocha-border);
+}
+
+/* 제목 */
+.slide-title {
+  font-size: 58px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+
+/* 디바이더 */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--dk);
+  margin-bottom: 16px;
+}
+
+/* 본문 */
+.slide-body {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════
+   IMAGE SLOT
+   ══════════════════════════════════════════════ */
+.image-slot {
+  height: 50%;
+  background: var(--cream2);
+  border-top: 2.5px dashed var(--mocha-border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.image-slot.short { height: 32%; }
+
+.image-slot-icon {
+  font-size: 48px;
+  opacity: 0.15;
+}
+
+.image-slot-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--txm);
+  opacity: 0.6;
+  text-align: center;
+  padding: 0 60px;
+  line-height: 1.5;
+}
+
+/* 인디케이터 */
+.indicator {
+  position: absolute;
+  top: 16px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.indicator.check {
+  background: var(--accent);
+  color: #fff;
+}
+
+.indicator.x {
+  background: var(--dk);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   TIP BAR
+   ══════════════════════════════════════════════ */
+.tip-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.tip-label {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.tip-sep {
+  color: var(--mocha-border);
+  font-weight: 300;
+}
+
+.tip-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   COMPARE SLIDE
+   ══════════════════════════════════════════════ */
+.compare-area {
+  flex: 1;
+  padding: 64px 64px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.compare-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--tx);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+
+.compare-cols {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
+.compare-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-label {
+  font-size: 26px;
+  font-weight: 900;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.compare-col.left .compare-label {
+  color: var(--txm);
+  border-bottom: 2px solid var(--mocha-border);
+}
+
+.compare-col.right .compare-label {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.compare-item {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--tx2);
+  padding: 14px 0;
+  line-height: 1.45;
+}
+
+.compare-col.left .compare-item::before {
+  content: '✕  ';
+  color: var(--txm);
+  font-weight: 700;
+}
+
+.compare-col.right .compare-item::before {
+  content: '✓  ';
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.compare-verdict {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mocha-border);
+}
+
+/* ══════════════════════════════════════════════
+   CHECKLIST SLIDE
+   ══════════════════════════════════════════════ */
+.check-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--tx2);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.check-item:first-child {
+  background: var(--accent-soft);
+  border: 1px solid var(--mocha-border);
+  color: var(--tx);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   CTA SLIDE
+   ══════════════════════════════════════════════ */
+.slide-cta {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 72px;
+  text-align: center;
+}
+
+.cta-quote {
+  font-size: 64px;
+  color: var(--mocha-border);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.cta-title {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.cta-title .mocha { color: var(--accent); }
+
+.cta-body {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 900;
+  padding: 22px 56px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px var(--mocha-shadow);
+  margin-bottom: 48px;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 40px;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--mocha-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.trust-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tx);
+}
+
+.trust-desc {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 7 — CAPTION COPY CARD
+   ══════════════════════════════════════════════ */
+.slide-caption-card {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 56px 64px;
+}
+
+.caption-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.caption-card-header-icon {
+  font-size: 28px;
+}
+
+.caption-card-header-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--tx);
+}
+
+.caption-text-area {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 16px;
+  padding: 32px;
+  overflow-y: auto;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  margin-bottom: 24px;
+}
+
+.caption-copy-btn {
+  align-self: center;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: var(--font-kr);
+  padding: 18px 56px;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--mocha-shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.caption-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--mocha-shadow);
+}
+
+.caption-copy-btn:active { transform: scale(0.97); }
+
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dk);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 100px;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE (미리보기용 축소)
+   ══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .slide {
+    width: 540px;
+    height: 675px;
+    transform-origin: top center;
+  }
+  .slide-label { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1 — COVER ═══════════════════ -->
+<div class="slide-label">SLIDE 1 / 7 — COVER</div>
+<div class="slide slide-cover">
+  <span class="cover-badge">중문 견적 가이드</span>
+  <h1 class="cover-hook">
+    중문 설치할 때<br><span class="gold">추가금 폭탄</span><br>피하는 4가지 방법
+  </h1>
+  <p class="cover-sub">전화 견적만 믿었다가 현장에서 낭패 보지 마세요!</p>
+  <div class="cover-bottom">
+    <span class="cover-brand">문장군 MUNJANGGUN</span>
+    <span class="cover-swipe">SWIPE ──────→</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 2 — POINT 01 ═══════════════════ -->
+<div class="slide-label">SLIDE 2 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">전화 구두 견적 경계</span>
+    <div class="num-row">
+      <span class="num">01</span>
+      <span class="sub">전화 견적과 현장 실제 비용의 차이</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">전화상 최저가 견적에<br>현혹되지 마세요</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      많은 시공업체들이 가로폭이 매우 좁은 표준 크기 기준의<br>
+      가장 저렴한 기본 비용을 먼저 제시합니다.<br>
+      하지만 실제 우리 집 현관은 크기나 몰딩 구조가 달라<br>
+      현장 시공 당일에 수십만 원의 추가금이 추가되기 일쑤입니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator x">✕</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 구축 아파트의 기형적으로 넓거나 불규칙한 현관 구조를 상세한 정밀 실측 없이 눈대중으로 대강 짐작하고 있는 불완전한 대면 상담 전 상황 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">유선 견적을 받을 때는 반드시 "비규격 사이즈 추가 비용" 유무를 먼저 확인해 두세요.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3 — POINT 02 ═══════════════════ -->
+<div class="slide-label">SLIDE 3 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">추가금 유발 3대 항목</span>
+    <div class="num-row">
+      <span class="num">02</span>
+      <span class="sub">견적서 사인 전 필수 체크</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">핵심 추가금 유발 항목<br>미리 꼼꼼히 확인하기</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      중문 추가금을 유발하는 가장 대표적인 항목은 3가지입니다.<br>
+      1. 가로/세로 규격 외 비표준 사이즈에 따른 단가 상승<br>
+      2. 기존 설치된 노후화된 중문의 철거 및 폐기물 처리비<br>
+      3. 현관 바닥 및 기둥 목공 보강작업 및 스위치 매립 구조
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 기존의 두껍고 무거운 옛날 나무 중문을 깔끔하고 흔적 없이 완전히 철거해 내고 발생한 폐기물까지 트럭으로 완벽하게 반출 정리 완료한 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">철거비와 폐기물 처리비가 총견적서에 명시되어 포함되었는지를 반드시 짚어보아야 합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4 — COMPARE ═══════════════════ -->
+<div class="slide-label">SLIDE 4 / 7 — COMPARE</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="compare-area">
+    <span class="category-tag" style="align-self:center;">견적 방식 일대일 비교</span>
+    <div class="num-row" style="justify-content:center;">
+      <span class="num">03</span>
+      <span class="sub">일반 업체 vs 문장군 견적</span>
+    </div>
+    <div class="deco-line" style="justify-content:center;"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="compare-title">어떻게 견적을 내야 안전할까?</h2>
+    <div class="compare-cols">
+      <div class="compare-col left">
+        <div class="compare-label">일반 업체 가견적 방식</div>
+        <div class="compare-item">대략적인 구두 가견적으로 저렴하게 유도</div>
+        <div class="compare-item">철거비, 폐기물 처리비는 현장에서 별도 청구</div>
+        <div class="compare-item">시공 당일 현장 실측 후 돌발 추가금 부과</div>
+        <div class="compare-item">당일 결제를 거부하는 경우 시공이 보류되어 곤란</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-label">문장군 실측 견적 방식</div>
+        <div class="compare-item">레이저 레벨기 기반 전문 무료 방문실측 진행</div>
+        <div class="compare-item">철거/폐기/보강비 등 모든 항목 사전 기재</div>
+        <div class="compare-item">현장에서 태블릿으로 상세 확정 단가 안내</div>
+        <div class="compare-item">실측 금액 결정 완료 시 현장 추가금 0원 보장</div>
+      </div>
+    </div>
+    <div class="compare-verdict">→ 현장을 모르는 유선 상담 대신, 무료 실측을 통한 사전 확정 견적이 답입니다.</div>
+  </div>
+  <div class="image-slot short">
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 고객에게 중문 도색 샘플북과 유리 샘플 세트를 대조해 보여주며 정밀 실측을 진행하고 최종 견적 항목을 태블릿 화면으로 신뢰감 있게 브리핑하는 영업부 매니저]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">시공을 계약하지 않아도 출장 실측 및 상세 상담비는 전면 0원으로 전액 무료입니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5 — CHECKLIST ═══════════════════ -->
+<div class="slide-label">SLIDE 5 / 7 — CHECKLIST</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">호갱 방지 자가검증</span>
+    <div class="num-row">
+      <span class="num">04</span>
+      <span class="sub">중문 계약 전 4대 질문 리스트</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title" style="font-size:56px;">견적 추가금 방어 체크리스트</h2>
+    <div class="check-items">
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        현장 실측과 상세 견적 도출 비용이 전면 무료로 제공되는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        실측 완료 후 결정한 견적 외에 시공 당일 현장 추가금이 전혀 없는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        기존 중문 철거와 공사로 발생하는 폐기물 처리비가 명시되었는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        골조 수평이 틀어져 발생하는 바닥/벽면 보강 목공 비용이 포함되었는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        실측 및 상세 상담 후 최종 계약을 진행하지 않아도 패널티 비용이 없는가?
+      </div>
+    </div>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 레이저 측정 장비를 벽과 바닥 모서리에 밀착하여 수평 오차와 바닥 보강재 부착 범위를 세밀하고 빈틈없이 진단 중인 실측 매니저의 작업 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">이 체크리스트를 스마트폰에 저장해 두시고 타 업체 계약 체결 전 반드시 물어보세요.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6 — CTA ═══════════════════ -->
+<div class="slide-label">SLIDE 6 / 7 — CTA</div>
+<div class="slide slide-cta">
+  <span class="corner-mark" style="color:var(--txl);">+</span>
+  <div class="cta-quote">"</div>
+  <div class="num-row" style="justify-content:center; margin-bottom:16px;">
+    <span class="num">05</span>
+    <span class="sub">문장군이 시원하게 다 해결해 드립니다</span>
+  </div>
+  <h2 class="cta-title">
+    현관 중문 견적 고민,<br>부담 없이 <span class="mocha">무료 방문실측</span> 신청하세요!
+  </h2>
+  <p class="cta-body">
+    혼자 눈대중으로 재다가 생기는 실측 오차로 시공이 막히거나<br>
+    현장에서 돌발 청구되는 추가금 폭탄 걱정은 더 이상 접어두세요.<br>
+    문장군은 계약 여부와 관계없이 전문 실측 출장비와 상담비가 100% 무료입니다.<br>
+    실제 컬러북과 실물 샘플을 보며 전문가의 진단을 직접 경험해 보세요.
+  </p>
+  <div class="cta-button">무료 방문실측 예약하기</div>
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="trust-icon">✎</div>
+      <span class="trust-label">실측 무료</span>
+      <span class="trust-desc">안 하셔도 0원</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">✓</div>
+      <span class="trust-label">추가금 없음</span>
+      <span class="trust-desc">현장 추가금 0원</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">♡</div>
+      <span class="trust-label">15,000+ 후기</span>
+      <span class="trust-desc">네이버 누적 리뷰</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7 — CAPTION COPY CARD ═══════════════════ -->
+<div class="slide-label">SLIDE 7 / 7 — 캡션 복사 카드</div>
+<div class="slide slide-caption-card">
+  <div class="caption-card-header">
+    <span class="caption-card-header-icon">📋</span>
+    <span class="caption-card-header-title">본문 캡션 (복사해서 인스타에 붙여넣기)</span>
+  </div>
+  <div class="caption-text-area" id="captionText">중문 설치하려고 알아볼 때, 업체마다 가격이 다르고 견적 기준이 모호해서 혼란스러우셨죠? 🧐
+시공 당일 갑작스러운 "추가금 폭탄"을 안전하게 피하는 4가지 꿀팁을 공개합니다!
+
+가장 흔하게 겪는 피해가 전화상으로 저렴한 가격에 덜컥 구두 계약했다가, 현장에서 "비규격 사이즈다", "철거비가 추가된다"며 수십만 원의 추가 비용을 요구받는 경우입니다.
+
+호갱 되지 않고 안심하고 이쁜 중문을 시공하는 가이드를 꼭 기억하세요!
+
+💡 중문 견적 추가금 피하는 4대 체크리스트
+1️⃣ 방문 실측비와 정밀 견적비가 전면 무료인지 확인하세요. (계약 안 해도 0원!)
+2️⃣ 기존 설치된 중문의 철거비와 폐기물 처리비가 사전에 청구 명시되었는지 보세요.
+3️⃣ 우리 집 현관 구조 뒤틀림으로 인한 바닥/벽면 보강 비용이 미리 산정되었는지 체크하세요.
+4️⃣ 실측 후 확정된 금액 외에 시공 당일 현장 추가금이 아예 없음을 명문화해 두세요.
+
+문장군은 이 모든 복잡한 걱정을 속 시원하게 해결해 드립니다. 😉
+계약 여부와 무관하게 **전 품목 무료 방문실측**을 진행하며, 전문 매니저가 실제 현장을 꼼꼼하게 레이저 기기로 체크한 후 1:1 맞춤 제안과 최종 확정 견적을 안내해 드립니다.
+
+실측이 완료되어 확정된 견적 그대로 시공되므로, 시공 당일 현장에서 당황스럽게 청구되는 돌발 추가금은 0원입니다!
+
+📌 100% 무료 방문 실측 (편안하게 진단받고 결정하세요!)
+📍 무료 실측 지역: 서울, 인천(영종도 제외), 경기(연천/동두천/포천/양평/가평/여주 제외), 천안/아산/청주/세종/대전
+📌 결정 완료 후 3~4일 내 빠른 시공 체계
+📌 외주 시공 기사 없이 100% 본사 전속 직영 시공팀 운영
+
+실측 비용은 0원! 속 시원하고 정직하게 견적받아보세요. 😊
+
+👉 무료 실측 신청은 프로필 링크를 클릭해 주세요!
+
+—
+
+#인테리어 #아파트인테리어 #셀프인테리어 #리모델링 #인테리어팁 #현관중문 #중문시공 #인테리어견적 #중문가격 #3연동중문 #현관문교체 #방문교체비용 #인테리어비용 #아파트중문 #반셀프인테리어 #중문비용 #중문설치비용 #3연동중문가격 #무료실측 #투명한견적 #문장군 #문장군중문 #문장군시공</div>
+  <button class="caption-copy-btn" onclick="copyCaption()">📋 캡션 복사하기</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ 캡션이 복사되었습니다!</div>
+
+<script>
+function copyCaption() {
+  const text = document.getElementById('captionText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = document.getElementById('captionText').innerText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>

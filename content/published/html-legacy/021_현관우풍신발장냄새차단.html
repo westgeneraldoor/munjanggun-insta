@@ -1,0 +1,966 @@
+<!--
+  문장군 캐러셀 HTML v3.0 — 021_현관우풍신발장냄새차단
+  테마 8: 현관 우풍/신발장 냄새 차단
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>021 — 현관 우풍/신발장 냄새 차단 | 문장군</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   DESIGN TOKENS — mocha-v2.3
+   ══════════════════════════════════════════════ */
+:root {
+  --accent: #8B7355;
+  --accent-soft: rgba(139,115,85,0.10);
+  --mocha-border: rgba(139,115,85,0.25);
+  --mocha-dark: #6B5840;
+  --mocha-shadow: rgba(139,115,85,0.25);
+  --gold: #D4B896;
+  --dk-cover: #1E1C18;
+  --dk: #2A2622;
+  --tx: #2A2622;
+  --tx2: #4A4540;
+  --txm: #8B8680;
+  --txl: #B5B0A8;
+  --cream: #F5F0E8;
+  --cream2: #EDE8DD;
+
+  --font-kr: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-en: 'Montserrat', sans-serif;
+
+  --canvas-w: 1080px;
+  --canvas-h: 1350px;
+}
+
+/* ══════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2A2622;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: var(--font-kr);
+}
+
+/* slide label */
+.slide-label {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txm);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide {
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 1 — COVER (다크)
+   ══════════════════════════════════════════════ */
+.slide-cover {
+  background: var(--dk-cover);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 56px 72px 48px;
+}
+
+/* 세로 장식선 */
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* 그라데이션 오버레이 */
+.slide-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(30,28,24,0.95) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-cover > * { position: relative; z-index: 1; }
+
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 10px 28px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+.cover-hook {
+  font-size: 58px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.cover-hook .gold { color: var(--gold); }
+
+.cover-sub {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-brand {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 3px;
+}
+
+.cover-swipe {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   INNER SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide-inner {
+  background: linear-gradient(to bottom, var(--cream) 0%, var(--cream2) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 좌측 액센트 바 */
+.slide-inner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+  z-index: 2;
+}
+
+/* 코너마크 */
+.corner-mark {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--txl);
+  opacity: 0.5;
+  z-index: 2;
+}
+
+/* 텍스트 영역 */
+.text-area {
+  flex: 1;
+  padding: 64px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.category-tag {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 100px;
+  padding: 6px 20px;
+  margin-bottom: 28px;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+.num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.num {
+  font-family: var(--font-en);
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.sub {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--txm);
+}
+
+.deco-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.deco-line .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mocha-border);
+}
+
+.deco-line .line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--mocha-border);
+}
+
+.slide-title {
+  font-size: 68px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.15;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--dk);
+  margin-bottom: 16px;
+}
+
+.slide-body {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════
+   IMAGE SLOT
+   ══════════════════════════════════════════════ */
+.image-slot {
+  height: 50%;
+  background: var(--cream2);
+  border-top: 2.5px dashed var(--mocha-border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.image-slot.short { height: 32%; }
+
+.image-slot-icon {
+  font-size: 48px;
+  opacity: 0.15;
+}
+
+.image-slot-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--txm);
+  opacity: 0.6;
+  text-align: center;
+  padding: 0 60px;
+  line-height: 1.5;
+}
+
+.indicator {
+  position: absolute;
+  top: 16px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.indicator.check {
+  background: var(--accent);
+  color: #fff;
+}
+
+.indicator.x {
+  background: var(--dk);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   TIP BAR
+   ══════════════════════════════════════════════ */
+.tip-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.tip-label {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.tip-sep {
+  color: var(--mocha-border);
+  font-weight: 300;
+}
+
+.tip-text {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   COMPARE SLIDE
+   ══════════════════════════════════════════════ */
+.compare-area {
+  flex: 1;
+  padding: 64px 64px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.compare-title {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--tx);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+
+.compare-cols {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
+.compare-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-label {
+  font-size: 30px;
+  font-weight: 900;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.compare-col.left .compare-label {
+  color: var(--txm);
+  border-bottom: 2px solid var(--mocha-border);
+}
+
+.compare-col.right .compare-label {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.compare-item {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tx2);
+  padding: 14px 0;
+  line-height: 1.45;
+}
+
+.compare-col.left .compare-item::before {
+  content: '✕  ';
+  color: var(--txm);
+  font-weight: 700;
+}
+
+.compare-col.right .compare-item::before {
+  content: '✓  ';
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.compare-verdict {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mocha-border);
+}
+
+/* ══════════════════════════════════════════════
+   CHECKLIST SLIDE
+   ══════════════════════════════════════════════ */
+.check-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--tx2);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.check-item:first-child {
+  background: var(--accent-soft);
+  border: 1px solid var(--mocha-border);
+  color: var(--tx);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   CTA SLIDE
+   ══════════════════════════════════════════════ */
+.slide-cta {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 72px;
+  text-align: center;
+}
+
+.cta-quote {
+  font-size: 64px;
+  color: var(--mocha-border);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.cta-title {
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.2;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.cta-title .mocha { color: var(--accent); }
+
+.cta-body {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 900;
+  padding: 22px 56px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 24px var(--mocha-shadow);
+  margin-bottom: 48px;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 40px;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--mocha-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.trust-label {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--tx);
+}
+
+.trust-desc {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 7 — CAPTION COPY CARD
+   ══════════════════════════════════════════════ */
+.slide-caption-card {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 56px 64px;
+}
+
+.caption-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.caption-card-header-icon {
+  font-size: 28px;
+}
+
+.caption-card-header-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--tx);
+}
+
+.caption-text-area {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 16px;
+  padding: 32px;
+  overflow-y: auto;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  margin-bottom: 24px;
+}
+
+.caption-copy-btn {
+  align-self: center;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: var(--font-kr);
+  padding: 18px 56px;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--mocha-shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.caption-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--mocha-shadow);
+}
+
+.caption-copy-btn:active { transform: scale(0.97); }
+
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dk);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 100px;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .slide {
+    width: 540px;
+    height: 675px;
+    transform-origin: top center;
+  }
+  .slide-label { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1 — COVER ═══════════════════ -->
+<div class="slide-label">SLIDE 1 / 7 — COVER</div>
+<div class="slide slide-cover">
+  <span class="cover-badge">단열 & 방음 가이드</span>
+  <h1 class="cover-hook">
+    현관 문 닫았는데<br>왜 자꾸 <span class="gold">찬 바람이</span><br>새어 들어올까?
+  </h1>
+  <p class="cover-sub">현관 우풍과 신발장 악취 완벽 차단하는 비결</p>
+  <div class="cover-bottom">
+    <span class="cover-brand">문장군 MUNJANGGUN</span>
+    <span class="cover-swipe">SWIPE ──────→</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 2 — POINT 01 ═══════════════════ -->
+<div class="slide-label">SLIDE 2 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">겨울철 실내 단열</span>
+    <div class="num-row">
+      <span class="num">01</span>
+      <span class="sub">보일러를 틀어도 추운 이유?</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">문틈 사이 칼바람<br>모헤어 밀폐력 확인 필수!</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      "현관문만 닫으면 괜찮을 줄 알았는데..."<br>
+      현관문 틈새로 들어오는 미세한 바람이 집안 온도를 2~3도나 떨어뜨립니다.<br>
+      중문 프레임 사이사이에 촘촘한 모헤어(Mohair)가 장착되어 있는지 확인하세요.<br>
+      문장군은 특수 고밀도 모헤어로 미세 틈새까지 완벽하게 밀폐해<br>
+      외부 찬 공기와 먼지 유입까지 원천 차단합니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator x">✕</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[현관문 틈새로 찬 외풍이 들어와 거실 온도가 급격히 떨어지는 열화상 카메라/시공전 이미지 묘사]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">중문은 집안의 난방비와 냉방비를 연간 최대 15% 이상 절약해 주는 실용적인 아이템입니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3 — POINT 02 ═══════════════════ -->
+<div class="slide-label">SLIDE 3 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">냄새 & 유해먼지 차단</span>
+    <div class="num-row">
+      <span class="num">02</span>
+      <span class="sub">문 열자마자 신발장 냄새가 진동한다면?</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">하부 에어타이트 가스켓<br>밀착 차단 구조 확인!</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      "신발장에 오래 묵은 꿉꿉한 냄새가 거실까지 들어와요."<br>
+      신발장 내부 악취와 배달 음식 냄새, 엘리베이터 앞 먼지는 중문 하나로 차단됩니다.<br>
+      특히 바닥 틈새를 꽉 막아주는 고무 가스켓과 밀착 레일이 중요합니다.<br>
+      문장군은 하부 틈새를 정밀하게 밀착시키는 알루미늄 슬림 레일과 가스켓 설계로<br>
+      불쾌한 냄새와 유해 요소를 현관 안에 완벽하게 가둡니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[바닥 틈새를 정밀 밀착 가스켓으로 빈틈없이 잡아주는 문장군 중문의 깔끔한 하부 밀폐 실사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">현관과 실내의 공기를 분리하면 외부 소음(발소리, 개 짖는 소리)도 약 20dB 이상 줄어듭니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4 — COMPARE 03 ═══════════════════ -->
+<div class="slide-label">SLIDE 4 / 7 — COMPARE</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="compare-area">
+    <span class="category-tag" style="align-self:center;">차단 성능 비교</span>
+    <div class="num-row" style="justify-content:center;">
+      <span class="num">03</span>
+      <span class="sub">틈새 바람과 냄새 방어선</span>
+    </div>
+    <div class="deco-line" style="justify-content:center;"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="compare-title">중문 유무에 따른 실내 환경 차이</h2>
+    <div class="compare-cols">
+      <div class="compare-col left">
+        <div class="compare-label">중문 없는 현관</div>
+        <div class="compare-item">현관문 틈 칼바람 유입으로 거실 한기 발생</div>
+        <div class="compare-item">신발 냄새와 먼지가 거실로 직접 확산</div>
+        <div class="compare-item">복도 엘리베이터/발소리 필터링 없이 노출</div>
+        <div class="compare-item">난방비 줄줄 새고 사생활 보호 취약</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-label">문장군 밀폐 중문</div>
+        <div class="compare-item">이중 모헤어로 현관 외풍 99% 원천 차단</div>
+        <div class="compare-item">냄새와 외부 유해 먼지 현관에서 격리</div>
+        <div class="compare-item">도톰한 프레임과 밀폐로 소음 20dB 이상 감소</div>
+        <div class="compare-item">냉난방 효율 급상승 + 아늑한 실내 완성</div>
+      </div>
+    </div>
+    <div class="compare-verdict">→ 단순 인테리어를 넘어, 가족의 건강과 난방비를 지키는 필수 방어벽입니다.</div>
+  </div>
+  <div class="image-slot short">
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[중문이 없어 외풍에 노출된 거실 vs 문장군 중문으로 훈훈하고 쾌적하게 차단된 실내 대조 그래픽]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">밀폐력이 우수한 3연동 중문이나 스윙도어는 공간 차지가 적어 단열 효과가 극대화됩니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5 — CHECKLIST 04 ═══════════════════ -->
+<div class="slide-label">SLIDE 5 / 7 — CHECKLIST</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">중문 밀폐 자가진단</span>
+    <div class="num-row">
+      <span class="num">04</span>
+      <span class="sub">우리 집 현관 방어막 점검</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title" style="font-size:56px;">이 중 하나라도 해당되면 중문이 시급합니다</h2>
+    <div class="check-items">
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        현관문 근처만 가도 발끝이 시린 칼바람이 분다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        신발장에 방향제를 둬도 불쾌한 냄새가 거실까지 난다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        밖에서 나는 발소리나 반려견 짖는 소리가 집안에 다 들린다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        현관 바닥에 미세한 흙먼지가 자주 쌓인다
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        보일러를 계속 틀어놓아도 온도가 금방 내려간다
+      </div>
+    </div>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[문장군 전속 시공팀이 수평과 밀폐 고무 마감을 꼼꼼하게 만지며 정밀 시공하는 현장 안심 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">꼼꼼한 실측을 바탕으로 한 시공만이 1mm의 유격도 없는 완벽한 밀폐를 완성합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6 — CTA 05 ═══════════════════ -->
+<div class="slide-label">SLIDE 6 / 7 — CTA</div>
+<div class="slide slide-cta">
+  <span class="corner-mark" style="color:var(--txl);">+</span>
+  <div class="cta-quote">"</div>
+  <div class="num-row" style="justify-content:center; margin-bottom:16px;">
+    <span class="num">05</span>
+    <span class="sub">우풍 & 냄새 차단 솔루션</span>
+  </div>
+  <h2 class="cta-title">
+    겨울 우풍과 신발장 냄새,<br><span class="mocha">무료 방문 실측으로</span> 고민 끝!
+  </h2>
+  <p class="cta-body">
+    우리 집 현관 구조에 어떤 중문이 가장 잘 어울릴지 고민되시나요?<br>
+    전문 실측 매니저가 직접 유리/프레임 샘플북을 들고 방문하여<br>
+    바닥 수평과 틈새 사이즈를 정확히 측정하고 맞춤 설계를 진단해 드립니다. (비용 0원)
+  </p>
+  <div class="cta-button">무료 방문 실측 예약하기</div>
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="trust-icon">✎</div>
+      <span class="trust-label">실측 기반</span>
+      <span class="trust-desc">정확한 상담</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">✓</div>
+      <span class="trust-label">공간 맞춤</span>
+      <span class="trust-desc">맞춤 제안</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">♡</div>
+      <span class="trust-label">부담 없는</span>
+      <span class="trust-desc">1:1 상담</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7 — CAPTION COPY CARD ═══════════════════ -->
+<div class="slide-label">SLIDE 7 / 7 — 캡션 복사 카드</div>
+<div class="slide slide-caption-card">
+  <div class="caption-card-header">
+    <span class="caption-card-header-icon">📋</span>
+    <span class="caption-card-header-title">본문 캡션 (복사해서 인스타에 붙여넣기)</span>
+  </div>
+  <div class="caption-text-area" id="captionText">"문 닫았는데 현관에서 왜 칼바람이 들어오지? 🥶"
+
+보일러를 온종일 틀어도 집안이 썰렁하게 느껴지거나, 현관을 열 때마다 꿉꿉한 신발장 냄새가 실내로 풍겨온다면?
+
+그 원인은 바로 현관문 틈새의 미세 유격 때문입니다! 🚪
+
+중문은 단순한 인테리어 요소가 아니라, 외부 찬 바람과 악취, 유해 먼지로부터 우리 집을 지키는 든든한 방어벽이에요. 👍
+
+💡 현관 중문 설치로 누리는 확실한 효과 3가지!
+
+1️⃣ 빈틈없는 외풍 차단: 문과 문 사이의 촘촘한 특수 모헤어로 겨울철 칼바람과 황사/먼지 유입을 차단합니다. ❄️
+2️⃣ 꿉꿉한 냄새 격리: 신발장의 꿉꿉한 냄새와 복도 악취가 거실로 확산하는 것을 하부 가스켓 밀착으로 단단히 막아줍니다. 🧼
+3️⃣ 생활 소음 차단: 엘리베이터 소리, 복도 발소리 등 이웃 간 프라이버시 소음을 약 20dB 감소시켜 줍니다. 🤫
+
+"우리 집 좁은 현관에도 중문 설치가 가능할까?"
+망설이지 마시고 전문가의 맞춤 솔루션을 먼저 받아보세요!
+전문 매니저가 현장으로 직접 찾아가 무료로 맞춤 중문을 제안해 드립니다.
+
+🛠️ 문장군만의 안심 혜택
+• 전 품목 방문 실측 견적비 0원 (비용 부담 ZERO)
+• 네이버 3연동 중문 누적 리뷰 15,000개 돌파로 증명된 품질
+• 외주 대행 없는 100% 전속 시공팀 책임제 운영
+• 결정 후 1주일 내 빠른 제작 및 시공 완료
+
+📍 시공 가능 지역:
+서울, 인천(영종도 제외), 경기(일부 제외: 연천/동두천/포천/양평/가평/여주), 천안, 아산, 청주, 세종, 대전
+
+👇 지금 바로 프로필 링크 클릭하고 무료 실측 상담 예약해 보세요!
+
+—
+
+#인테리어 #아파트인테리어 #겨울인테리어 #집꾸미기 #오늘의집 #현관중문 #중문시공 #단열 #우풍차단 #현관인테리어 #신발장냄새 #아파트중문 #3연동중문 #미서기중문 #스윙도어 #외풍차단 #단열중문 #난방비절약 #냄새차단 #현관우풍 #단열도어 #중문효과 #문장군 #문장군중문 #문장군시공</div>
+  <button class="caption-copy-btn" onclick="copyCaption()">📋 캡션 복사하기</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ 캡션이 복사되었습니다!</div>
+
+<script>
+function copyCaption() {
+  const text = document.getElementById('captionText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = document.getElementById('captionText').innerText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>

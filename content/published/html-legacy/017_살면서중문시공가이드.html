@@ -1,0 +1,974 @@
+<!--
+  문장군 캐러셀 HTML 017_살면서중문시공가이드
+  버전: v3.0 (CSS 변수 내장 단일 HTML 표준)
+  사용법: 브라우저에서 더블클릭하여 프리뷰를 즉시 확인하고, 7번째 슬라이드에서 본문 캡션을 복사하여 인스타그램 발행에 활용합니다.
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>017 — 살면서 중문 시공 가이드 | 문장군 캐러셀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   DESIGN TOKENS — mocha-v2.3
+   ══════════════════════════════════════════════ */
+:root {
+  --accent: #8B7355;
+  --accent-soft: rgba(139,115,85,0.10);
+  --mocha-border: rgba(139,115,85,0.25);
+  --mocha-dark: #6B5840;
+  --mocha-shadow: rgba(139,115,85,0.25);
+  --gold: #D4B896;
+  --dk-cover: #1E1C18;
+  --dk: #2A2622;
+  --tx: #2A2622;
+  --tx2: #4A4540;
+  --txm: #8B8680;
+  --txl: #B5B0A8;
+  --cream: #F5F0E8;
+  --cream2: #EDE8DD;
+
+  --font-kr: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-en: 'Montserrat', sans-serif;
+
+  --canvas-w: 1080px;
+  --canvas-h: 1350px;
+}
+
+/* ══════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2A2622;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: var(--font-kr);
+}
+
+/* slide label */
+.slide-label {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txm);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE COMMON
+   ══════════════════════════════════════════════ */
+.slide {
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 1 — COVER (다크)
+   ══════════════════════════════════════════════ */
+.slide-cover {
+  background: var(--dk-cover);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 56px 72px 48px;
+}
+
+/* 세로 장식선 */
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* 그라데이션 오버레이 (배경 이미지용) */
+.slide-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(30,28,24,0.95) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-cover > * { position: relative; z-index: 1; }
+
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 10px 28px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+.cover-hook {
+  font-size: 58px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.cover-hook .gold { color: var(--gold); }
+
+.cover-sub {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-brand {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 3px;
+}
+
+.cover-swipe {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   INNER SLIDE COMMON (point / compare / checklist)
+   ══════════════════════════════════════════════ */
+.slide-inner {
+  background: linear-gradient(to bottom, var(--cream) 0%, var(--cream2) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 좌측 액센트 바 */
+.slide-inner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+  z-index: 2;
+}
+
+/* + 코너마크 */
+.corner-mark {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--txl);
+  opacity: 0.5;
+  z-index: 2;
+}
+
+/* 텍스트 영역 상단 */
+.text-area {
+  flex: 1;
+  padding: 64px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* 카테고리 필태그 */
+.category-tag {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 100px;
+  padding: 6px 20px;
+  margin-bottom: 28px;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+/* 넘버 + 서브 */
+.num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.num {
+  font-family: var(--font-en);
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.sub {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--txm);
+}
+
+/* 장식 구분선 */
+.deco-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.deco-line .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mocha-border);
+}
+
+.deco-line .line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--mocha-border);
+}
+
+/* 제목 */
+.slide-title {
+  font-size: 58px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+
+/* 디바이더 */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--dk);
+  margin-bottom: 16px;
+}
+
+/* 본문 */
+.slide-body {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════
+   IMAGE SLOT
+   ══════════════════════════════════════════════ */
+.image-slot {
+  height: 50%;
+  background: var(--cream2);
+  border-top: 2.5px dashed var(--mocha-border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.image-slot.short { height: 32%; }
+
+.image-slot-icon {
+  font-size: 48px;
+  opacity: 0.15;
+}
+
+.image-slot-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--txm);
+  opacity: 0.6;
+  text-align: center;
+  padding: 0 60px;
+  line-height: 1.5;
+}
+
+/* 인디케이터 */
+.indicator {
+  position: absolute;
+  top: 16px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.indicator.check {
+  background: var(--accent);
+  color: #fff;
+}
+
+.indicator.x {
+  background: var(--dk);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   TIP BAR
+   ══════════════════════════════════════════════ */
+.tip-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.tip-label {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.tip-sep {
+  color: var(--mocha-border);
+  font-weight: 300;
+}
+
+.tip-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   COMPARE SLIDE
+   ══════════════════════════════════════════════ */
+.compare-area {
+  flex: 1;
+  padding: 64px 64px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.compare-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--tx);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+
+.compare-cols {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
+.compare-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-label {
+  font-size: 26px;
+  font-weight: 900;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.compare-col.left .compare-label {
+  color: var(--txm);
+  border-bottom: 2px solid var(--mocha-border);
+}
+
+.compare-col.right .compare-label {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.compare-item {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--tx2);
+  padding: 14px 0;
+  line-height: 1.45;
+}
+
+.compare-col.left .compare-item::before {
+  content: '✕  ';
+  color: var(--txm);
+  font-weight: 700;
+}
+
+.compare-col.right .compare-item::before {
+  content: '✓  ';
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.compare-verdict {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mocha-border);
+}
+
+/* ══════════════════════════════════════════════
+   CHECKLIST SLIDE
+   ══════════════════════════════════════════════ */
+.check-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--tx2);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.check-item:first-child {
+  background: var(--accent-soft);
+  border: 1px solid var(--mocha-border);
+  color: var(--tx);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   CTA SLIDE
+   ══════════════════════════════════════════════ */
+.slide-cta {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 72px;
+  text-align: center;
+}
+
+.cta-quote {
+  font-size: 64px;
+  color: var(--mocha-border);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.cta-title {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--tx);
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.cta-title .mocha { color: var(--accent); }
+
+.cta-body {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 900;
+  padding: 22px 56px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px var(--mocha-shadow);
+  margin-bottom: 48px;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 40px;
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--mocha-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.trust-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tx);
+}
+
+.trust-desc {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--txm);
+}
+
+/* ══════════════════════════════════════════════
+   SLIDE 7 — CAPTION COPY CARD
+   ══════════════════════════════════════════════ */
+.slide-caption-card {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 56px 64px;
+}
+
+.caption-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.caption-card-header-icon {
+  font-size: 28px;
+}
+
+.caption-card-header-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--tx);
+}
+
+.caption-text-area {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid var(--mocha-border);
+  border-radius: 16px;
+  padding: 32px;
+  overflow-y: auto;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--tx2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  margin-bottom: 24px;
+}
+
+.caption-copy-btn {
+  align-self: center;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: var(--font-kr);
+  padding: 18px 56px;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--mocha-shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.caption-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px var(--mocha-shadow);
+}
+
+.caption-copy-btn:active { transform: scale(0.97); }
+
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dk);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 100px;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE (미리보기용 축소)
+   ══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .slide {
+    width: 540px;
+    height: 675px;
+    transform-origin: top center;
+  }
+  .slide-label { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1 — COVER ═══════════════════ -->
+<div class="slide-label">SLIDE 1 / 7 — COVER</div>
+<div class="slide slide-cover">
+  <span class="cover-badge">살면서 시공 가이드</span>
+  <h1 class="cover-hook">
+    거주 중에 중문 설치,<br><span class="gold">이거 3가지만</span><br>알면 짐 안 빼도 됩니다!
+  </h1>
+  <p class="cover-sub">먼지, 소음, 시간 걱정 없이 하루 만에 끝내는 법</p>
+  <div class="cover-bottom">
+    <span class="cover-brand">문장군 MUNJANGGUN</span>
+    <span class="cover-swipe">SWIPE ──────→</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 2 — POINT 01 ═══════════════════ -->
+<div class="slide-label">SLIDE 2 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">먼지 방어 시스템</span>
+    <div class="num-row">
+      <span class="num">01</span>
+      <span class="sub">미세 톱밥 날림 원천 차단</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">먼지 걱정 NO!<br>자체 집진 흡입 장비 시공</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      절단 및 재단 시 온 집안에 미세한 톱밥 가루가 하얗게 날려<br>
+      가구와 가전에 내려앉을까 봐 많이 망설이셨죠?<br>
+      문장군은 시공 전 현장에서 강력한 전문 집진 청소 장비를 가동하여<br>
+      재단 가루를 실시간으로 흡입하며, 시공 후 깔끔한 뒷정리를 보장합니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 시공 기사가 집진 진공 청소기를 절단 장비에 호스로 직접 연결하여 나무 가루와 톱밥 날림 없이 수평 몰딩을 깔끔하게 재단하는 정밀 가공 현장 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">보양 작업을 별도로 크게 하지 않아도 날리는 미세 톱밥을 최소화하여 거실 일상에 지장을 주지 않습니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3 — POINT 02 ═══════════════════ -->
+<div class="slide-label">SLIDE 3 / 7 — POINT</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">초고속 소음 민원 해결</span>
+    <div class="num-row">
+      <span class="num">02</span>
+      <span class="sub">이웃 눈치 안 보고 초고속 시공</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title">소음/민원 걱정 NO!<br>평균 2시간 타이트한 완료</h2>
+    <div class="divider"></div>
+    <p class="slide-body">
+      공사 소음이 하루 종일 이어지면 이웃 눈치가 보이기 마련이죠.<br>
+      문장군의 중문 설치 공사는 평균 2시간(최대 3시간),<br>
+      방문교체는 개당 30분이면 깔끔하게 마칩니다.<br>
+      전속 시공 프로들이 신속하게 소음 구간을 최소화하여 시공합니다.
+    </p>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 시공 매니저들이 일사불란하게 움직이며 문짝을 장착하고 있으며, 벽면에 수평 레이저가 켜져 있어 시계가 2시간 남짓 흘렀음을 보여주는 신속 정확한 시공 현장 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">아파트 관리사무소에 사전 소음 신고 규정을 확인하시고 2~3일 전에 엘리베이터 공지를 챙겨두면 더 원활합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4 — COMPARE ═══════════════════ -->
+<div class="slide-label">SLIDE 4 / 7 — COMPARE</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="compare-area">
+    <span class="category-tag" style="align-self:center;">시공 방식 직관 비교</span>
+    <div class="num-row" style="justify-content:center;">
+      <span class="num">03</span>
+      <span class="sub">일반 인테리어 vs 문장군 원데이</span>
+    </div>
+    <div class="deco-line" style="justify-content:center;"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="compare-title">살면서 시공, 무엇이 다를까?</h2>
+    <div class="compare-cols">
+      <div class="compare-col left">
+        <div class="compare-label">일반 인테리어 업체</div>
+        <div class="compare-item">하루 종일 걸려 일상 스케줄 마비</div>
+        <div class="compare-item">가구/가전 덮개 보양 및 사전 대규모 이동 요구</div>
+        <div class="compare-item">집안 가득 쌓인 미세 톱밥가루 셀프 대청소</div>
+        <div class="compare-item">외주 하청 기사의 불투명한 시공 숙련도</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-label">문장군 원데이 시공</div>
+        <div class="compare-item">평균 2시간 내 초고속 완료 (연차 불필요)</div>
+        <div class="compare-item">대대적 가구 이동 없이 현관 동선만 확보</div>
+        <div class="compare-item">자체 집진 흡입 장비 가동 및 시공 후 뒷정리</div>
+        <div class="compare-item">100% 직영 시공팀의 정밀 수평 레이저 시공</div>
+      </div>
+    </div>
+    <div class="compare-verdict">→ 일상에 지장 주지 않는 신속하고 깨끗한 원데이 시공이 정답입니다.</div>
+  </div>
+  <div class="image-slot short">
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 문장군 로고가 새겨진 작업복을 입은 시공팀이 시공이 끝난 현관 바닥과 몰딩 틈새의 톱밥 잔해들을 청소기로 구석구석 정돈하고 정돈된 모습을 고객에게 확인받는 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">오전에 시작해 점심 무렵 종료되므로 별도로 연차를 낼 필요 없이 주말 아침에도 시공 가능합니다.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5 — CHECKLIST ═══════════════════ -->
+<div class="slide-label">SLIDE 5 / 7 — CHECKLIST</div>
+<div class="slide slide-inner">
+  <span class="corner-mark">+</span>
+  <div class="text-area">
+    <span class="category-tag">안심 시공 자가검증</span>
+    <div class="num-row">
+      <span class="num">04</span>
+      <span class="sub">거주 중 시공 자가진단 5대 체크</span>
+    </div>
+    <div class="deco-line"><span class="dot"></span><span class="line"></span></div>
+    <h2 class="slide-title" style="font-size:56px;">살면서 시공 자가진단 리스트</h2>
+    <div class="check-items">
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        이사 계획은 없지만 현관 우풍과 외부 소음 차단이 시급한가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        시공 당일 가전, 가구, 짐을 다 옮길 엄두가 안 나 미루고 있었는가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        소음과 미세 톱밥 먼지로 시공 후 청소가 너무 두려운 상태인가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        평일 연차를 내기 어려워 토요일 오전 등 맞춤 시간 시공이 필요한가?
+      </div>
+      <div class="check-item">
+        <span class="check-icon">✓</span>
+        실측부터 시공 완료까지 일주일 내외의 빠른 일정을 희망하는가?
+      </div>
+    </div>
+  </div>
+  <div class="image-slot">
+    <div class="indicator check">✓</div>
+    <span class="image-slot-icon">📷</span>
+    <span class="image-slot-text">[AppSheet 현장 실사진 권장 — 깔끔하고 세련된 화이트 톤의 초슬림 3연동 중문 시공이 완전히 끝나고 바닥의 먼지까지 깨끗하게 닦여서 바로 일상생활이 가능함을 보여주는 완료 현관 뷰 사진]</span>
+  </div>
+  <div class="tip-bar">
+    <span class="tip-label">TIP</span>
+    <span class="tip-sep">|</span>
+    <span class="tip-text">3개 이상 해당되신다면 문장군의 원데이 시공 솔루션을 통해 고민을 단번에 해결해 보세요.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6 — CTA ═══════════════════ -->
+<div class="slide-label">SLIDE 6 / 7 — CTA</div>
+<div class="slide slide-cta">
+  <span class="corner-mark" style="color:var(--txl);">+</span>
+  <div class="cta-quote">"</div>
+  <div class="num-row" style="justify-content:center; margin-bottom:16px;">
+    <span class="num">05</span>
+    <span class="sub">문장군이 시원하게 다 해결해 드립니다</span>
+  </div>
+  <h2 class="cta-title">
+    살면서 중문/문짝 교체 고민,<br>부담 없이 <span class="mocha">무료 방문실측</span> 신청하세요!
+  </h2>
+  <p class="cta-body">
+    집 구조가 특이해서 짐을 옮겨야 할지, 먼지가 얼마나 날릴지 혼자 끙끙 앓지 마세요.<br>
+    문장군은 전문 영업 매니저가 직접 댁으로 찾아가 레이저 정밀 수평 계측은 물론,<br>
+    거실 가구 배치 동선을 보고 먼지를 최소화할 최적의 시공법을 1:1 맞춤 설계해 드립니다.<br>
+    안 하셔도 출장 실측과 상세 견적 산출 비용은 100% 무료, 0원입니다.
+  </p>
+  <div class="cta-button">무료 방문실측 예약하기</div>
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="trust-icon">✎</div>
+      <span class="trust-label">실측 무료</span>
+      <span class="trust-desc">안 하셔도 0원</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">✓</div>
+      <span class="trust-label">추가금 없음</span>
+      <span class="trust-desc">현장 추가금 0원</span>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">♡</div>
+      <span class="trust-label">15,000+ 후기</span>
+      <span class="trust-desc">네이버 누적 리뷰</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7 — CAPTION COPY CARD ═══════════════════ -->
+<div class="slide-label">SLIDE 7 / 7 — 캡션 복사 카드</div>
+<div class="slide slide-caption-card">
+  <div class="caption-card-header">
+    <span class="caption-card-header-icon">📋</span>
+    <span class="caption-card-header-title">본문 캡션 (복사해서 인스타에 붙여넣기)</span>
+  </div>
+  <div class="caption-text-area" id="captionText">살고 있는 집에 중문 설치하거나 낡은 문짝 교체하고 싶어도, 온 집안에 하얗게 쌓일 톱밥 먼지와 층간소음 민원 때문에 엄두가 안 나 미루고 계셨죠? 😭
+
+이제 짐 옮기고 대청소할 걱정 없이 안심하고 '살면서 시공' 받아보세요!
+
+문장군의 원데이 안심 시공으로 일상 붕괴 없이 깔끔하고 예쁘게 현관 분위기를 바꿀 수 있는 비밀을 소개합니다. 😉
+
+💡 거주 중 시공할 때 알아둬야 할 핵심 포인트
+1️⃣ **전문 집진 흡입 장비 시공**: 절단 가루와 미세 톱밥 먼지를 가공과 동시에 청소 장비로 강력하게 빨아들여 날림을 차단합니다.
+2️⃣ **평균 2시간 초고속 완료**: 전속 시공 프로들이 수평 레이저 계측기를 사용하여 단시간에 정밀하고 소음 구간을 최소화하여 끝냅니다. (문짝교체는 1짝당 30분!)
+3️⃣ **가구 대이동 최소화**: 현관 입구 및 문 주변의 최소 동선만 비워두면 되므로, 살림살이를 멀리 치워둘 필요가 없습니다.
+
+"우리 집 현관은 폭이 좁은데 가능할까?", "중문이랑 문틀 교체 중에 뭐가 맞을까?" 혼자 고민하지 마세요.
+
+문장군은 실제 현장 구조와 자재 실물을 대조하며 진단해 드리는 **무료 방문실측**을 운영하고 있습니다. 
+
+전문 상담을 받고 계약을 선택하지 않으셔도 출장비와 실측비는 일절 발생하지 않는 전면 무료(0원)이니 편하게 진단받아보세요!
+
+📌 100% 무료 방문 실측 (편안하게 진단받고 결정하세요!)
+📍 무료 실측 지역: 서울, 인천(영종도 제외), 경기(연천/동두천/포천/양평/가평/여주 제외), 천안/아산/청주/세종/대전
+📌 결정 완료 후 3~4일 내 빠른 시공 체계
+📌 외주 시공 기사 없이 100% 본사 전속 직영 시공팀 운영
+
+실측 비용은 0원! 속 시원하고 깨끗하게 시공 받아보세요. 😊
+
+👉 무료 실측 신청은 프로필 링크를 클릭해 주세요!
+
+—
+
+#인테리어 #아파트인테리어 #오늘의집 #집꾸미기 #리모델링 #현관중문 #중문시공 #방문교체 #거주중인테리어 #거주중리모델링 #부분인테리어 #부분시공 #아파트리모델링 #빠른시공 #집스타그램 #살면서인테리어 #살면서리모델링 #당일시공 #원데이시공 #무료방문견적 #중문전문 #문장군 #문장군중문 #문장군시공</div>
+  <button class="caption-copy-btn" onclick="copyCaption()">📋 캡션 복사하기</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ 캡션이 복사되었습니다!</div>
+
+<script>
+function copyCaption() {
+  const text = document.getElementById('captionText').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = document.getElementById('captionText').innerText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>
