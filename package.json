@@ -1,17 +1,14 @@
 {
   "name": "munjanggun-instagram",
   "version": "5.0.0",
-  "description": "Munjanggun Instagram content operations OS",
+  "description": "Munjanggun Instagram carousel MD source workflow",
   "scripts": {
-    "preview": "npx http-server . -p 8080 -o",
+    "quality": "npm run validate && npm run status",
+    "status": "node scripts/reports/generate_status.js",
+    "topics:sync": "node scripts/reports/generate_topics_catalog.js",
     "validate": "node scripts/validators/validate_content.js",
     "validate:content": "node scripts/validators/validate_content.js",
-    "legacy:preview-html": "npx http-server ./content/published/html-legacy -p 8080 -o",
-    "legacy:preview-template": "npx http-server ./templates/html-legacy -p 8080 -o",
-    "legacy:validate-html": "node scripts/legacy/validate_carousel.js",
-    "legacy:export-png": "node scripts/legacy/render_png.js"
-  },
-  "devDependencies": {
-    "puppeteer": "^24.43.1"
+    "validate:file": "node scripts/validators/validate_content.js --file",
+    "validate:since": "node scripts/validators/validate_content.js --since"
   }
 }

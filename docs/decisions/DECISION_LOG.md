@@ -150,3 +150,17 @@
   - 스토리/권위 → 신뢰, 확신
 - **영향:** `AGENTS.md`(JSON 포맷 표준, 제작 프로세스), 기존 028~030 캐러셀 소급 적용
 - **재검토 조건:** GPT 이미지생성 결과가 visual_intent를 반영하지 못하거나, 필드가 과하다고 판단될 때.
+
+## DEC-029: 프로젝트 범위 재확정 — 캐러셀 MD/JSON 원고 제작 전용 — 2026-06-12
+- **배경:**
+  1. 문장군 중문/도어 제품은 프롬프트 설명만으로 구조적 정확도를 보장하기 어렵다.
+  2. Codex 내 이미지 생성 흐름은 로컬 제품 레퍼런스 시트를 GPT 앱처럼 안정적으로 첨부 참조시키는 운영을 보장하지 못한다.
+  3. 이미지 생성, 이미지시트, 완성 카드 QA까지 프로젝트 범위에 넣으면 제품 왜곡과 검수 실패 위험이 커진다.
+- **결정:**
+  1. 이 저장소의 역할은 **인스타그램 캐러셀 MD/JSON 원고 제작**으로 한정한다.
+  2. 신규 캐러셀 작업은 기획안 승인 → MD/JSON 원고 생성 → `npm run validate` 검증에서 종료한다.
+  3. 이미지 생성 프롬프트, 이미지시트 제작, 완성 카드 이미지 생성, 카드 이미지 QA는 이 프로젝트의 산출물이 아니다.
+  4. `visual_intent`는 이미지 생성 지시가 아니라 원고 이해를 돕는 장면 의도 필드로만 유지한다.
+  5. 검증기는 `image_generation`, `full_card_prompt`, `image_asset`, `source_html` 필드를 MD-only 위반으로 처리한다.
+- **영향:** `AGENTS.md`, `README.md`, `CONTENT_SCORECARD.md`, `INSTAGRAM_CAROUSEL_DESIGN_GUIDE.md`, `IMAGEGEN_CAROUSEL_OS.md`, `scripts/validators/validate_content.js`, 활성 캐러셀 원고.
+- **재검토 조건:** Codex 또는 운영 환경에서 실제 제품 레퍼런스 이미지를 안정적으로 첨부 참조하고, 결과물 검수까지 재현 가능하게 보장할 수 있을 때.

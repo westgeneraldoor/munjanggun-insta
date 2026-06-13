@@ -1,0 +1,103 @@
+{
+  "version": "2026-06-13",
+  "scale": "100-point editorial scorecard",
+  "score_fields": {
+    "hook_power": "0-20. 첫 장에서 멈추게 하는 생활 문제 힘.",
+    "saveability": "0-20. 체크리스트, 비교, 판단 기준으로 저장할 이유.",
+    "shareability": "0-20. 가족, 배우자, 실거주자가 공유할 만한 공감성.",
+    "dm_intent": "0-20. 댓글/DM/무료 실측으로 자연스럽게 이어지는 힘.",
+    "brand_fit": "0-20. 문장군 제품/서비스와 현실적으로 연결되는 정도."
+  },
+  "entries": [
+    {
+      "id": "038",
+      "title": "아이 겨우 재웠는데 현관 소리에 또 깬다면",
+      "problem_bank_ref": ["N02"],
+      "scores": { "hook_power": 18, "saveability": 16, "shareability": 18, "dm_intent": 17, "brand_fit": 17 },
+      "total_score": 86,
+      "verdict": "pass",
+      "notes": "생활 장면은 강하지만 아이 안전 클러스터와 혼동되지 않게 소음 중심 유지 필요."
+    },
+    {
+      "id": "039",
+      "title": "부모님이 문턱 앞에서 멈칫한다면",
+      "problem_bank_ref": ["F06"],
+      "scores": { "hook_power": 17, "saveability": 18, "shareability": 17, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 88,
+      "verdict": "pass",
+      "notes": "동선, 문턱, 레일 체크가 무료 실측과 자연스럽게 연결됨."
+    },
+    {
+      "id": "040",
+      "title": "베란다 확장 후 집이 더 춥고 더운 이유",
+      "problem_bank_ref": ["W05"],
+      "scores": { "hook_power": 16, "saveability": 18, "shareability": 15, "dm_intent": 17, "brand_fit": 17 },
+      "total_score": 83,
+      "verdict": "pass",
+      "notes": "확장 공간과 문 위치 체크로 한정해야 단열 공사 과장처럼 보이지 않음."
+    },
+    {
+      "id": "041",
+      "title": "복도식 아파트 현관이 바람길이 될 때",
+      "problem_bank_ref": ["W06"],
+      "scores": { "hook_power": 17, "saveability": 17, "shareability": 16, "dm_intent": 17, "brand_fit": 18 },
+      "total_score": 85,
+      "verdict": "pass",
+      "notes": "복도식 구조라는 타깃이 선명함. 계절 표현은 사계절형으로 관리."
+    },
+    {
+      "id": "042",
+      "title": "시트지 벗겨진 방문, 리폼 전에 보세요",
+      "problem_bank_ref": ["A02"],
+      "scores": { "hook_power": 16, "saveability": 18, "shareability": 14, "dm_intent": 17, "brand_fit": 19 },
+      "total_score": 84,
+      "verdict": "pass",
+      "notes": "리폼 vs 교체 판단 기준이 명확해 저장형으로 적합."
+    },
+    {
+      "id": "043",
+      "title": "리모델링했는데 문만 그대로라면",
+      "problem_bank_ref": ["A07"],
+      "scores": { "hook_power": 16, "saveability": 15, "shareability": 15, "dm_intent": 16, "brand_fit": 18 },
+      "total_score": 80,
+      "verdict": "pass",
+      "notes": "감성 소재라 문제 밀도가 약해질 수 있음. 마감 불균형 체크로 유지."
+    },
+    {
+      "id": "044",
+      "title": "집이 누렇게 보이면 몰딩을 보세요",
+      "problem_bank_ref": ["A05"],
+      "scores": { "hook_power": 14, "saveability": 16, "shareability": 13, "dm_intent": 15, "brand_fit": 17 },
+      "total_score": 75,
+      "verdict": "revise",
+      "notes": "제작 가능하나 강한 인기 소재는 아님. 다음 유사 소재는 더 구체적 결함이 필요."
+    },
+    {
+      "id": "045",
+      "title": "회의 켰는데 거실 소리부터 들어온다면",
+      "problem_bank_ref": ["N03"],
+      "scores": { "hook_power": 19, "saveability": 17, "shareability": 17, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 89,
+      "verdict": "pass",
+      "notes": "재택회의라는 즉시 공감 상황이 강함. 중문 만능 방음 표현 금지."
+    },
+    {
+      "id": "046",
+      "title": "방문이 바닥을 긁는 소리, 그냥 두지 마세요",
+      "problem_bank_ref": ["D01"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 15, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 89,
+      "verdict": "pass",
+      "notes": "문제-진단-무료 실측 연결이 매우 자연스러움. 무조건 교체처럼 보이면 감점."
+    },
+    {
+      "id": "047",
+      "title": "원하는 중문, 스위치 하나 때문에 못 달 수 있습니다",
+      "problem_bank_ref": ["E01"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 16, "dm_intent": 19, "brand_fit": 19 },
+      "total_score": 91,
+      "verdict": "pass",
+      "notes": "설치 전 체크 포인트가 선명하고 실측 CTA와 가장 잘 맞음."
+    }
+  ]
+}

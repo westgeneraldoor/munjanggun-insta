@@ -1,0 +1,39 @@
+name: Validate Carousel MD
+
+on:
+  pull_request:
+    paths:
+      - "content/source/carousel/**/*.md"
+      - "data/**"
+      - "docs/operating/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install
+        run: npm install
+
+      - name: Sync topic catalog
+        run: npm run topics:sync
+
+      - name: Validate recent production MD
+        run: npm run validate:since -- 045
+
+      - name: Generate status report
+        run: npm run status
