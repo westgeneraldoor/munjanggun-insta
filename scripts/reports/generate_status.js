@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { buildTopicCatalog } = require("../lib/topic_catalog");
+const { loadCustomerQuestionBank } = require("../lib/customer_questions");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 const CONTENT_DIR = path.join(ROOT, "content", "source", "carousel");
@@ -174,6 +175,32 @@ function getScorecardStatus(items) {
   };
 }
 
+function getCustomerQuestionStatus() {
+  const bank = loadCustomerQuestionBank(ROOT);
+  const questions = Array.isArray(bank.questions) ? bank.questions : [];
+  const counts = questions.reduce((acc, question) => {
+    acc[question.state] = (acc[question.state] || 0) + 1;
+    return acc;
+  }, {});
+  const priorityRank = { high: 0, medium: 1, low: 2 };
+  const review = questions
+    .filter((question) => question.state === "answer_review")
+    .sort((a, b) => (priorityRank[a.priority] ?? 9) - (priorityRank[b.priority] ?? 9) || a.id.localeCompare(b.id));
+  const triage = questions
+    .filter((question) => question.state === "triage_review")
+    .sort((a, b) => (priorityRank[a.priority] ?? 9) - (priorityRank[b.priority] ?? 9) || a.id.localeCompare(b.id));
+  const ready = questions.filter((question) => question.state === "ready");
+
+  return {
+    bank,
+    total: questions.length,
+    counts,
+    triage,
+    review,
+    ready,
+  };
+}
+
 function makeTable(headers, rows) {
   const headerLine = `| ${headers.join(" | ")} |`;
   const separator = `| ${headers.map(() => "---").join(" | ")} |`;
@@ -181,7 +208,7 @@ function makeTable(headers, rows) {
   return [headerLine, separator, ...rowLines].join("\n");
 }
 
-function buildReport({ carousel, registry, validationAll, validationNew, topics, scorecard }) {
+function buildReport({ carousel, registry, validationAll, validationNew, topics, scorecard, customerQuestions }) {
   const generatedAt = new Intl.DateTimeFormat("ko-KR", {
     timeZone: "Asia/Seoul",
     year: "numeric",
@@ -220,6 +247,24 @@ function buildReport({ carousel, registry, validationAll, validationNew, topics,
     topic.allowed_angle || "-",
   ]);
 
+  const questionRows = customerQuestions.review.slice(0, 20).map((question) => [
+    question.priority || "-",
+    question.id,
+    question.category || "-",
+    question.raw_question || "-",
+    question.carousel_angle || "-",
+    (question.owner_questions || []).slice(0, 2).join(" / ") || "-",
+  ]);
+
+  const triageRows = customerQuestions.triage.slice(0, 30).map((question) => [
+    question.priority || "-",
+    question.id,
+    question.triage?.recommendation || "-",
+    question.triage?.cluster || "-",
+    question.raw_question || "-",
+    (question.triage?.related_question_refs || []).join(", ") || "-",
+  ]);
+
   const recentClusterRows = [...topics.recentClusters.entries()]
     .sort((a, b) => b[1] - a[1])
     .map(([cluster, count]) => [cluster, count]);
@@ -241,6 +286,10 @@ function buildReport({ carousel, registry, validationAll, validationNew, topics,
         ["토픽 상태", topics.catalog.state_machine.map((state) => `${state}:${topics.counts[state] || 0}`).join(" / ")],
         ["제작 가능 ready 후보", topics.ready.length],
         ["승격 검토 seed 후보", topics.seeds.length],
+        ["고객질문 총수", customerQuestions.total],
+        ["고객질문 정리 심사", customerQuestions.triage.length],
+        ["고객질문 협의 필요", customerQuestions.review.length],
+        ["고객질문 ready", customerQuestions.ready.length],
         ["전체 검증", `${validationAll.errors} errors / ${validationAll.warnings} warnings`],
         ["신규 검증(045+)", `${validationNew.errors} errors / ${validationNew.warnings} warnings`],
         ["레지스트리 누락 경로", registry.missingPaths.length],
@@ -269,6 +318,20 @@ function buildReport({ carousel, registry, validationAll, validationNew, topics,
       ? makeTable(["우선순위", "코드", "카테고리", "상황", "semantic_cluster", "필수 각도"], seedRows)
       : "승격 검토 후보가 없습니다.",
     "",
+    "## 고객질문 협의 후보",
+    "",
+    customerQuestions.triage.length
+      ? "### 정리 심사 후보\n\n" +
+          makeTable(["우선순위", "질문 ID", "정리 추천", "묶음", "고객 질문", "관련 질문"], triageRows) +
+          "\n"
+      : "정리 심사가 필요한 고객질문 후보가 없습니다.",
+    "",
+    "### 공식 답변 협의 후보",
+    "",
+    questionRows.length
+      ? makeTable(["우선순위", "질문 ID", "유형", "고객 질문", "캐러셀 각도", "대표님 확인 질문"], questionRows)
+      : "대표님 협의가 필요한 고객질문 후보가 없습니다.",
+    "",
     "## 최근 10개 클러스터",
     "",
     recentClusterRows.length
@@ -289,6 +352,8 @@ function buildReport({ carousel, registry, validationAll, validationNew, topics,
     "",
     "- `seed`는 제작 승인이 아니라 승격 검토 씨앗입니다.",
     "- `ready` 후보만 신규 캐러셀 제작 후보로 볼 수 있습니다.",
+    "- 고객질문은 `triage_review`에서 독립 유지/병합/분리/보류/폐기 판단을 먼저 거칩니다.",
+    "- 고객질문은 `answer_review` 상태에서는 MD로 만들지 않고, 대표님 공식 답변과 조건 확인 후 `ready`로 올립니다.",
     "- 신규 원고 검증은 `npm run validate:since -- 045` 또는 `npm run validate:file -- <파일>`로 분리해서 봅니다.",
     "- `topics.json`은 현재 브릿지 모드입니다. 기존 문제은행/품질규칙과 동기화한 뒤 점진적으로 단일 원천으로 전환합니다.",
     "",
@@ -302,7 +367,8 @@ function main() {
   const validationNew = runValidator(["--since", "045"]);
   const topics = getTopicStatus(carousel);
   const scorecard = getScorecardStatus(carousel);
-  const report = buildReport({ carousel, registry, validationAll, validationNew, topics, scorecard });
+  const customerQuestions = getCustomerQuestionStatus();
+  const report = buildReport({ carousel, registry, validationAll, validationNew, topics, scorecard, customerQuestions });
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, report, "utf8");
@@ -310,6 +376,7 @@ function main() {
   console.log(`Status report written: ${toProjectPath(OUTPUT_PATH)}`);
   console.log(`Carousel MD: ${carousel.total}, next ID: ${carousel.nextId}`);
   console.log(`Topics: ready=${topics.ready.length}, seed=${topics.seeds.length}`);
+  console.log(`Customer questions: triage=${customerQuestions.triage.length}, review=${customerQuestions.review.length}, ready=${customerQuestions.ready.length}`);
   console.log(`Validate all: ${validationAll.errors} errors / ${validationAll.warnings} warnings`);
   console.log(`Validate 045+: ${validationNew.errors} errors / ${validationNew.warnings} warnings`);
 

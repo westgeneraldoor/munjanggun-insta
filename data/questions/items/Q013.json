@@ -1,0 +1,33 @@
+{
+  "id": "Q013",
+  "state": "triage_review",
+  "product_scope": "세트",
+  "raw_question": "문틀이 위,아래 넓이가 다른데 문짝만 교체해도 문제 없나요?",
+  "category": "문틀/문짝 교체",
+  "customer_anxiety": "기존 문틀이 틀어져 있을 때 문짝만 바꿔도 되는지 알고 싶다.",
+  "carousel_angle": "문틀 폭이 위아래로 다르면 문짝만 교체 가능한지보다 틀 상태와 여닫힘 기준을 먼저 봐야 합니다.",
+  "hook_candidates": [
+    "문틀 폭이 위아래 다른데 문짝만 바꿔도 될까요?",
+    "문짝만 교체했다가 안 맞는 집, 이유가 있습니다"
+  ],
+  "owner_questions": [
+    "문틀 위아래 폭 차이가 있을 때 문짝만 교체 가능한 기준은 무엇인가요?",
+    "문틀까지 세트 교체를 권하는 조건은 무엇인가요?",
+    "실측에서 반드시 확인해야 할 항목은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "사진만 보고 문짝 교체 가능 단정 금지",
+    "문틀 변형과 여닫힘 문제를 분리해서 설명 필요"
+  ],
+  "suggested_cta_keyword": "문틀",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "DOORFRAME_CONDITION",
+    "related_question_refs": [
+      "Q016",
+      "Q024"
+    ],
+    "needs_owner_decision": true
+  }
+}

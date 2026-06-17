@@ -1,5 +1,5 @@
 {
-  "version": "2026-06-13",
+  "version": "2026-06-16",
   "source_mode": "bridge",
   "note": "Phase 1 bridge catalog. 신규 운영은 topics.json 상태 모델을 기준으로 보되, 기존 PROBLEM_BANK/PROBLEM_QUALITY_RULES와 동기화하여 안전하게 전환한다.",
   "state_machine": [
@@ -564,6 +564,132 @@
       "avoid_angle": "아이 안전 일반론.",
       "reject_reason": "아이 안전 클러스터 중복.",
       "used_ids": [],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G01",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "이사·전세 고객의 중문 이전설치 문의",
+      "hook_type": "실수방지",
+      "hook_example": "\"중문, 이사 갈 때 떼서 가져갈 수 있을까요?\"",
+      "semantic_cluster": "middle_door_relocation_rental",
+      "duplicate_signature_base": "middle_door_relocation_rental",
+      "purchase_reason": "이사·전세·임대 고객이 중문 이전설치와 철거 흔적을 미리 알아야 설치 결정을 정확히 할 수 있다.",
+      "allowed_angle": "중문은 가전이 아니라 현장 맞춤 시공물이라는 설명과 철거 흔적 고지.",
+      "avoid_angle": "이전설치 가능, 무타공이면 흔적 없음, 원상복구 보장처럼 들리는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "048"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G02",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "기존 중문 전체철거 여부 판단",
+      "hook_type": "실수방지",
+      "hook_example": "\"중문 틀까지 다 뜯었다가 일이 커질 수 있습니다\"",
+      "semantic_cluster": "existing_middle_door_frame_scope",
+      "duplicate_signature_base": "existing_middle_door_frame_scope",
+      "purchase_reason": "기존 중문이 있는 고객은 전체철거 여부와 기존 틀 활용 가능성에 따라 비용·시간·마감 리스크가 달라진다.",
+      "allowed_angle": "무조건 전체철거가 아니라 기존 틀, 조적, 신발장 연결, 쌈지 마감 가능성을 현장 판단하는 각도.",
+      "avoid_angle": "전체철거가 항상 좋다거나 기존 틀을 살리면 항상 지저분하다는 단정.",
+      "reject_reason": "",
+      "used_ids": [
+        "049"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G03",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "실측 후 시공 일정 역산",
+      "hook_type": "실수방지",
+      "hook_example": "\"이사 전 중문, 실측 늦게 잡으면 일정이 꼬입니다\"",
+      "semantic_cluster": "measurement_to_install_schedule",
+      "duplicate_signature_base": "measurement_to_install_schedule",
+      "purchase_reason": "이사·인테리어 일정 고객은 실측 후 시공 가능 기간을 알아야 일정 실패를 줄일 수 있다.",
+      "allowed_angle": "고객 최종결정 후 ABS도어와 중문 시공 일정, 원하는 시공일 기준 2주 전 문의 권장.",
+      "avoid_angle": "원하는 날짜 보장, 실측 다음날 설치, 전산 스케줄과 무관한 즉시 시공 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "050"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G04",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "철거·폐기물 별도 항목 확인",
+      "hook_type": "실수방지",
+      "hook_example": "\"철거·폐기물, 문장군도 별도로 안내합니다\"",
+      "semantic_cluster": "demolition_waste_extra_cost_scope",
+      "duplicate_signature_base": "demolition_waste_extra_cost_scope",
+      "purchase_reason": "철거·폐기물 별도 항목은 견적 불안을 만들지만, 문장군 기준을 먼저 밝히면 신뢰와 무료 실측 상담으로 자연스럽게 연결된다.",
+      "allowed_angle": "문장군도 중문과 ABS도어 세트의 철거/폐기물은 별도라고 정직하게 밝히고, ABS도어 문짝만 교체 시 무상수거 예외를 구분하는 설명.",
+      "avoid_angle": "철거/폐기물 무조건 포함, 추가금 없음, 업체가 더 받으려는 비용처럼 보이는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "051"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G05",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "3연동 댐퍼 사용감 오해",
+      "hook_type": "실수방지",
+      "hook_example": "\"3연동 댐퍼가 뻑뻑하면 고장일까요?\"",
+      "semantic_cluster": "middle_door_damper_understanding",
+      "duplicate_signature_base": "middle_door_damper_understanding",
+      "purchase_reason": "3연동 댐퍼가 뻑뻑하게 느껴질 때 고장인지 구조 차이인지 궁금한 고객은 현장 폭과 제품 구조 상담으로 자연스럽게 이어진다.",
+      "allowed_angle": "댐퍼는 유압 저항 장치이며 3연동중문은 폭, 상부 레일, 체결 위치에 따라 사용감이 달라질 수 있다는 설명.",
+      "avoid_angle": "댐퍼는 모든 중문에서 무조건 좋다, 버튼으로 켜고 끈다, 안전 문제가 완전히 해결된다는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "052"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G06",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "중문 설치 타이밍 판단",
+      "hook_type": "실수방지",
+      "hook_example": "\"중문, 이사 전에 해야 할까요? 이사 후에 해야 할까요?\"",
+      "semantic_cluster": "middle_door_install_timing",
+      "duplicate_signature_base": "middle_door_install_timing",
+      "purchase_reason": "이사·입주·인테리어 일정 고객은 중문을 언제 설치해야 새 중문 손상과 공정 꼬임을 줄일 수 있는지 알고 싶어 한다.",
+      "allowed_angle": "중문은 언제든 설치 가능하지만 철거 여부, 도배·장판 계획, 큰 짐 반입 순서에 따라 좋은 타이밍이 달라진다는 설명.",
+      "avoid_angle": "중문은 반드시 이사 전, 입주청소 전이 정답, 이사 후 설치 불가, 철거 흔적 남김없는 복구처럼 들리는 단정.",
+      "reject_reason": "",
+      "used_ids": [
+        "053"
+      ],
       "reuse_allowed": false
     },
     {

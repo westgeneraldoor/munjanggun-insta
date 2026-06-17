@@ -1,0 +1,32 @@
+{
+  "id": "Q023",
+  "state": "triage_review",
+  "product_scope": "도어짝",
+  "raw_question": "목재문은 왜 없나요?",
+  "category": "제품 정책/목재문",
+  "customer_anxiety": "왜 목재문 대신 ABS도어를 권하는지 궁금하다.",
+  "carousel_angle": "목재문을 취급하지 않는 이유는 습기, 변형, 유지관리 기준과 연결해 설명해야 합니다.",
+  "hook_candidates": [
+    "목재문은 왜 안 하나요?",
+    "요즘 화장실문에 목재문을 덜 쓰는 이유"
+  ],
+  "owner_questions": [
+    "문장군이 목재문을 취급하지 않거나 권하지 않는 공식 이유는 무엇인가요?",
+    "목재문이 특히 취약한 공간은 어디인가요?",
+    "ABS도어와 비교할 때 금지해야 할 과장 표현은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "목재문 전체를 공격하는 톤 금지",
+    "목재문 단점은 사용 환경 중심으로 설명"
+  ],
+  "suggested_cta_keyword": "목재문",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "ABS_EXPLAINER",
+    "related_question_refs": [
+      "Q022"
+    ],
+    "needs_owner_decision": true
+  }
+}

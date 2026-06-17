@@ -1,0 +1,33 @@
+{
+  "id": "Q016",
+  "state": "triage_review",
+  "product_scope": "세트",
+  "raw_question": "도배,장판 계획 없는데 문틀까지 교체 가능한가요?",
+  "category": "세트 시공/마감",
+  "customer_anxiety": "문틀 교체 후 도배나 장판 손상이 생길까 걱정된다.",
+  "carousel_angle": "도배/장판 계획이 없어도 문틀 교체 가능 여부는 마감 손상과 가림 범위를 함께 봐야 합니다.",
+  "hook_candidates": [
+    "도배장판 안 하는데 문틀까지 교체해도 될까요?",
+    "문틀 교체 전 도배장판 계획부터 봐야 하는 이유"
+  ],
+  "owner_questions": [
+    "도배/장판 계획이 없어도 문틀 교체 가능한 대표 조건은 무엇인가요?",
+    "마감재로 가릴 수 있는 범위는 어디까지인가요?",
+    "고객에게 손상 가능성을 어떻게 고지하나요?"
+  ],
+  "risk_notes": [
+    "무조건 깔끔하게 가능 표현 금지",
+    "도배/장판 손상 가능성 고지 필요"
+  ],
+  "suggested_cta_keyword": "마감",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "DOORFRAME_CONDITION",
+    "related_question_refs": [
+      "Q013",
+      "Q024"
+    ],
+    "needs_owner_decision": true
+  }
+}

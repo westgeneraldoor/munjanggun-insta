@@ -14,7 +14,7 @@ Seed -> Review -> Ready -> Drafted -> Validated -> Used -> Hold/Rejected
 | Review | 승격 검토 | 브랜드/현실/중복 검토 시작 |
 | Ready | 제작 가능 | Hook Score 7+, 상태 규칙 통과 |
 | Drafted | MD 원고 작성 | 파일 생성 완료 |
-| Validated | 검증 통과 | `npm run validate:file` 통과 |
+| Validated | 검증 통과 | `npm run validate:file` 통과 후 `npm run qa:carousel -- --file ... --stage final` 통과 |
 | Used | 문제 코드 사용 완료 | 레지스트리/품질규칙/스코어카드 기록 완료 |
 | Hold/Rejected | 보류 또는 폐기 | 사유 기록 필수 |
 

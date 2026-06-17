@@ -4,7 +4,9 @@
   "description": "Munjanggun Instagram carousel MD source workflow",
   "scripts": {
     "quality": "npm run validate && npm run status",
+    "qa:carousel": "node scripts/validators/carousel_qa.js",
     "status": "node scripts/reports/generate_status.js",
+    "test": "node --test tests/*.js",
     "topics:sync": "node scripts/reports/generate_topics_catalog.js",
     "validate": "node scripts/validators/validate_content.js",
     "validate:content": "node scripts/validators/validate_content.js",

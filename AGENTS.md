@@ -1,5 +1,7 @@
 # 문장군 인스타그램 에이전트
 
+> 최종 캐러셀 MD 완료 보고 전에는 `docs/operating/CAROUSEL_QA_HARDGATE.md`와 `npm run qa:carousel -- --file content/source/carousel/NNN_주제명.md --stage final` 하드게이트를 반드시 통과해야 한다.
+
 > 이 프로젝트는 문장군 인스타그램 콘텐츠 운영 전용 저장소다.  
 > 블로그 프로젝트와 분리된 독립 프로젝트이며, 현재 표준은 **v5 MD/JSON 원고 제작 전용 + v4.2 콘텐츠 규칙**이다.
 > 이 프로젝트는 캐러셀 MD 원고까지만 만든다. 이미지 생성, 이미지시트 생성, 최종 카드 제작은 이 프로젝트의 범위가 아니다.
@@ -27,36 +29,46 @@
 
 1. `data/brand/BRAND_CONTEXT.md`  
    회사 정보, 제품, 서비스 지역, 톤, 차별점, 금지사항.
-2. `docs/operating/INSTAGRAM_CONTENT_STRATEGY.md`  
+2. `data/brand/MUNJANGGUN_FIELD_KNOWLEDGE.md`  
+   대표님 답변과 상담 현장에서 축적한 반복 사용 지식.
+3. `docs/operating/INSTAGRAM_CONTENT_STRATEGY.md`  
    알고리즘 전략, 포맷 공식, 문제형/공감형/권위형 비중.
-3. `data/hashtags/INSTAGRAM_HASHTAG_BANK.md`  
+4. `data/hashtags/INSTAGRAM_HASHTAG_BANK.md`  
    주제별 해시태그 세트.
-4. `data/registry/INSTAGRAM_POSTING_REGISTRY.md`  
+5. `data/registry/INSTAGRAM_POSTING_REGISTRY.md`  
    기발행 원고 확인, 중복 방지.
-5. `docs/operating/INSTAGRAM_OPERATING_GUIDE.md`  
+6. `docs/operating/INSTAGRAM_OPERATING_GUIDE.md`  
    운영 규칙, DM 응대, 검수 기준.
-6. `data/problems/PROBLEM_BANK.md`  
+7. `data/problems/PROBLEM_BANK.md`  
    문제 기반 주제 소스.
-7. `data/problems/PROBLEM_QUALITY_RULES.json`  
+8. `data/problems/PROBLEM_QUALITY_RULES.json`  
    문제별 active/used/rejected/hold 상태, semantic_cluster, 허용 각도, 제외 사유.
-8. `data/planning/INSTAGRAM_TOPIC_PLAN.md`  
+9. `data/planning/INSTAGRAM_TOPIC_PLAN.md`  
    제작 가능 후보, 차단 클러스터, 재사용 조건.
-9. `docs/operating/INSTAGRAM_TOPIC_WORKFLOW_PLAYBOOK.md`  
+10. `docs/operating/INSTAGRAM_TOPIC_WORKFLOW_PLAYBOOK.md`  
    신규/보류/거절/중복 판단 프로세스.
-10. `docs/operating/CONTENT_SCORECARD.md`  
+11. `docs/operating/CONTENT_SCORECARD.md`  
    제작 후 품질 채점 기준.
-11. `docs/operating/TOPIC_STATE_MACHINE.md`  
+12. `docs/operating/TOPIC_STATE_MACHINE.md`  
    seed/review/ready/used/hold/rejected 상태 정의와 승격 조건.
-12. `data/topics/topics.json`  
+13. `data/topics/topics.json`  
    토픽 상태 카탈로그. 현재는 브릿지 모드이며 `npm run topics:sync`로 동기화한다.
-13. `data/registry/CAROUSEL_SCORECARD_LOG.json`  
+14. `data/registry/CAROUSEL_SCORECARD_LOG.json`  
    원고별 Hook Power, Saveability, Shareability, DM Intent, Brand Fit 점수 기록.
-14. `data/registry/CONTENT_DECISION_LOG.md`  
+15. `data/registry/CONTENT_DECISION_LOG.md`  
    보류/폐기/승격 판단 사유 기록.
-15. `data/evals/golden_pass_examples.json`, `data/evals/golden_ambiguous_examples.json`, `data/evals/golden_reject_examples.json`  
+16. `data/evals/golden_pass_examples.json`, `data/evals/golden_ambiguous_examples.json`, `data/evals/golden_reject_examples.json`  
    좋은 예, 애매한 예, 폐기 예 비교 기준.
-16. `docs/operating/REVIEW_CHECKLIST.md`, `docs/operating/CONTENT_PRODUCTION_BOARD_RULES.md`  
+17. `docs/operating/REVIEW_CHECKLIST.md`, `docs/operating/CONTENT_PRODUCTION_BOARD_RULES.md`  
    수동 검수 체크리스트와 GitHub식 운영 규칙.
+18. `docs/operating/CAROUSEL_EDITORIAL_TEAM.md`  
+   캐러셀 제작 총괄팀 역할, 승인 전 5문장 게이트, 강제 반려 기준.
+19. `data/questions/CUSTOMER_QUESTION_BANK.json`  
+   실제 고객 질문 기반 캐러셀 소재 목차와 상태 인덱스. `triage_review`와 `answer_review` 상태는 제작 금지.
+20. `docs/operating/CUSTOMER_QUESTION_WORKFLOW.md`  
+   상담 직원 질문 수집, 대표님 공식 답변 협의, ready 승격 프로세스.
+21. `data/questions/items/Q###.json`  
+   질문별 상세 파일. 공식 답변, 조건, 금지 표현, 파생 캐러셀 후보는 여기에 기록한다.
 
 ## 실행 트리거
 
@@ -67,6 +79,7 @@
 - "이미지 만들어줘" / "이미지시트 만들어줘" / "카드까지 만들어줘" → 이 프로젝트 범위 밖임을 알리고, MD 원고 기준으로 멈춘다
 - "숏폼 만들어줘" / "인스타 숏폼" → 이 프로젝트 범위 밖임을 알리고 캐러셀 MD 원고 작업만 가능하다고 안내
 - "인스타 콘텐츠 만들어줘" → 캐러셀 MD 원고 제작 프로세스만 실행
+- "고객 질문으로 만들어줘" / "상담 질문으로 캐러셀" → 고객질문은행을 확인하고, 먼저 대표님 확인 질문과 기획안을 제시한 뒤 승인 대기
 - "캘린더 업데이트" / "성과 기록해줘" / "총괄 시작" → 이 프로젝트 범위 밖임을 알리고 파일 생성 없이 멈춘다
 
 ## 사용자 승인 게이트
@@ -77,11 +90,12 @@
 
 아래 순서로 진행한다.
 
-1. 기준 문서, 문제은행, 품질 규칙, 토픽 플랜, 레지스트리를 확인한다.
+1. 기준 문서, 문제은행, 고객질문은행, 품질 규칙, 토픽 플랜, 레지스트리를 확인한다.
 2. 후보 주제 또는 1순위 기획안을 제시한다.
 3. 아래 항목을 사용자에게 보여주고 승인을 기다린다.
    - 주제
    - problem_bank_ref
+   - customer_question_ref (고객질문 기반일 때)
    - hook_type
    - Hook Score
    - target_persona
@@ -89,13 +103,17 @@
    - 슬라이드 흐름
    - CTA
 4. 사용자가 승인하면 그때 루트 MD/JSON 원고 파일을 만든다.
-5. MD 생성 후 `npm run validate`로 구조를 확인하고 멈춘다.
+5. MD 생성 후 `npm run validate:file -- content/source/carousel/NNN_주제명.md`로 구조를 확인한다.
+6. `outputs/qa/carousel/NNN/STATUS.md`와 `APPROVAL_LOG.md`를 확인한 뒤 `npm run qa:carousel -- --file content/source/carousel/NNN_주제명.md --stage final`을 통과해야 최종 완료로 보고한다.
 
 예외: 사용자가 "알아서 끝까지 해", "바로 만들어", "MD까지 만들어", "승인 없이 진행"처럼 명시적으로 실행을 위임한 경우에는 사용자 승인 게이트만 생략할 수 있다.
 
 단, 아래 품질 게이트는 절대 생략하지 않는다.
 
 - `data/topics/topics.json` 또는 `data/problems/PROBLEM_QUALITY_RULES.json`에서 상태가 제작 가능한지 확인
+- 고객질문 기반 소재는 `data/questions/CUSTOMER_QUESTION_BANK.json` 목차와 `data/questions/items/Q###.json` 상세에서 상태가 `ready`인지 확인
+- 고객질문이 `raw`, `triage_review`, `answer_review`, `merged`, `hold`, `rejected`이면 MD 생성 금지. 먼저 정리 심사와 대표님 공식 답변 협의를 통과해야 한다.
+- 신규 상담 질문은 바로 `answer_review`로 올리지 않는다. 먼저 `triage_review`에서 독립 유지, 병합, 분리, 보류, 폐기 여부를 판단한다.
 - `npm run status`의 후보 판정에서 `ready` 또는 명시 승인된 검토 후보인지 확인
 - `제작금지`, `브랜드부적합`, `중복주의`, `계절대기`, `보류` 판정이면 MD 생성 금지
 - 기존 `semantic_cluster`, `duplicate_signature`, 제목 유사도, 최근 10개 클러스터와 의미 중복이면 재기획 후 사용자 승인 필요
@@ -124,6 +142,30 @@
 
 Hook Score는 필요조건일 뿐 충분조건이 아니다. Brand Fit, Reality Fit, Duplication Fit, Timing Fit 중 하나라도 실패하면 제작하지 않는다.
 
+## 총괄팀 검수 규칙
+
+캐러셀 제작 총괄은 아래 팀 역할을 기준으로 원고를 검수한다.
+
+- 소재 분석가: 고객 질문 뒤의 실제 불안과 구매 전 망설임을 찾는다.
+- 브랜드 팩트 감사자: 문장군 기준, 제품/시공/비용/기간/AS 사실을 확인한다.
+- 인스타 작가: FAQ 답변을 멈춰보는 훅과 슬라이드 흐름으로 바꾼다.
+- 전환 설계자: 댓글 키워드와 무료 방문실측 견적상담 연결 이유가 자연스러운지 본다.
+- 중복 감시자: 기존 원고, 최근 10개 클러스터, 제목/각도 유사도를 본다.
+- QA 감시자: JSON 구조, caption_card, 해시태그, 위험 표현, 검증 명령을 본다.
+
+최종 통과 책임은 총괄 PD에게 있다. 구조 검증 통과는 콘텐츠 승인과 다르다.
+
+051번 이후 신규 원고에는 `editorial_review`를 반드시 포함한다.
+
+- `customer_problem`: 고객이 실제로 불안해하는 문제
+- `single_message`: 끝까지 말하려는 단 하나의 메시지
+- `brand_benefit`: 이 글이 문장군 신뢰에 남기는 이득
+- `conversion_reason`: 댓글/DM/무료 방문실측 견적상담으로 이어지는 이유
+- `rejection_risks`: 통과 전 확인한 반려 위험
+- `merged_question_rationale`: 고객 질문을 2개 이상 묶을 때만 필수
+
+위 항목 중 하나라도 빈약하면 MD를 통과시키지 않는다.
+
 ## 캐러셀 저장 규칙
 
 - 새 파일 위치: `content/source/carousel/NNN_주제명.md`
@@ -134,7 +176,8 @@ Hook Score는 필요조건일 뿐 충분조건이 아니다. Brand Fit, Reality 
   - `content/source/carousel/024_썩는화장실문짝방치하면생기는일_수정.md`
 - 현재 신규 파일은 `visual_intent`를 필수로 포함한다. 단, 이것은 이미지 생성 지시가 아니라 원고의 장면 의도 기록이다.
 - `image_generation`, 이미지시트 프롬프트, 슬라이드별 이미지 프롬프트, 생성 이미지 파일은 신규 MD 원고에 포함하지 않는다.
-- CTA 슬라이드는 댓글 유도형을 기본으로 한다.
+- CTA 슬라이드는 댓글 유도형을 기본으로 하되, 최종 목적지는 항상 무료 방문실측 견적상담이어야 한다.
+- 댓글 키워드는 `견적` 또는 캐러셀 주제어를 사용할 수 있지만, CTA 제목/본문/sub2 중 최소 한 곳에는 `무료 방문실측 견적상담`을 명시한다.
 - 마지막 슬라이드는 `caption_card`를 기본으로 한다. 의도적으로 생략해야 하는 예외 상황은 사용자 승인 후 JSON에 `caption_card: false`를 명시한다.
 - `caption_card`는 인스타 캡션/해시태그용 텍스트 원고다.
 

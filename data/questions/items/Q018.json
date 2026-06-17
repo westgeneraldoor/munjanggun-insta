@@ -1,0 +1,30 @@
+{
+  "id": "Q018",
+  "state": "triage_review",
+  "product_scope": "종합",
+  "raw_question": "현금가 따로 있나요?",
+  "category": "결제/견적",
+  "customer_anxiety": "결제 방식에 따라 가격이 달라지는지 알고 싶다.",
+  "carousel_angle": "현금가 문의는 가격 정책과 증빙 기준을 흐리지 않게 공식 답변이 필요합니다.",
+  "hook_candidates": [
+    "현금가 따로 있나요?",
+    "문 시공 견적에서 결제 방식 물어볼 때 확인할 것"
+  ],
+  "owner_questions": [
+    "문장군 공식 결제/현금가 안내 기준은 무엇인가요?",
+    "현금영수증/세금계산서 등 증빙 기준은 어떻게 안내하나요?",
+    "콘텐츠에서 다루면 안 되는 표현은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "공식 가격 정책 확인 전 콘텐츠화 금지",
+    "세무/증빙 오해 유발 표현 금지"
+  ],
+  "suggested_cta_keyword": "결제",
+  "priority": "medium",
+  "triage": {
+    "recommendation": "hold_candidate",
+    "cluster": "PAYMENT_POLICY",
+    "related_question_refs": [],
+    "needs_owner_decision": true
+  }
+}

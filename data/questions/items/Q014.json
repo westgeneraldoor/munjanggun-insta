@@ -1,0 +1,33 @@
+{
+  "id": "Q014",
+  "state": "triage_review",
+  "product_scope": "중문",
+  "raw_question": "시공할때 소음이 많이 심한가요?",
+  "category": "시공 환경/소음",
+  "customer_anxiety": "거주 중 시공이나 이웃 민원이 걱정된다.",
+  "carousel_angle": "중문 시공 소음은 작업 내용과 시간대, 관리 규정에 따라 안내해야 합니다.",
+  "hook_candidates": [
+    "중문 시공할 때 소음 많이 날까요?",
+    "이웃 민원 걱정되는 중문 시공, 미리 볼 것"
+  ],
+  "owner_questions": [
+    "문장군 기준 일반 중문 시공 소음은 어느 정도인가요?",
+    "소음이 커지는 작업은 무엇인가요?",
+    "관리사무소/이웃 안내가 필요한 기준은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "소음 없음으로 표현 금지",
+    "철거 여부와 타공/절단 여부 확인 필요"
+  ],
+  "suggested_cta_keyword": "소음",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "CONSTRUCTION_ENV",
+    "related_question_refs": [
+      "Q011",
+      "Q017"
+    ],
+    "needs_owner_decision": true
+  }
+}

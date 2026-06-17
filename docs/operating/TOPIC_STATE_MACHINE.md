@@ -30,7 +30,7 @@ seed -> review -> ready -> used
 | Brand Fit | 문장군 제품/서비스와 자연스럽게 연결된다. |
 | Reality Fit | 생활 인과가 억지스럽지 않다. |
 | Duplication Fit | 기존 원고와 제목, 클러스터, 제품 연결이 겹치지 않는다. |
-| Purchase Reason | 무료 방문실측 또는 상담으로 이어질 이유가 있다. |
+| Purchase Reason | 무료 방문실측 견적상담으로 이어질 이유가 있다. |
 | Allowed Angle | 쓸 수 있는 각도가 구체적으로 정의되어 있다. |
 | Avoid Angle | 쓰면 안 되는 과장/오해 각도가 명시되어 있다. |
 

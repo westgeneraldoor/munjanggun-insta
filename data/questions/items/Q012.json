@@ -1,0 +1,30 @@
+{
+  "id": "Q012",
+  "state": "triage_review",
+  "product_scope": "종합",
+  "raw_question": "관리사무소 신고를 꼭 해야 할까요?",
+  "category": "관리/신고",
+  "customer_anxiety": "아파트나 공동주택에서 시공 전 신고가 필요한지 불안하다.",
+  "carousel_angle": "관리사무소 신고는 현장과 단지 규정에 따라 달라지므로 시공 전 확인이 필요합니다.",
+  "hook_candidates": [
+    "문 교체 전 관리사무소에 신고해야 할까요?",
+    "아파트 시공 전 관리사무소 확인, 언제 필요할까요?"
+  ],
+  "owner_questions": [
+    "문장군 기준 관리사무소 신고가 필요한 대표 상황은 무엇인가요?",
+    "고객이 직접 확인해야 하는 항목은 무엇인가요?",
+    "시공 전 안내 문구는 어떻게 잡아야 하나요?"
+  ],
+  "risk_notes": [
+    "단지별 규정이 달라 일괄 단정 금지",
+    "관리사무소 신고 대행 가능 여부는 공식 기준 필요"
+  ],
+  "suggested_cta_keyword": "신고",
+  "priority": "high",
+  "triage": {
+    "recommendation": "keep_candidate",
+    "cluster": "ADMIN_NOTICE",
+    "related_question_refs": [],
+    "needs_owner_decision": true
+  }
+}

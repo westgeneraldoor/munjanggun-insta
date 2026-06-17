@@ -14,7 +14,7 @@
 2. 댓글/DM 문의로 이어질 수 있는 자연스러운 CTA를 만든다.
 3. 문장군 제품과 서비스 범위를 왜곡하지 않는다.
 
-원고 생성 작업은 `content/source/carousel/NNN_주제명.md` 파일을 만들고 `npm run validate`와 `npm run status`를 통과하면 종료한다.
+원고 생성 작업은 `content/source/carousel/NNN_주제명.md` 파일을 만들고 `npm run validate:file -- content/source/carousel/NNN_주제명.md`로 구조를 확인한 뒤, `npm run qa:carousel -- --file content/source/carousel/NNN_주제명.md --stage final`까지 통과해야 최종 완료로 보고한다.
 
 ## 2. 신규 요청 처리
 
@@ -60,7 +60,7 @@
 3. 원인: 왜 생기는 문제인지
 4. 해결 기준: 무엇을 확인해야 하는지
 5. 제품/서비스 연결: 문장군이 해결할 수 있는 범위
-6. CTA: 댓글 또는 무료 실측 상담 유도
+6. CTA: 댓글 또는 무료 방문실측 견적상담 유도
 7. caption_card: 인스타 캡션과 해시태그
 
 필요하면 6~8장 사이에서 조정할 수 있지만, 캡션카드는 기본 포함한다.
@@ -108,6 +108,7 @@
 - 불가 지역을 가능하다고 쓰지 않는다.
 - 중문/도어를 만능 해결책처럼 쓰지 않는다.
 - CTA는 하나만 둔다.
+- 댓글 키워드는 주제별로 달라도 최종 전환 목적지는 무료 방문실측 견적상담으로 고정한다.
 
 ## 8. 검증
 

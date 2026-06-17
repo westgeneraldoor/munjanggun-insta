@@ -98,6 +98,66 @@
       "total_score": 91,
       "verdict": "pass",
       "notes": "설치 전 체크 포인트가 선명하고 실측 CTA와 가장 잘 맞음."
+    },
+    {
+      "id": "048",
+      "title": "중문, 이사 갈 때 떼서 가져갈 수 있을까요?",
+      "problem_bank_ref": ["G01"],
+      "customer_question_ref": ["Q002"],
+      "scores": { "hook_power": 17, "saveability": 18, "shareability": 17, "dm_intent": 17, "brand_fit": 18 },
+      "total_score": 87,
+      "verdict": "pass",
+      "notes": "전세·임대·이사 고객의 실제 질문을 정확히 다룸. 이전설치와 철거 상담을 혼동하지 않게 유지."
+    },
+    {
+      "id": "049",
+      "title": "중문 틀까지 다 뜯었다가 일이 커질 수 있습니다",
+      "problem_bank_ref": ["G02"],
+      "customer_question_ref": ["Q004"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 15, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 89,
+      "verdict": "pass",
+      "notes": "기존 중문 철거 범위를 비용이 아니라 현장 구조 판단으로 좁혀 중복 위험을 낮춤."
+    },
+    {
+      "id": "050",
+      "title": "이사 전 중문, 실측 늦게 잡으면 일정이 꼬입니다",
+      "problem_bank_ref": ["G03"],
+      "customer_question_ref": ["Q009"],
+      "scores": { "hook_power": 17, "saveability": 19, "shareability": 15, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 87,
+      "verdict": "pass",
+      "notes": "이사 일정 역산형 저장 소재. 날짜 보장처럼 보이지 않게 전산 스케줄 단서를 유지."
+    },
+    {
+      "id": "051",
+      "title": "철거·폐기물, 문장군도 별도로 안내합니다",
+      "problem_bank_ref": ["G04"],
+      "customer_question_ref": ["Q010"],
+      "scores": { "hook_power": 17, "saveability": 19, "shareability": 14, "dm_intent": 19, "brand_fit": 19 },
+      "total_score": 88,
+      "verdict": "pass",
+      "notes": "문장군도 별도라는 기준을 정직하게 밝히고 기본 시공, 철거, 폐기물, 문짝 무상수거 예외를 분리해 신뢰형 원고로 재작성."
+    },
+    {
+      "id": "052",
+      "title": "3연동 댐퍼가 뻑뻑하면 고장일까요?",
+      "problem_bank_ref": ["G05"],
+      "customer_question_ref": ["Q005", "Q006"],
+      "scores": { "hook_power": 17, "saveability": 17, "shareability": 13, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 84,
+      "verdict": "pass",
+      "notes": "제품 기능 설명에서 3연동 댐퍼 사용감 불안으로 재프레이밍. 폭, 구조, 체결 위치 확인으로 단일 메시지 유지."
+    },
+    {
+      "id": "053",
+      "title": "중문, 이사 전에 해야 할까요? 이사 후에 해야 할까요?",
+      "problem_bank_ref": ["G06"],
+      "customer_question_ref": ["Q001"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 17, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 91,
+      "verdict": "pass",
+      "notes": "이사·입주·인테리어 고객의 반복 질문을 철거, 도배장판, 큰 짐 동선 체크로 전환. 무료 방문실측 견적상담 연결이 자연스럽고 중복 클러스터와 분리됨."
     }
   ]
 }

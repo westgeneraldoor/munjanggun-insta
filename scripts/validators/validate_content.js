@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const { readQualityRules, evaluateProblemRefs } = require("../lib/content_quality");
+const { loadCustomerQuestionBank } = require("../lib/customer_questions");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 const CONTENT_DIR = path.join(ROOT, "content", "source", "carousel");
@@ -10,6 +11,8 @@ const SCORECARD_LOG_PATH = path.join(ROOT, "data", "registry", "CAROUSEL_SCORECA
 const REQUIRED_VISUAL_INTENT_FROM_ID = 28;
 const REQUIRED_MD_META_FROM_ID = 35;
 const REQUIRED_STRICT_QUALITY_FROM_ID = 39;
+const REQUIRED_PRIMARY_CTA_FROM_ID = 48;
+const REQUIRED_EDITORIAL_REVIEW_FROM_ID = 51;
 const HASHTAG_MIN = 20;
 const HASHTAG_MAX = 25;
 const ALLOWED_HOOK_TYPES = new Set(["손실회피", "실수방지", "공감", "비교", "스토리"]);
@@ -161,6 +164,39 @@ function readScorecardLog() {
     errors.push(`Scorecard log is not valid JSON: ${path.relative(ROOT, SCORECARD_LOG_PATH)} - ${error.message}`);
     return { entries: [] };
   }
+}
+
+function readCustomerQuestionBank() {
+  try {
+    return loadCustomerQuestionBank(ROOT);
+  } catch (error) {
+    errors.push(`Customer question bank is not valid JSON: data/questions/CUSTOMER_QUESTION_BANK.json - ${error.message}`);
+    return { questions: [] };
+  }
+}
+
+function validateCustomerQuestionBank(customerQuestions) {
+  const questions = Array.isArray(customerQuestions.questions) ? customerQuestions.questions : [];
+
+  function scan(value, pathLabel) {
+    if (typeof value === "string") {
+      if (/\?{3,}|�/.test(value)) {
+        errors.push(`Customer question text appears corrupted: ${pathLabel}`);
+      }
+      return;
+    }
+
+    if (Array.isArray(value)) {
+      value.forEach((item, index) => scan(item, `${pathLabel}[${index}]`));
+      return;
+    }
+
+    if (value && typeof value === "object") {
+      Object.entries(value).forEach(([key, item]) => scan(item, `${pathLabel}.${key}`));
+    }
+  }
+
+  questions.forEach((question) => scan(question, question.id || "unknown_question"));
 }
 
 function validateVisualIntent(fileName, data, numericId) {
@@ -323,6 +359,10 @@ function validateCta(fileName, data, numericId) {
   if (ctaType.includes("댓글") && !ctaText.includes("댓글")) {
     errors.push(`${fileName}: cta_type says 댓글 but CTA slide does not ask for a comment`);
   }
+
+  if (numericId >= REQUIRED_PRIMARY_CTA_FROM_ID && !ctaText.includes("무료 방문실측 견적상담")) {
+    errors.push(`${fileName}: CTA slide must route to 무료 방문실측 견적상담`);
+  }
 }
 
 function validateProblemQuality(fileName, data, numericId, qualityRules) {
@@ -416,6 +456,53 @@ function validateScorecard(fileName, data, numericId, scorecardEntries) {
   }
 }
 
+function validateCustomerQuestionRef(fileName, data, numericId, customerQuestionEntries) {
+  if (!data.customer_question_ref) return;
+  if (numericId < REQUIRED_STRICT_QUALITY_FROM_ID) return;
+
+  const refs = Array.isArray(data.customer_question_ref) ? data.customer_question_ref : [data.customer_question_ref];
+  for (const ref of refs) {
+    const question = customerQuestionEntries.get(String(ref));
+    if (!question) {
+      errors.push(`${fileName}: customer_question_ref ${ref} is not found in CUSTOMER_QUESTION_BANK.json`);
+      continue;
+    }
+
+    if (!["ready", "used"].includes(question.state)) {
+      errors.push(`${fileName}: customer_question_ref ${ref} is ${question.state}; official answer review is required before MD creation`);
+    }
+  }
+}
+
+function validateEditorialReview(fileName, data, numericId) {
+  if (numericId < REQUIRED_EDITORIAL_REVIEW_FROM_ID) return;
+
+  if (!data.editorial_review || typeof data.editorial_review !== "object" || Array.isArray(data.editorial_review)) {
+    errors.push(`${fileName}: editorial_review is required for production MD from 051 onward`);
+    return;
+  }
+
+  const requiredTextFields = ["customer_problem", "single_message", "brand_benefit", "conversion_reason"];
+  for (const field of requiredTextFields) {
+    if (typeof data.editorial_review[field] !== "string" || data.editorial_review[field].trim().length < 12) {
+      errors.push(`${fileName}: editorial_review.${field} must explain the editorial gate in one clear sentence`);
+    }
+  }
+
+  if (!Array.isArray(data.editorial_review.rejection_risks) || data.editorial_review.rejection_risks.length === 0) {
+    errors.push(`${fileName}: editorial_review.rejection_risks must list at least one risk checked before approval`);
+  }
+
+  const questionRefs = Array.isArray(data.customer_question_ref)
+    ? data.customer_question_ref
+    : data.customer_question_ref
+      ? [data.customer_question_ref]
+      : [];
+  if (questionRefs.length > 1 && typeof data.editorial_review.merged_question_rationale !== "string") {
+    errors.push(`${fileName}: editorial_review.merged_question_rationale is required when multiple customer questions are combined`);
+  }
+}
+
 function collectProductionMetadata(filePath) {
   const parsed = parseJsonBlock(filePath);
   const numericId = Number.parseInt(String(parsed.id), 10);
@@ -497,7 +584,7 @@ function validateRegistryPaths() {
   }
 }
 
-function validateFile(filePath, seenIds, qualityRules, scorecardEntries) {
+function validateFile(filePath, seenIds, qualityRules, scorecardEntries, customerQuestionEntries) {
   const fileName = path.relative(ROOT, filePath);
   let data;
 
@@ -538,6 +625,8 @@ function validateFile(filePath, seenIds, qualityRules, scorecardEntries) {
   validateHashtags(fileName, data);
   validateClaimSafety(fileName, data, numericId);
   validateScorecard(fileName, data, numericId, scorecardEntries);
+  validateCustomerQuestionRef(fileName, data, numericId, customerQuestionEntries);
+  validateEditorialReview(fileName, data, numericId);
 }
 
 function main() {
@@ -548,7 +637,10 @@ function main() {
   const qualityRules = readQualityRules();
   const scorecard = readScorecardLog();
   const scorecardEntries = new Map((scorecard.entries || []).map((entry) => [String(entry.id).padStart(3, "0"), entry]));
-  files.forEach((file) => validateFile(file, seenIds, qualityRules, scorecardEntries));
+  const customerQuestions = readCustomerQuestionBank();
+  validateCustomerQuestionBank(customerQuestions);
+  const customerQuestionEntries = new Map((customerQuestions.questions || []).map((question) => [String(question.id), question]));
+  files.forEach((file) => validateFile(file, seenIds, qualityRules, scorecardEntries, customerQuestionEntries));
 
   const metadataItems = [];
   for (const filePath of files) {

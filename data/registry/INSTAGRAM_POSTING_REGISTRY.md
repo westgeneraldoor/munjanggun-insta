@@ -72,6 +72,12 @@
 | 045 | 회의 켰는데 거실 소리부터 들어온다면 | 캐러셀 | SAVE, SHARE, LEAD | content/source/carousel/045_회의켰는데거실소리부터들어온다면.md | 06/12 | - | - | - | - | - | - | - | - | - | - | - | - | - | v5 MD 원고, Hook Score 9점, N03 |
 | 046 | 방문이 바닥을 긁는 소리, 그냥 두지 마세요 | 캐러셀 | SAVE, LEAD | content/source/carousel/046_방문이바닥을긁는소리그냥두지마세요.md | 06/12 | - | - | - | - | - | - | - | - | - | - | - | - | - | v5 MD 원고, Hook Score 8점, D01 |
 | 047 | 원하는 중문, 스위치 하나 때문에 못 달 수 있습니다 | 캐러셀 | SAVE, LEAD | content/source/carousel/047_원하는중문스위치하나때문에못달수있습니다.md | 06/12 | - | - | - | - | - | - | - | - | - | - | - | - | - | v5 MD 원고, Hook Score 8점, E01 |
+| 048 | 중문, 이사 갈 때 떼서 가져갈 수 있을까요? | 캐러셀 | SAVE, SHARE, LEAD | content/source/carousel/048_중문이사갈때떼서가져갈수있을까요.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 8점, G01/Q002 |
+| 049 | 중문 틀까지 다 뜯었다가 일이 커질 수 있습니다 | 캐러셀 | SAVE, LEAD | content/source/carousel/049_중문틀까지다뜯었다가일이커질수있습니다.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 9점, G02/Q004 |
+| 050 | 이사 전 중문, 실측 늦게 잡으면 일정이 꼬입니다 | 캐러셀 | SAVE, LEAD | content/source/carousel/050_이사전중문실측늦게잡으면일정이꼬입니다.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 8점, G03/Q009 |
+| 051 | 철거·폐기물, 문장군도 별도로 안내합니다 | 캐러셀 | SAVE, LEAD, TRUST | content/source/carousel/051_중문견적철거폐기물포함인지따로보셔야합니다.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고 재작성, Hook Score 8점, G04/Q010 |
+| 052 | 3연동 댐퍼가 뻑뻑하면 고장일까요? | 캐러셀 | SAVE, LEAD, TRUST | content/source/carousel/052_중문댐퍼스위치처럼끄는기능일까요.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고 재작성, Hook Score 8점, G05/Q005+Q006 |
+| 053 | 중문, 이사 전에 해야 할까요? 이사 후에 해야 할까요? | 캐러셀 | SAVE, SHARE, LEAD, TRUST | content/source/carousel/053_중문이사전에해야할까요이사후에해야할까요.md | 06/16 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 9점, G06/Q001 |
 
 
 

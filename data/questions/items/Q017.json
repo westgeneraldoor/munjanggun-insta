@@ -1,0 +1,33 @@
+{
+  "id": "Q017",
+  "state": "triage_review",
+  "product_scope": "세트",
+  "raw_question": "거주중인데 시공하는데 문제 없을까요?",
+  "category": "거주중 시공",
+  "customer_anxiety": "살고 있는 집에서 시공해도 생활에 큰 문제가 없는지 알고 싶다.",
+  "carousel_angle": "거주 중 시공은 가능 여부보다 보양, 먼지, 소음, 동선 정리가 핵심입니다.",
+  "hook_candidates": [
+    "살고 있는 집도 문 교체 가능할까요?",
+    "거주 중 시공할 때 진짜 중요한 것"
+  ],
+  "owner_questions": [
+    "거주 중 세트 시공 가능 기준은 무엇인가요?",
+    "고객이 미리 치워야 하는 물건이나 동선은 무엇인가요?",
+    "먼지/소음/작업시간은 어떻게 안내하나요?"
+  ],
+  "risk_notes": [
+    "생활 불편 없음으로 단정 금지",
+    "보양과 동선 확보 기준 필요"
+  ],
+  "suggested_cta_keyword": "거주중",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "CONSTRUCTION_ENV",
+    "related_question_refs": [
+      "Q011",
+      "Q014"
+    ],
+    "needs_owner_decision": true
+  }
+}
