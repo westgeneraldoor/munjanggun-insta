@@ -1,5 +1,5 @@
 {
-  "version": "2026-06-17",
+  "version": "2026-06-18",
   "source_mode": "bridge",
   "note": "Phase 1 bridge catalog. 신규 운영은 topics.json 상태 모델을 기준으로 보되, 기존 PROBLEM_BANK/PROBLEM_QUALITY_RULES와 동기화하여 안전하게 전환한다.",
   "state_machine": [
