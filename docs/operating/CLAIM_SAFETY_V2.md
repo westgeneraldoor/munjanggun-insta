@@ -15,6 +15,10 @@
 
 ID 번호로 신규/레거시를 판단하지 않는다. 번호가 바뀌거나 외부 원고가 들어와도 위 필드가 strict 적용 기준이다.
 
+모든 캐러셀 MD는 `validation_profile`을 가져야 한다. 기존 원고는 `validation_profile: "legacy"`로 명시하고, 신규 원고는 `validation_profile: "strict"`를 기본으로 한다.
+
+레거시 원고는 `data/schema/LEGACY_CAROUSEL_ALLOWLIST.json`에 명시된 파일만 허용한다. allowlist 밖의 non-strict 원고는 PR 하드게이트에서 실패한다.
+
 ## 필수 출처 필드
 
 ```json
@@ -53,6 +57,7 @@ ID 번호로 신규/레거시를 판단하지 않는다. 번호가 바뀌거나 
 - `type`은 주장 종류다.
 - `verification_status`가 검증 상태다.
 - `evidence_refs`는 `data/claims/CLAIM_REGISTRY.json`의 `verified` 항목과 연결되어야 한다.
+- `evidence_refs`는 status만 보지 않는다. registry의 `type`이 claim의 `type`과 같아야 하고, claim 문장이 registry의 `text` 또는 `allowed_phrases` 범위 안에 있어야 한다.
 
 ## 주장 유형
 
@@ -72,3 +77,16 @@ ID 번호로 신규/레거시를 판단하지 않는다. 번호가 바뀌거나 
 - `save`, `share`, `comment`, `follow`: 핵심 행동을 `primary_cta`에 둔다. 상담 연결이 필요하면 `secondary_cta`에 짧게 둔다.
 
 이 규칙의 목적은 모든 게시물이 같은 광고형 CTA로 끝나는 문제를 막는 것이다.
+
+## PR 하드게이트
+
+PR에서 추가되거나 수정된 `content/source/carousel/*.md`는 `npm run qa:changed`로 검증한다.
+
+이 검증은 각 변경 파일에 대해 아래를 강제한다.
+
+```bash
+node scripts/validators/validate_content.js --require-strict --file <file>
+node scripts/validators/carousel_qa.js --file <file> --stage final
+```
+
+따라서 신규 원고가 `schema_version` 또는 `validation_profile`을 빼먹으면 레거시처럼 통과하지 못한다.

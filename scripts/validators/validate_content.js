@@ -51,6 +51,7 @@ function parseArgs(argv = process.argv.slice(2)) {
   const options = {
     since: null,
     files: [],
+    requireStrict: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -66,6 +67,8 @@ function parseArgs(argv = process.argv.slice(2)) {
       index += 1;
     } else if (arg.startsWith("--file=")) {
       options.files.push(path.resolve(ROOT, arg.split("=")[1]));
+    } else if (arg === "--require-strict") {
+      options.requireStrict = true;
     }
   }
 
@@ -216,6 +219,19 @@ function addIssue(issues, level, message) {
   target[level].push(message);
 }
 
+function validateValidationProfile(fileName, data, options = {}, issues) {
+  if (!data.validation_profile) {
+    addIssue(issues, "errors", `${fileName}: validation_profile is required; use legacy for allowlisted old files or strict for new files`);
+    return;
+  }
+  if (!ALLOWED_VALIDATION_PROFILES.has(data.validation_profile)) {
+    addIssue(issues, "errors", `${fileName}: validation_profile must be legacy or strict`);
+  }
+  if (options.requireStrict && !isStrictSchema(data)) {
+    addIssue(issues, "errors", `${fileName}: --require-strict requires schema_version=${STRICT_SCHEMA_VERSION} and validation_profile=strict`);
+  }
+}
+
 function collectClaimText(data) {
   const skipKeys = new Set([
     "id",
@@ -283,12 +299,30 @@ function claimMatchesRisk(claim, risk) {
   return claimText.includes(riskText) || riskText.includes(claimText);
 }
 
+function registryClaimCoversText(claim, registryClaim) {
+  const claimText = normalizeText(claim.text || "");
+  const allowed = [registryClaim.text, ...(Array.isArray(registryClaim.allowed_phrases) ? registryClaim.allowed_phrases : [])]
+    .filter((value) => typeof value === "string" && value.trim() !== "")
+    .map(normalizeText);
+  if (!claimText || allowed.length === 0) return false;
+  return allowed.some((allowedText) => allowedText.includes(claimText) || claimText.includes(allowedText));
+}
+
+function registryClaimSupportsClaim(claim, registryClaim) {
+  return Boolean(
+    registryClaim
+      && registryClaim.status === "verified"
+      && registryClaim.type === claim.type
+      && registryClaimCoversText(claim, registryClaim),
+  );
+}
+
 function isVerifiedClaim(claim, claimRegistryMap) {
   if (claim.verification_status !== "verified") return false;
   if (!Array.isArray(claim.evidence_refs) || claim.evidence_refs.length === 0) return false;
   return claim.evidence_refs.every((ref) => {
     const registryClaim = claimRegistryMap.get(String(ref));
-    return registryClaim && registryClaim.status === "verified";
+    return registryClaimSupportsClaim(claim, registryClaim);
   });
 }
 
@@ -672,6 +706,7 @@ function validateStrictSchemaPayload(data, options = {}) {
   const issues = { errors: [], warnings: [] };
   const fileName = options.fileName || "fixture.md";
   const claimRegistry = options.claimRegistry || { claims: [] };
+  validateValidationProfile(fileName, data, { requireStrict: options.requireStrict }, issues);
   validateSchemaV6(fileName, data, claimRegistry, issues);
   validateStrictCta(fileName, data, issues);
   validateClaimSafety(fileName, data, Number.parseInt(String(data.id), 10) || 999, claimRegistry, issues);
@@ -830,7 +865,7 @@ function validateRegistryPaths() {
   }
 }
 
-function validateFile(filePath, seenIds, qualityRules, scorecardEntries, customerQuestionEntries, claimRegistry) {
+function validateFile(filePath, seenIds, qualityRules, scorecardEntries, customerQuestionEntries, claimRegistry, options = {}) {
   const fileName = path.relative(ROOT, filePath);
   let data;
 
@@ -856,6 +891,8 @@ function validateFile(filePath, seenIds, qualityRules, scorecardEntries, custome
   if (data.format !== "carousel") {
     errors.push(`${fileName}: format must be carousel`);
   }
+
+  validateValidationProfile(fileName, data, options);
 
   const numericId = Number.parseInt(String(data.id), 10);
   if (Number.isNaN(numericId)) {
@@ -888,7 +925,7 @@ function main() {
   validateCustomerQuestionBank(customerQuestions);
   const customerQuestionEntries = new Map((customerQuestions.questions || []).map((question) => [String(question.id), question]));
   const claimRegistry = readClaimRegistry();
-  files.forEach((file) => validateFile(file, seenIds, qualityRules, scorecardEntries, customerQuestionEntries, claimRegistry));
+  files.forEach((file) => validateFile(file, seenIds, qualityRules, scorecardEntries, customerQuestionEntries, claimRegistry, options));
 
   const metadataItems = [];
   for (const filePath of files) {
@@ -907,6 +944,7 @@ function main() {
   console.log(`Checked ${files.length} carousel source files.`);
   if (Number.isInteger(options.since)) console.log(`Mode: since ${String(options.since).padStart(3, "0")}`);
   if (options.files.length > 0) console.log(`Mode: file ${options.files.map((filePath) => path.relative(ROOT, filePath)).join(", ")}`);
+  if (options.requireStrict) console.log("Mode: require strict schema");
   console.log(`Warnings: ${warnings.length}`);
   warnings.forEach((warning) => console.log(`  WARN ${warning}`));
   console.log(`Errors: ${errors.length}`);

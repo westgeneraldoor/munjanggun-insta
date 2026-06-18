@@ -5,6 +5,7 @@
   "scripts": {
     "quality": "npm run validate && npm run status",
     "qa:carousel": "node scripts/validators/carousel_qa.js",
+    "qa:changed": "node scripts/validators/qa_changed_carousels.js",
     "status": "node scripts/reports/generate_status.js",
     "test": "node --test tests/*.js",
     "topics:sync": "node scripts/reports/generate_topics_catalog.js",
