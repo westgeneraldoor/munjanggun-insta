@@ -19,6 +19,8 @@ ID 번호로 신규/레거시를 판단하지 않는다. 번호가 바뀌거나 
 
 레거시 원고는 `data/schema/LEGACY_CAROUSEL_ALLOWLIST.json`에 명시된 파일만 허용한다. allowlist 밖의 non-strict 원고는 PR 하드게이트에서 실패한다.
 
+Allowlisted legacy 파일은 오탈자, 메타데이터, 경로 정리 같은 유지보수 수정만 허용한다. 본문, claim, CTA를 의미 있게 바꾸는 경우 해당 파일을 Schema v6 strict로 마이그레이션해야 한다.
+
 ## 필수 출처 필드
 
 ```json

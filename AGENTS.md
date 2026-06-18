@@ -185,6 +185,7 @@ Hook Score는 필요조건일 뿐 충분조건이 아니다. Brand Fit, Reality 
 - Schema v6 strict 원고는 `schema_version: "6.0"`, `validation_profile: "strict"`, `source_type`, `narrative_mode`, `trigger_type`, `evidence_ref`, `primary_goal`, `primary_cta`, `claims`를 포함한다.
 - `verified_brand_fact`는 claim type으로 쓰지 않는다. claim type과 `verification_status`, `evidence_refs`를 분리한다.
 - 건강/질병 주장은 strict 원고에서 금지한다. 숫자/성능/보증/경쟁사 비교 주장은 `data/claims/CLAIM_REGISTRY.json`의 검증 근거가 없으면 금지한다.
+- `data/schema/LEGACY_CAROUSEL_ALLOWLIST.json`에 있는 legacy 파일은 오탈자, 메타데이터, 경로 정리 같은 유지보수 수정만 허용한다. 본문, claim, CTA를 의미 있게 바꾸는 경우 Schema v6 strict로 마이그레이션한다.
 - 마지막 슬라이드는 `caption_card`를 기본으로 한다. 의도적으로 생략해야 하는 예외 상황은 사용자 승인 후 JSON에 `caption_card: false`를 명시한다.
 - `caption_card`는 인스타 캡션/해시태그용 텍스트 원고다.
 
