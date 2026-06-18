@@ -1,0 +1,84 @@
+{
+  "version": "2026-06-12",
+  "purpose": "Candidate replenishment seeds shown by npm run status when production-ready Problem Bank topics run low. These are not production-approved until promoted into PROBLEM_BANK.md and PROBLEM_QUALITY_RULES.json.",
+  "minimum_ready_candidates": 5,
+  "seeds": [
+    {
+      "proposed_code": "W08",
+      "category": "우풍/단열",
+      "situation": "현관 바로 앞 방이 유독 덥거나 추움",
+      "hook_type": "공감",
+      "semantic_cluster": "entry_adjacent_room_temperature",
+      "purchase_reason": "현관 공기 유입이 인접 공간 체감 온도에 영향을 주는 생활 문제로 중문/현관 구조 실측과 연결된다.",
+      "required_angle": "현관 옆 방이나 거실 입구 체감 온도 체크. 절감률 단정 금지.",
+      "avoid_angle": "집 전체 냉난방 해결처럼 표현.",
+      "priority_score": 88
+    },
+    {
+      "proposed_code": "C10",
+      "category": "비용",
+      "situation": "사진 견적만 믿고 주문했다가 치수가 안 맞음",
+      "hook_type": "실수방지",
+      "semantic_cluster": "photo_quote_measurement_fail",
+      "purchase_reason": "문/중문은 수직, 수평, 폭, 스위치 위치 확인이 필요해 무료 방문실측 CTA와 직접 연결된다.",
+      "required_angle": "사진 견적의 한계와 레이저 실측 필요성.",
+      "avoid_angle": "온라인 견적 업체 비방.",
+      "priority_score": 87
+    },
+    {
+      "proposed_code": "A09",
+      "category": "미관/노후",
+      "situation": "방문 손잡이와 경첩만 낡아서 집이 오래돼 보임",
+      "hook_type": "공감",
+      "semantic_cluster": "door_hardware_aging",
+      "purchase_reason": "도어 부속과 문짝 상태 점검은 방문 교체/부분 교체 상담으로 이어진다.",
+      "required_angle": "손잡이, 경첩, 문짝 상태를 같이 보는 체크리스트.",
+      "avoid_angle": "손잡이만 교체하면 전체 해결처럼 표현.",
+      "priority_score": 83
+    },
+    {
+      "proposed_code": "F08",
+      "category": "안전",
+      "situation": "슬라이딩도어 하부 레일에 발이 자주 걸림",
+      "hook_type": "실수방지",
+      "semantic_cluster": "sliding_door_lower_rail_trip",
+      "purchase_reason": "하부 레일, 문턱, 동선은 실측 상담에서 확인 가능한 안전/생활 불편 요소다.",
+      "required_angle": "하부 레일과 동선 체크. 사고 예방 보장 금지.",
+      "avoid_angle": "의학적 안전 보장.",
+      "priority_score": 82
+    },
+    {
+      "proposed_code": "N08",
+      "category": "소음",
+      "situation": "안방 문 닫아도 거실 TV 소리가 계속 들어옴",
+      "hook_type": "공감",
+      "semantic_cluster": "bedroom_livingroom_sound",
+      "purchase_reason": "방문/슬라이딩도어/공간 분리 상담으로 연결 가능한 실내 생활소음 문제다.",
+      "required_angle": "방과 거실 사이 생활시간 분리. 중문 하나로 집 전체 방음 해결 금지.",
+      "avoid_angle": "층간소음 또는 완전 방음 표현.",
+      "priority_score": 80
+    },
+    {
+      "proposed_code": "A10",
+      "category": "미관/노후",
+      "situation": "걸레받이만 누렇게 떠서 새 인테리어가 낡아 보임",
+      "hook_type": "비교",
+      "semantic_cluster": "baseboard_yellowing",
+      "purchase_reason": "걸레받이/몰딩 부분 교체 가능 범위 상담과 연결된다.",
+      "required_angle": "문, 몰딩, 걸레받이 색 차이 체크.",
+      "avoid_angle": "집 전체 인테리어 컨설팅.",
+      "priority_score": 78
+    },
+    {
+      "proposed_code": "C11",
+      "category": "비용",
+      "situation": "문틀까지 바꿔야 한다는 말이 맞는지 모르겠음",
+      "hook_type": "실수방지",
+      "semantic_cluster": "door_frame_scope_second_opinion",
+      "purchase_reason": "문짝만 교체할지 문틀까지 볼지 무료 실측으로 판단하는 문제다.",
+      "required_angle": "기존 C03과 겹치지 않게 '세컨드 체크'와 실측 판단 기준으로만 사용.",
+      "avoid_angle": "추가금 폭탄 반복.",
+      "priority_score": 76
+    }
+  ]
+}

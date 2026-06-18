@@ -1,0 +1,32 @@
+{
+  "id": "Q019",
+  "state": "triage_review",
+  "product_scope": "종합",
+  "raw_question": "엘리베이터 없는데 추가금 있나요?",
+  "category": "비용/현장 조건",
+  "customer_anxiety": "엘리베이터 없는 집의 운반비나 인양비가 걱정된다.",
+  "carousel_angle": "엘리베이터 없는 현장은 층수와 인양 조건에 따라 추가 비용 확인이 필요합니다.",
+  "hook_candidates": [
+    "엘리베이터 없으면 문 시공 추가금 있나요?",
+    "계단으로 올리는 문 시공, 견적 전 꼭 볼 것"
+  ],
+  "owner_questions": [
+    "문장군 기준 엘리베이터 없는 현장 추가금 기준은 무엇인가요?",
+    "몇 층부터 인양비가 발생하나요?",
+    "제품 종류나 무게에 따라 달라지는 조건은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "추가금 없음으로 단정 금지",
+    "층수/제품/운반 조건 확인 필요"
+  ],
+  "suggested_cta_keyword": "인양비",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "ADDITIONAL_COSTS",
+    "related_question_refs": [
+      "Q010"
+    ],
+    "needs_owner_decision": true
+  }
+}

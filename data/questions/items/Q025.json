@@ -1,0 +1,30 @@
+{
+  "id": "Q025",
+  "state": "triage_review",
+  "product_scope": "종합",
+  "raw_question": "물건만 받아서 직접 시공해도 되나요?",
+  "category": "시공 방식/자가시공",
+  "customer_anxiety": "제품만 구매해서 비용을 아끼고 직접 설치할 수 있는지 알고 싶다.",
+  "carousel_angle": "문장군 콘텐츠에서는 제품 판매와 전문 시공의 책임 범위를 명확히 구분해야 합니다.",
+  "hook_candidates": [
+    "문만 받아서 직접 설치해도 될까요?",
+    "문 시공, 제품만 사면 끝일까요?"
+  ],
+  "owner_questions": [
+    "문장군은 제품만 판매하거나 자가시공을 허용하나요?",
+    "자가시공 시 하자/AS 책임 범위는 어떻게 안내하나요?",
+    "전문 시공이 필요한 이유를 어떤 근거로 설명하나요?"
+  ],
+  "risk_notes": [
+    "공식 판매 정책 확인 전 콘텐츠화 금지",
+    "자가시공을 쉽게 권하는 표현 금지"
+  ],
+  "suggested_cta_keyword": "자가시공",
+  "priority": "medium",
+  "triage": {
+    "recommendation": "hold_candidate",
+    "cluster": "SELF_INSTALL_POLICY",
+    "related_question_refs": [],
+    "needs_owner_decision": true
+  }
+}

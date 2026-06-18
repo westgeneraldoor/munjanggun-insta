@@ -1,0 +1,30 @@
+{
+  "id": "Q020",
+  "state": "triage_review",
+  "product_scope": "중문",
+  "raw_question": "유리는 안전한가요?",
+  "category": "제품 안전/유리",
+  "customer_anxiety": "중문 유리가 깨지거나 다칠 위험이 걱정된다.",
+  "carousel_angle": "중문 유리 안전성은 유리 종류와 사용 환경, 충격 조건을 구분해서 설명해야 합니다.",
+  "hook_candidates": [
+    "중문 유리, 깨지면 위험하지 않을까요?",
+    "아이 있는 집 중문 유리, 뭘 봐야 할까요?"
+  ],
+  "owner_questions": [
+    "문장군 중문에 사용하는 유리 종류와 안전 기준은 무엇인가요?",
+    "강화유리/망입유리/브론즈유리 등 표현 기준은 무엇인가요?",
+    "아이/반려동물 있는 집에 안내할 주의사항은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "절대 안 깨짐 표현 금지",
+    "유리 종류 확인 전 안전성 단정 금지"
+  ],
+  "suggested_cta_keyword": "유리",
+  "priority": "high",
+  "triage": {
+    "recommendation": "keep_candidate",
+    "cluster": "GLASS_SAFETY",
+    "related_question_refs": [],
+    "needs_owner_decision": true
+  }
+}

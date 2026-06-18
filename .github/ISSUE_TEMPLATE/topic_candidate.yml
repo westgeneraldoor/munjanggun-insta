@@ -1,0 +1,49 @@
+name: Topic Candidate
+description: 문장군 캐러셀 소재 씨앗 또는 승격 검토 요청
+title: "[Topic] "
+labels: ["topic:seed"]
+body:
+  - type: input
+    id: problem_code
+    attributes:
+      label: Problem Code
+      description: 예시 W08, A09. 아직 없으면 proposed code를 적습니다.
+      placeholder: W08
+  - type: textarea
+    id: situation
+    attributes:
+      label: 생활 상황
+      description: 제품이 아니라 사람이 겪는 문제를 적습니다.
+      placeholder: 현관 바로 옆 방이 유독 덥거나 추운 상황
+    validations:
+      required: true
+  - type: dropdown
+    id: hook_type
+    attributes:
+      label: Hook Type
+      options:
+        - 손실회피
+        - 실수방지
+        - 공감
+        - 비교
+        - 스토리
+    validations:
+      required: true
+  - type: textarea
+    id: fit_check
+    attributes:
+      label: Fit Check
+      description: Brand Fit, Reality Fit, Duplication Fit을 각각 한 줄로 적습니다.
+      placeholder: |
+        Brand Fit:
+        Reality Fit:
+        Duplication Fit:
+    validations:
+      required: true
+  - type: textarea
+    id: avoid_angle
+    attributes:
+      label: 금지 각도
+      description: 이 소재로 절대 말하면 안 되는 과장/오해를 적습니다.
+    validations:
+      required: true

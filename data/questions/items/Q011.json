@@ -1,0 +1,33 @@
+{
+  "id": "Q011",
+  "state": "triage_review",
+  "product_scope": "중문",
+  "raw_question": "먼지가 많이 발생하나요?",
+  "category": "시공 환경/먼지",
+  "customer_anxiety": "중문 시공 중 먼지와 청소 부담이 어느 정도인지 알고 싶다.",
+  "carousel_angle": "중문 시공 먼지는 제품보다 현장 작업 범위와 보양 기준을 먼저 봐야 합니다.",
+  "hook_candidates": [
+    "중문 시공, 먼지 많이 날까요?",
+    "거주 중 중문 시공할 때 먼지 걱정된다면"
+  ],
+  "owner_questions": [
+    "문장군 기준 중문 시공 먼지는 어느 정도로 안내하나요?",
+    "보양이나 청소 범위는 어떻게 안내하나요?",
+    "고객에게 단정하면 안 되는 표현은 무엇인가요?"
+  ],
+  "risk_notes": [
+    "대표님 공식 답변 확정 전 MD 제작 금지",
+    "현장 조건을 확인하지 않고 먼지 없음으로 단정 금지"
+  ],
+  "suggested_cta_keyword": "먼지",
+  "priority": "high",
+  "triage": {
+    "recommendation": "merge_candidate",
+    "cluster": "CONSTRUCTION_ENV",
+    "related_question_refs": [
+      "Q014",
+      "Q017"
+    ],
+    "needs_owner_decision": true
+  }
+}

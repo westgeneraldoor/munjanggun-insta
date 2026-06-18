@@ -1,0 +1,202 @@
+{
+  "version": "2026-06-13",
+  "scale": "100-point editorial scorecard",
+  "score_fields": {
+    "hook_power": "0-20. 첫 장에서 멈추게 하는 생활 문제 힘.",
+    "saveability": "0-20. 체크리스트, 비교, 판단 기준으로 저장할 이유.",
+    "shareability": "0-20. 가족, 배우자, 실거주자가 공유할 만한 공감성.",
+    "dm_intent": "0-20. 댓글/DM/무료 실측으로 자연스럽게 이어지는 힘.",
+    "brand_fit": "0-20. 문장군 제품/서비스와 현실적으로 연결되는 정도."
+  },
+  "entries": [
+    {
+      "id": "038",
+      "title": "아이 겨우 재웠는데 현관 소리에 또 깬다면",
+      "problem_bank_ref": ["N02"],
+      "scores": { "hook_power": 18, "saveability": 16, "shareability": 18, "dm_intent": 17, "brand_fit": 17 },
+      "total_score": 86,
+      "verdict": "pass",
+      "notes": "생활 장면은 강하지만 아이 안전 클러스터와 혼동되지 않게 소음 중심 유지 필요."
+    },
+    {
+      "id": "039",
+      "title": "부모님이 문턱 앞에서 멈칫한다면",
+      "problem_bank_ref": ["F06"],
+      "scores": { "hook_power": 17, "saveability": 18, "shareability": 17, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 88,
+      "verdict": "pass",
+      "notes": "동선, 문턱, 레일 체크가 무료 실측과 자연스럽게 연결됨."
+    },
+    {
+      "id": "040",
+      "title": "베란다 확장 후 집이 더 춥고 더운 이유",
+      "problem_bank_ref": ["W05"],
+      "scores": { "hook_power": 16, "saveability": 18, "shareability": 15, "dm_intent": 17, "brand_fit": 17 },
+      "total_score": 83,
+      "verdict": "pass",
+      "notes": "확장 공간과 문 위치 체크로 한정해야 단열 공사 과장처럼 보이지 않음."
+    },
+    {
+      "id": "041",
+      "title": "복도식 아파트 현관이 바람길이 될 때",
+      "problem_bank_ref": ["W06"],
+      "scores": { "hook_power": 17, "saveability": 17, "shareability": 16, "dm_intent": 17, "brand_fit": 18 },
+      "total_score": 85,
+      "verdict": "pass",
+      "notes": "복도식 구조라는 타깃이 선명함. 계절 표현은 사계절형으로 관리."
+    },
+    {
+      "id": "042",
+      "title": "시트지 벗겨진 방문, 리폼 전에 보세요",
+      "problem_bank_ref": ["A02"],
+      "scores": { "hook_power": 16, "saveability": 18, "shareability": 14, "dm_intent": 17, "brand_fit": 19 },
+      "total_score": 84,
+      "verdict": "pass",
+      "notes": "리폼 vs 교체 판단 기준이 명확해 저장형으로 적합."
+    },
+    {
+      "id": "043",
+      "title": "리모델링했는데 문만 그대로라면",
+      "problem_bank_ref": ["A07"],
+      "scores": { "hook_power": 16, "saveability": 15, "shareability": 15, "dm_intent": 16, "brand_fit": 18 },
+      "total_score": 80,
+      "verdict": "pass",
+      "notes": "감성 소재라 문제 밀도가 약해질 수 있음. 마감 불균형 체크로 유지."
+    },
+    {
+      "id": "044",
+      "title": "집이 누렇게 보이면 몰딩을 보세요",
+      "problem_bank_ref": ["A05"],
+      "scores": { "hook_power": 14, "saveability": 16, "shareability": 13, "dm_intent": 15, "brand_fit": 17 },
+      "total_score": 75,
+      "verdict": "revise",
+      "notes": "제작 가능하나 강한 인기 소재는 아님. 다음 유사 소재는 더 구체적 결함이 필요."
+    },
+    {
+      "id": "045",
+      "title": "회의 켰는데 거실 소리부터 들어온다면",
+      "problem_bank_ref": ["N03"],
+      "scores": { "hook_power": 19, "saveability": 17, "shareability": 17, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 89,
+      "verdict": "pass",
+      "notes": "재택회의라는 즉시 공감 상황이 강함. 중문 만능 방음 표현 금지."
+    },
+    {
+      "id": "046",
+      "title": "방문이 바닥을 긁는 소리, 그냥 두지 마세요",
+      "problem_bank_ref": ["D01"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 15, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 89,
+      "verdict": "pass",
+      "notes": "문제-진단-무료 실측 연결이 매우 자연스러움. 무조건 교체처럼 보이면 감점."
+    },
+    {
+      "id": "047",
+      "title": "원하는 중문, 스위치 하나 때문에 못 달 수 있습니다",
+      "problem_bank_ref": ["E01"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 16, "dm_intent": 19, "brand_fit": 19 },
+      "total_score": 91,
+      "verdict": "pass",
+      "notes": "설치 전 체크 포인트가 선명하고 실측 CTA와 가장 잘 맞음."
+    },
+    {
+      "id": "048",
+      "title": "중문, 이사 갈 때 떼서 가져갈 수 있을까요?",
+      "problem_bank_ref": ["G01"],
+      "customer_question_ref": ["Q002"],
+      "scores": { "hook_power": 17, "saveability": 18, "shareability": 17, "dm_intent": 17, "brand_fit": 18 },
+      "total_score": 87,
+      "verdict": "pass",
+      "notes": "전세·임대·이사 고객의 실제 질문을 정확히 다룸. 이전설치와 철거 상담을 혼동하지 않게 유지."
+    },
+    {
+      "id": "049",
+      "title": "중문 틀까지 다 뜯었다가 일이 커질 수 있습니다",
+      "problem_bank_ref": ["G02"],
+      "customer_question_ref": ["Q004"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 15, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 89,
+      "verdict": "pass",
+      "notes": "기존 중문 철거 범위를 비용이 아니라 현장 구조 판단으로 좁혀 중복 위험을 낮춤."
+    },
+    {
+      "id": "050",
+      "title": "이사 전 중문, 실측 늦게 잡으면 일정이 꼬입니다",
+      "problem_bank_ref": ["G03"],
+      "customer_question_ref": ["Q009"],
+      "scores": { "hook_power": 17, "saveability": 19, "shareability": 15, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 87,
+      "verdict": "pass",
+      "notes": "이사 일정 역산형 저장 소재. 날짜 보장처럼 보이지 않게 전산 스케줄 단서를 유지."
+    },
+    {
+      "id": "051",
+      "title": "철거·폐기물, 문장군도 별도로 안내합니다",
+      "problem_bank_ref": ["G04"],
+      "customer_question_ref": ["Q010"],
+      "scores": { "hook_power": 17, "saveability": 19, "shareability": 14, "dm_intent": 19, "brand_fit": 19 },
+      "total_score": 88,
+      "verdict": "pass",
+      "notes": "문장군도 별도라는 기준을 정직하게 밝히고 기본 시공, 철거, 폐기물, 문짝 무상수거 예외를 분리해 신뢰형 원고로 재작성."
+    },
+    {
+      "id": "052",
+      "title": "3연동 댐퍼가 뻑뻑하면 고장일까요?",
+      "problem_bank_ref": ["G05"],
+      "customer_question_ref": ["Q005", "Q006"],
+      "scores": { "hook_power": 17, "saveability": 17, "shareability": 13, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 84,
+      "verdict": "pass",
+      "notes": "제품 기능 설명에서 3연동 댐퍼 사용감 불안으로 재프레이밍. 폭, 구조, 체결 위치 확인으로 단일 메시지 유지."
+    },
+    {
+      "id": "053",
+      "title": "중문, 이사 전에 해야 할까요? 이사 후에 해야 할까요?",
+      "problem_bank_ref": ["G06"],
+      "customer_question_ref": ["Q001"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 17, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 91,
+      "verdict": "pass",
+      "notes": "이사·입주·인테리어 고객의 반복 질문을 철거, 도배장판, 큰 짐 동선 체크로 전환. 무료 방문실측 견적상담 연결이 자연스럽고 중복 클러스터와 분리됨."
+    },
+    {
+      "id": "054",
+      "title": "중문 설치, 하루면 끝날까요?",
+      "problem_bank_ref": ["G07"],
+      "customer_question_ref": ["Q003"],
+      "scores": { "hook_power": 16, "saveability": 18, "shareability": 13, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 83,
+      "verdict": "pass",
+      "notes": "설치 당일 소요 시간을 제품별·철거별로 분리해 일정 불안을 줄임. 050 시공일 역산 소재와 다르게 당일 체류 시간으로 각도를 분리."
+    },
+    {
+      "id": "055",
+      "title": "가구 들어올 때 3연동중문 잠깐 뗄 수 있을까요?",
+      "problem_bank_ref": ["G08"],
+      "customer_question_ref": ["Q008"],
+      "scores": { "hook_power": 17, "saveability": 18, "shareability": 16, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 88,
+      "verdict": "pass",
+      "notes": "이전설치와 분리해 3연동중문 임시 탈착으로 좁힘. 제품별 구조 차이와 손상 주의가 명확해 저장형으로 적합."
+    },
+    {
+      "id": "056",
+      "title": "중문 견적, 사진만 보내고 직접 재라고 하면 놓치는 것",
+      "problem_bank_ref": ["C10"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 16, "dm_intent": 20, "brand_fit": 19 },
+      "total_score": 92,
+      "verdict": "pass",
+      "notes": "사진·유선 견적과 고객 자가실측의 한계를 짚어 무료 방문실측 견적상담의 필요성을 가장 직접적으로 설명. 경쟁업체 비방 없이 구조적 차이로 처리."
+    },
+    {
+      "id": "057",
+      "title": "문이 끼고 안 닫히는데, 문짝만 바꿔도 될까요?",
+      "problem_bank_ref": ["G09"],
+      "customer_question_ref": ["Q013"],
+      "scores": { "hook_power": 19, "saveability": 19, "shareability": 16, "dm_intent": 19, "brand_fit": 20 },
+      "total_score": 93,
+      "verdict": "pass",
+      "notes": "오래된 문틀과 문짝만 교체 가능 여부를 전동대패 현장 조정 역량으로 설명. 비용·도배장판 부담을 실측 판단으로 연결해 브랜드 신뢰가 강함."
+    }
+  ]
+}

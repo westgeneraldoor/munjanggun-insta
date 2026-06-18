@@ -1,0 +1,41 @@
+name: Carousel MD Review
+description: 신규 캐러셀 MD/JSON 원고 리뷰
+title: "[Carousel MD] "
+labels: ["format:carousel-md"]
+body:
+  - type: input
+    id: md_file
+    attributes:
+      label: MD File
+      placeholder: content/source/carousel/048_주제명.md
+    validations:
+      required: true
+  - type: input
+    id: problem_ref
+    attributes:
+      label: Problem Bank Ref
+      placeholder: E01
+    validations:
+      required: true
+  - type: textarea
+    id: slide_flow
+    attributes:
+      label: 슬라이드 흐름
+      placeholder: 문제 -> 원인 -> 체크 -> 비교 -> CTA -> caption_card
+    validations:
+      required: true
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: 품질 게이트
+      options:
+        - label: ready 상태 또는 명시 승인된 소재다.
+          required: true
+        - label: 최근 10개 원고와 의미 중복이 아니다.
+          required: true
+        - label: 이미지/HTML/프롬프트 산출물을 만들지 않았다.
+          required: true
+        - label: scorecard와 registry를 업데이트했다.
+          required: true
+        - label: validate:file 또는 validate:since를 통과했다.
+          required: true
