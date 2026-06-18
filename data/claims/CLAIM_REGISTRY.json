@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-06-18",
+  "claims": [
+    {
+      "id": "BRAND_FREE_MEASUREMENT",
+      "type": "guarantee",
+      "text": "무료 방문실측 견적상담",
+      "status": "verified",
+      "source": "문장군 운영 기준 CTA"
+    },
+    {
+      "id": "BRAND_DOOR_AS_3Y",
+      "type": "guarantee",
+      "text": "도어 A/S 3년",
+      "status": "verified",
+      "source": "대표님 공식 답변"
+    },
+    {
+      "id": "BRAND_MIDDLE_DOOR_AS_2Y",
+      "type": "guarantee",
+      "text": "중문 A/S 2년",
+      "status": "verified",
+      "source": "대표님 공식 답변"
+    },
+    {
+      "id": "BRAND_MIDDLE_DOOR_INSTALL_2_3H",
+      "type": "quantitative",
+      "text": "일반적인 3연동중문, 원슬라이딩중문, 스윙중문은 보통 2~3시간이면 시공 가능",
+      "status": "verified",
+      "source": "대표님 공식 답변 Q003"
+    },
+    {
+      "id": "BRAND_DEMOLITION_TIME_30_60M",
+      "type": "quantitative",
+      "text": "철거 후 시공은 약 30분~1시간 정도 추가",
+      "status": "verified",
+      "source": "대표님 공식 답변 Q003"
+    },
+    {
+      "id": "BRAND_L_SHAPE_THREE_PANEL_4H",
+      "type": "quantitative",
+      "text": "3연동 ㄱ자 중문은 약 4시간 정도 안내",
+      "status": "verified",
+      "source": "대표님 공식 답변 Q003"
+    },
+    {
+      "id": "BRAND_THREE_PANEL_REMOVABLE",
+      "type": "factual",
+      "text": "3연동중문은 고객이 직접 문짝을 탈부착할 수 있음",
+      "status": "verified",
+      "source": "대표님 공식 답변 Q008"
+    },
+    {
+      "id": "BRAND_SITE_MEASUREMENT_CHECKS",
+      "type": "factual",
+      "text": "방문실측에서 폭, 수직, 수평, 바닥 단차, 신발장과 스위치 간섭을 확인",
+      "status": "verified",
+      "source": "문장군 현장 상담 지식"
+    },
+    {
+      "id": "BRAND_ELECTRIC_PLANER_ADJUSTMENT",
+      "type": "factual",
+      "text": "기존 문틀 변형이 있어도 전문 시공팀이 전동대패로 새 문짝을 현장에 맞춰 조정",
+      "status": "verified",
+      "source": "대표님 공식 답변 Q013"
+    }
+  ]
+}

@@ -69,6 +69,10 @@
    상담 직원 질문 수집, 대표님 공식 답변 협의, ready 승격 프로세스.
 21. `data/questions/items/Q###.json`  
    질문별 상세 파일. 공식 답변, 조건, 금지 표현, 파생 캐러셀 후보는 여기에 기록한다.
+22. `data/claims/CLAIM_REGISTRY.json`  
+   검증된 브랜드/현장 주장 근거. strict 원고의 `claims[].evidence_refs`는 이 레지스트리와 연결한다.
+23. `docs/operating/CLAIM_SAFETY_V2.md`  
+   Schema v6, 주장 유형, 근거 검증, 목적별 CTA 분리 규칙.
 
 ## 실행 트리거
 
@@ -178,6 +182,9 @@ Hook Score는 필요조건일 뿐 충분조건이 아니다. Brand Fit, Reality 
 - `image_generation`, 이미지시트 프롬프트, 슬라이드별 이미지 프롬프트, 생성 이미지 파일은 신규 MD 원고에 포함하지 않는다.
 - CTA 슬라이드는 댓글 유도형을 기본으로 하되, 최종 목적지는 항상 무료 방문실측 견적상담이어야 한다.
 - 댓글 키워드는 `견적` 또는 캐러셀 주제어를 사용할 수 있지만, CTA 제목/본문/sub2 중 최소 한 곳에는 `무료 방문실측 견적상담`을 명시한다.
+- Schema v6 strict 원고는 `schema_version: "6.0"`, `validation_profile: "strict"`, `source_type`, `narrative_mode`, `trigger_type`, `evidence_ref`, `primary_goal`, `primary_cta`, `claims`를 포함한다.
+- `verified_brand_fact`는 claim type으로 쓰지 않는다. claim type과 `verification_status`, `evidence_refs`를 분리한다.
+- 건강/질병 주장은 strict 원고에서 금지한다. 숫자/성능/보증/경쟁사 비교 주장은 `data/claims/CLAIM_REGISTRY.json`의 검증 근거가 없으면 금지한다.
 - 마지막 슬라이드는 `caption_card`를 기본으로 한다. 의도적으로 생략해야 하는 예외 상황은 사용자 승인 후 JSON에 `caption_card: false`를 명시한다.
 - `caption_card`는 인스타 캡션/해시태그용 텍스트 원고다.
 

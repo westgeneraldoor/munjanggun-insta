@@ -8,6 +8,7 @@ const ROOT = path.resolve(__dirname, "..", "..");
 const CONTENT_DIR = path.join(ROOT, "content", "source", "carousel");
 const REGISTRY_PATH = path.join(ROOT, "data", "registry", "INSTAGRAM_POSTING_REGISTRY.md");
 const SCORECARD_LOG_PATH = path.join(ROOT, "data", "registry", "CAROUSEL_SCORECARD_LOG.json");
+const CLAIM_REGISTRY_PATH = path.join(ROOT, "data", "claims", "CLAIM_REGISTRY.json");
 const REQUIRED_VISUAL_INTENT_FROM_ID = 28;
 const REQUIRED_MD_META_FROM_ID = 35;
 const REQUIRED_STRICT_QUALITY_FROM_ID = 39;
@@ -19,11 +20,28 @@ const ALLOWED_HOOK_TYPES = new Set(["손실회피", "실수방지", "공감", "�
 const ALLOWED_PURPOSE_TAGS = new Set(["SAVE", "SHARE", "TRUST", "LEAD", "AD"]);
 const ALLOWED_SLIDE_TYPES = new Set(["cover", "point", "checklist", "compare", "cta", "caption_card"]);
 const SCORECARD_FIELDS = ["hook_power", "saveability", "shareability", "dm_intent", "brand_fit"];
+const STRICT_SCHEMA_VERSION = "6.0";
+const ALLOWED_VALIDATION_PROFILES = new Set(["legacy", "strict"]);
+const ALLOWED_SOURCE_TYPES = new Set([
+  "customer_question",
+  "customer_case",
+  "review",
+  "field_observation",
+  "internal_data",
+  "constructed_example",
+]);
+const ALLOWED_NARRATIVE_MODES = new Set(["question", "incident", "reveal", "comparison", "checklist"]);
+const ALLOWED_TRIGGER_TYPES = new Set(["evergreen", "seasonal", "campaign"]);
+const ALLOWED_PRIMARY_GOALS = new Set(["save", "share", "comment", "follow", "lead"]);
+const ALLOWED_CLAIM_TYPES = new Set(["medical", "performance", "quantitative", "guarantee", "competitor", "factual", "policy"]);
+const ALLOWED_CLAIM_STATUSES = new Set(["verified", "unverified", "rejected", "not_applicable"]);
+const CLAIM_TYPES_REQUIRING_EVIDENCE = new Set(["performance", "quantitative", "guarantee", "competitor", "factual", "policy"]);
 const RISKY_CLAIM_PATTERNS = [
-  { label: "absolute guarantee", pattern: /완벽|확실한|100%|무조건/g },
-  { label: "superlative claim", pattern: /최고|최장|업계\s*유일|국내\s*최고|업계\s*최장/g },
-  { label: "unsupported numeric claim", pattern: /\d+\s*%|\d+\s*배|수십만\s*원|평당\s*\d+/g },
-  { label: "competitor attack tone", pattern: /먹튀|일용직|대충|책임\s*회피|연락\s*두절/g },
+  { type: "medical", label: "medical/health claim", pattern: /발암|비염|아토피|폐로|폐에|가족\s*폐|유해\s*세균|질병|정서적\s*안정/g },
+  { type: "performance", label: "performance claim", pattern: /원천\s*차단|데시벨|차단\s*효과|느끼지\s*못함|줄어듭니다|감소/g },
+  { type: "quantitative", label: "quantitative claim", pattern: /\d+[ \t]*%|\d+[ \t]*배|수십만[ \t]*원|평당[ \t]*\d+|\d+[ \t]*~[ \t]*\d+[ \t]*(시간|분|일)|\d+[ \t]*(년|시간|분|일)/g },
+  { type: "guarantee", label: "guarantee/policy claim", pattern: /완벽|확실한|100%|무조건|보장|무상|무료\s*방문\s*실측|무료\s*방문실측|A\/S|AS/g },
+  { type: "competitor", label: "competitor/superlative claim", pattern: /먹튀|일용직|대충|책임\s*회피|연락\s*두절|업체들은.*마진|저가\s*업체|경쟁사|최고|최장|업계\s*유일|국내\s*최고|업계\s*최장/g },
 ];
 
 const errors = [];
@@ -175,6 +193,113 @@ function readCustomerQuestionBank() {
   }
 }
 
+function readClaimRegistry() {
+  if (!fs.existsSync(CLAIM_REGISTRY_PATH)) return { claims: [] };
+  try {
+    return JSON.parse(fs.readFileSync(CLAIM_REGISTRY_PATH, "utf8"));
+  } catch (error) {
+    errors.push(`Claim registry is not valid JSON: data/claims/CLAIM_REGISTRY.json - ${error.message}`);
+    return { claims: [] };
+  }
+}
+
+function makeClaimRegistryMap(claimRegistry) {
+  return new Map((claimRegistry.claims || []).map((claim) => [String(claim.id), claim]));
+}
+
+function isStrictSchema(data) {
+  return data?.schema_version === STRICT_SCHEMA_VERSION || data?.validation_profile === "strict";
+}
+
+function addIssue(issues, level, message) {
+  const target = issues || { errors, warnings };
+  target[level].push(message);
+}
+
+function collectClaimText(data) {
+  const skipKeys = new Set([
+    "id",
+    "slide",
+    "hashtags",
+    "problem_bank_ref",
+    "customer_question_ref",
+    "duplicate_signature",
+    "evidence_ref",
+    "evidence_refs",
+    "verification_status",
+    "created_at",
+    "updated_at",
+    "approved_at",
+    "qa_completed_at",
+    "published_at",
+    "rejection_risks",
+    "avoid",
+  ]);
+  const text = [];
+
+  function walk(value, key = "") {
+    if (value === null || value === undefined) return;
+    if (typeof value === "string") {
+      if (!skipKeys.has(key)) text.push(value);
+      return;
+    }
+    if (Array.isArray(value)) {
+      if (skipKeys.has(key)) return;
+      value.forEach((item) => walk(item, key));
+      return;
+    }
+    if (typeof value === "object") {
+      for (const [childKey, child] of Object.entries(value)) {
+        if (skipKeys.has(childKey)) continue;
+        walk(child, childKey);
+      }
+    }
+  }
+
+  walk(data);
+  return text.join("\n");
+}
+
+function findClaimRisks(data) {
+  const claimText = collectClaimText(data);
+  const risks = [];
+  for (const { type, label, pattern } of RISKY_CLAIM_PATTERNS) {
+    const matches = [...claimText.matchAll(pattern)].map((match) => match[0]);
+    for (const match of [...new Set(matches)]) {
+      risks.push({ type, label, match });
+    }
+  }
+  return risks;
+}
+
+function normalizeClaimText(value) {
+  return normalizeText(value).replace(/년|개월|시간|분|일|원/g, "");
+}
+
+function claimMatchesRisk(claim, risk) {
+  const claimText = normalizeClaimText(claim.text || "");
+  const riskText = normalizeClaimText(risk.match || "");
+  if (!claimText || !riskText) return false;
+  return claimText.includes(riskText) || riskText.includes(claimText);
+}
+
+function isVerifiedClaim(claim, claimRegistryMap) {
+  if (claim.verification_status !== "verified") return false;
+  if (!Array.isArray(claim.evidence_refs) || claim.evidence_refs.length === 0) return false;
+  return claim.evidence_refs.every((ref) => {
+    const registryClaim = claimRegistryMap.get(String(ref));
+    return registryClaim && registryClaim.status === "verified";
+  });
+}
+
+function hasVerifiedEvidenceForRisk(claims, risk, claimRegistryMap) {
+  return claims.some((claim) => {
+    if (claim.type !== risk.type) return false;
+    if (!claimMatchesRisk(claim, risk)) return false;
+    return isVerifiedClaim(claim, claimRegistryMap);
+  });
+}
+
 function validateCustomerQuestionBank(customerQuestions) {
   const questions = Array.isArray(customerQuestions.questions) ? customerQuestions.questions : [];
 
@@ -251,7 +376,7 @@ function validateSlides(fileName, data, numericId) {
   }
 
   const hasCta = data.slides.some((slide) => slide.type === "cta");
-  if (!hasCta) {
+  if (!hasCta && !isStrictSchema(data)) {
     errors.push(`${fileName}: CTA slide is missing`);
   }
 
@@ -347,6 +472,7 @@ function validateNewMetadata(fileName, data, numericId) {
 }
 
 function validateCta(fileName, data, numericId) {
+  if (validateStrictCta(fileName, data)) return;
   if (numericId < REQUIRED_STRICT_QUALITY_FROM_ID) return;
   const ctaType = String(data.cta_type || "");
   const ctaSlides = Array.isArray(data.slides) ? data.slides.filter((slide) => slide.type === "cta") : [];
@@ -419,17 +545,137 @@ function validateMdOnlySchema(fileName, data) {
   }
 }
 
-function validateClaimSafety(fileName, data, numericId) {
-  const serialized = JSON.stringify(data);
-  for (const { label, pattern } of RISKY_CLAIM_PATTERNS) {
-    const matches = [...serialized.matchAll(pattern)].map((match) => match[0]);
-    const uniqueMatches = [...new Set(matches)];
-    if (uniqueMatches.length > 0) {
-      const message = `${fileName}: risky claim/tone (${label}): ${uniqueMatches.join(", ")}`;
-      if (numericId >= REQUIRED_STRICT_QUALITY_FROM_ID) errors.push(message);
-      else warnings.push(message);
+function validateSchemaV6(fileName, data, claimRegistry, issues) {
+  if (!isStrictSchema(data)) return;
+
+  const claimRegistryMap = makeClaimRegistryMap(claimRegistry);
+  if (data.schema_version !== STRICT_SCHEMA_VERSION) {
+    addIssue(issues, "errors", `${fileName}: strict carousel must declare schema_version=${STRICT_SCHEMA_VERSION}`);
+  }
+  if (data.validation_profile !== "strict") {
+    addIssue(issues, "errors", `${fileName}: schema v6 carousel must declare validation_profile=strict`);
+  }
+  if (!ALLOWED_VALIDATION_PROFILES.has(data.validation_profile)) {
+    addIssue(issues, "errors", `${fileName}: validation_profile must be legacy or strict`);
+  }
+  if (!ALLOWED_SOURCE_TYPES.has(data.source_type)) {
+    addIssue(issues, "errors", `${fileName}: source_type must be one of ${[...ALLOWED_SOURCE_TYPES].join(", ")}`);
+  }
+  if (!ALLOWED_NARRATIVE_MODES.has(data.narrative_mode)) {
+    addIssue(issues, "errors", `${fileName}: narrative_mode must be one of ${[...ALLOWED_NARRATIVE_MODES].join(", ")}`);
+  }
+  if (!ALLOWED_TRIGGER_TYPES.has(data.trigger_type)) {
+    addIssue(issues, "errors", `${fileName}: trigger_type must be one of ${[...ALLOWED_TRIGGER_TYPES].join(", ")}`);
+  }
+  if (!ALLOWED_PRIMARY_GOALS.has(data.primary_goal)) {
+    addIssue(issues, "errors", `${fileName}: primary_goal must be one of ${[...ALLOWED_PRIMARY_GOALS].join(", ")}`);
+  }
+  if (!Array.isArray(data.evidence_ref)) {
+    addIssue(issues, "errors", `${fileName}: evidence_ref must be an array`);
+  } else if (data.source_type !== "constructed_example" && data.evidence_ref.length === 0) {
+    addIssue(issues, "errors", `${fileName}: evidence_ref is required for ${data.source_type}`);
+  }
+  if (data.source_type === "customer_case" || data.source_type === "review") {
+    const evidenceText = Array.isArray(data.evidence_ref) ? data.evidence_ref.join(" ") : "";
+    if (!evidenceText.trim()) {
+      addIssue(issues, "errors", `${fileName}: ${data.source_type} must carry a real source evidence_ref`);
     }
   }
+  if (!data.primary_cta || typeof data.primary_cta !== "object" || Array.isArray(data.primary_cta)) {
+    addIssue(issues, "errors", `${fileName}: primary_cta object is required`);
+  } else {
+    if (typeof data.primary_cta.action !== "string" || data.primary_cta.action.trim() === "") {
+      addIssue(issues, "errors", `${fileName}: primary_cta.action is required`);
+    }
+    if (typeof data.primary_cta.text !== "string" || data.primary_cta.text.trim() === "") {
+      addIssue(issues, "errors", `${fileName}: primary_cta.text is required`);
+    }
+  }
+
+  const claims = Array.isArray(data.claims) ? data.claims : [];
+  if (!Array.isArray(data.claims)) {
+    addIssue(issues, "errors", `${fileName}: claims must be an array in schema v6 strict`);
+  }
+
+  for (const claim of claims) {
+    const claimLabel = claim.id || claim.text || "unknown";
+    if (!claim.id) addIssue(issues, "errors", `${fileName}: claim is missing id`);
+    if (!ALLOWED_CLAIM_TYPES.has(claim.type)) {
+      addIssue(issues, "errors", `${fileName}: claim ${claimLabel} has unsupported type=${claim.type}`);
+    }
+    if (typeof claim.text !== "string" || claim.text.trim() === "") {
+      addIssue(issues, "errors", `${fileName}: claim ${claimLabel} is missing text`);
+    }
+    if (!ALLOWED_CLAIM_STATUSES.has(claim.verification_status)) {
+      addIssue(issues, "errors", `${fileName}: claim ${claimLabel} has unsupported verification_status=${claim.verification_status}`);
+    }
+    if (CLAIM_TYPES_REQUIRING_EVIDENCE.has(claim.type) && !isVerifiedClaim(claim, claimRegistryMap)) {
+      addIssue(issues, "errors", `${fileName}: claim ${claimLabel} requires verified evidence_refs from CLAIM_REGISTRY.json`);
+    }
+  }
+}
+
+function validateStrictCta(fileName, data, issues) {
+  if (!isStrictSchema(data)) return false;
+  const ctaSlides = Array.isArray(data.slides) ? data.slides.filter((slide) => slide.type === "cta") : [];
+  const primaryText = JSON.stringify(data.primary_cta || {});
+  const secondaryText = JSON.stringify(data.secondary_cta || {});
+  const ctaSlideText = ctaSlides.map((slide) => JSON.stringify(slide)).join("\n");
+  const allCtaText = `${primaryText}\n${secondaryText}\n${ctaSlideText}`;
+
+  if (data.primary_goal === "lead") {
+    if (ctaSlides.length !== 1) {
+      addIssue(issues, "errors", `${fileName}: lead carousel must have exactly one CTA slide`);
+    }
+    if (!allCtaText.includes("무료 방문실측 견적상담")) {
+      addIssue(issues, "errors", `${fileName}: lead CTA must route to 무료 방문실측 견적상담`);
+    }
+    return true;
+  }
+
+  if (ctaSlides.length > 1) {
+    addIssue(issues, "errors", `${fileName}: non-lead carousel must not have more than one CTA slide`);
+  }
+  if (data.secondary_cta && typeof data.secondary_cta === "object" && secondaryText.includes("상담") && !secondaryText.includes("무료 방문실측 견적상담")) {
+    addIssue(issues, "errors", `${fileName}: consultation secondary_cta must mention 무료 방문실측 견적상담`);
+  }
+  return true;
+}
+
+function validateClaimSafety(fileName, data, numericId, claimRegistry, issues) {
+  const risks = findClaimRisks(data);
+  if (risks.length === 0) return;
+
+  if (isStrictSchema(data)) {
+    const claims = Array.isArray(data.claims) ? data.claims : [];
+    const claimRegistryMap = makeClaimRegistryMap(claimRegistry);
+    for (const risk of risks) {
+      if (risk.type === "medical") {
+        addIssue(issues, "errors", `${fileName}: medical claim is not allowed in strict carousel: ${risk.match}`);
+        continue;
+      }
+      if (!hasVerifiedEvidenceForRisk(claims, risk, claimRegistryMap)) {
+        addIssue(issues, "errors", `${fileName}: ${risk.label} requires a matching verified claim: ${risk.match}`);
+      }
+    }
+    return;
+  }
+
+  for (const risk of risks) {
+    const message = `${fileName}: legacy risky claim/tone (${risk.label}): ${risk.match}`;
+    if (numericId >= REQUIRED_STRICT_QUALITY_FROM_ID) warnings.push(message);
+    else warnings.push(message);
+  }
+}
+
+function validateStrictSchemaPayload(data, options = {}) {
+  const issues = { errors: [], warnings: [] };
+  const fileName = options.fileName || "fixture.md";
+  const claimRegistry = options.claimRegistry || { claims: [] };
+  validateSchemaV6(fileName, data, claimRegistry, issues);
+  validateStrictCta(fileName, data, issues);
+  validateClaimSafety(fileName, data, Number.parseInt(String(data.id), 10) || 999, claimRegistry, issues);
+  return issues;
 }
 
 function validateScorecard(fileName, data, numericId, scorecardEntries) {
@@ -584,7 +830,7 @@ function validateRegistryPaths() {
   }
 }
 
-function validateFile(filePath, seenIds, qualityRules, scorecardEntries, customerQuestionEntries) {
+function validateFile(filePath, seenIds, qualityRules, scorecardEntries, customerQuestionEntries, claimRegistry) {
   const fileName = path.relative(ROOT, filePath);
   let data;
 
@@ -618,12 +864,13 @@ function validateFile(filePath, seenIds, qualityRules, scorecardEntries, custome
 
   validateVisualIntent(fileName, data, numericId);
   validateNewMetadata(fileName, data, numericId);
+  validateSchemaV6(fileName, data, claimRegistry);
   validateProblemQuality(fileName, data, numericId, qualityRules);
   validateMdOnlySchema(fileName, data);
   validateSlides(fileName, data, numericId);
   validateCta(fileName, data, numericId);
   validateHashtags(fileName, data);
-  validateClaimSafety(fileName, data, numericId);
+  validateClaimSafety(fileName, data, numericId, claimRegistry);
   validateScorecard(fileName, data, numericId, scorecardEntries);
   validateCustomerQuestionRef(fileName, data, numericId, customerQuestionEntries);
   validateEditorialReview(fileName, data, numericId);
@@ -640,7 +887,8 @@ function main() {
   const customerQuestions = readCustomerQuestionBank();
   validateCustomerQuestionBank(customerQuestions);
   const customerQuestionEntries = new Map((customerQuestions.questions || []).map((question) => [String(question.id), question]));
-  files.forEach((file) => validateFile(file, seenIds, qualityRules, scorecardEntries, customerQuestionEntries));
+  const claimRegistry = readClaimRegistry();
+  files.forEach((file) => validateFile(file, seenIds, qualityRules, scorecardEntries, customerQuestionEntries, claimRegistry));
 
   const metadataItems = [];
   for (const filePath of files) {
@@ -667,4 +915,14 @@ function main() {
   process.exit(errors.length > 0 ? 1 : 0);
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  collectClaimText,
+  findClaimRisks,
+  isStrictSchema,
+  parseArgs,
+  validateStrictSchemaPayload,
+};
