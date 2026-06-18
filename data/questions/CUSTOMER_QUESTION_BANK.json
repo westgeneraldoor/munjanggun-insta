@@ -56,7 +56,7 @@
     },
     {
       "id": "Q003",
-      "state": "ready",
+      "state": "used",
       "product_scope": "",
       "category": "일정/소요 시간",
       "raw_question": "하루면 시공될까요? 하루면 설치 시간이 어떻게 될까요?",
@@ -104,7 +104,7 @@
     },
     {
       "id": "Q007",
-      "state": "ready",
+      "state": "used",
       "product_scope": "",
       "category": "AS/보증",
       "raw_question": "AS는 몇년인가요?",
@@ -116,7 +116,7 @@
     },
     {
       "id": "Q008",
-      "state": "ready",
+      "state": "used",
       "product_scope": "",
       "category": "시공 가능 여부",
       "raw_question": "중문 탈부착 가능한가요?",
@@ -152,7 +152,7 @@
     },
     {
       "id": "Q011",
-      "state": "triage_review",
+      "state": "used",
       "product_scope": "중문",
       "category": "시공 환경/먼지",
       "raw_question": "먼지가 많이 발생하나요?",
@@ -176,7 +176,7 @@
     },
     {
       "id": "Q013",
-      "state": "triage_review",
+      "state": "used",
       "product_scope": "세트",
       "category": "문틀/문짝 교체",
       "raw_question": "문틀이 위,아래 넓이가 다른데 문짝만 교체해도 문제 없나요?",

@@ -158,6 +158,45 @@
       "total_score": 91,
       "verdict": "pass",
       "notes": "이사·입주·인테리어 고객의 반복 질문을 철거, 도배장판, 큰 짐 동선 체크로 전환. 무료 방문실측 견적상담 연결이 자연스럽고 중복 클러스터와 분리됨."
+    },
+    {
+      "id": "054",
+      "title": "중문 설치, 하루면 끝날까요?",
+      "problem_bank_ref": ["G07"],
+      "customer_question_ref": ["Q003"],
+      "scores": { "hook_power": 16, "saveability": 18, "shareability": 13, "dm_intent": 18, "brand_fit": 18 },
+      "total_score": 83,
+      "verdict": "pass",
+      "notes": "설치 당일 소요 시간을 제품별·철거별로 분리해 일정 불안을 줄임. 050 시공일 역산 소재와 다르게 당일 체류 시간으로 각도를 분리."
+    },
+    {
+      "id": "055",
+      "title": "가구 들어올 때 3연동중문 잠깐 뗄 수 있을까요?",
+      "problem_bank_ref": ["G08"],
+      "customer_question_ref": ["Q008"],
+      "scores": { "hook_power": 17, "saveability": 18, "shareability": 16, "dm_intent": 18, "brand_fit": 19 },
+      "total_score": 88,
+      "verdict": "pass",
+      "notes": "이전설치와 분리해 3연동중문 임시 탈착으로 좁힘. 제품별 구조 차이와 손상 주의가 명확해 저장형으로 적합."
+    },
+    {
+      "id": "056",
+      "title": "중문 견적, 사진만 보내고 직접 재라고 하면 놓치는 것",
+      "problem_bank_ref": ["C10"],
+      "scores": { "hook_power": 18, "saveability": 19, "shareability": 16, "dm_intent": 20, "brand_fit": 19 },
+      "total_score": 92,
+      "verdict": "pass",
+      "notes": "사진·유선 견적과 고객 자가실측의 한계를 짚어 무료 방문실측 견적상담의 필요성을 가장 직접적으로 설명. 경쟁업체 비방 없이 구조적 차이로 처리."
+    },
+    {
+      "id": "057",
+      "title": "문이 끼고 안 닫히는데, 문짝만 바꿔도 될까요?",
+      "problem_bank_ref": ["G09"],
+      "customer_question_ref": ["Q013"],
+      "scores": { "hook_power": 19, "saveability": 19, "shareability": 16, "dm_intent": 19, "brand_fit": 20 },
+      "total_score": 93,
+      "verdict": "pass",
+      "notes": "오래된 문틀과 문짝만 교체 가능 여부를 전동대패 현장 조정 역량으로 설명. 비용·도배장판 부담을 실측 판단으로 연결해 브랜드 신뢰가 강함."
     }
   ]
 }

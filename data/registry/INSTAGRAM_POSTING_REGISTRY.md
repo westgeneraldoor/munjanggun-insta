@@ -78,6 +78,10 @@
 | 051 | 철거·폐기물, 문장군도 별도로 안내합니다 | 캐러셀 | SAVE, LEAD, TRUST | content/source/carousel/051_중문견적철거폐기물포함인지따로보셔야합니다.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고 재작성, Hook Score 8점, G04/Q010 |
 | 052 | 3연동 댐퍼가 뻑뻑하면 고장일까요? | 캐러셀 | SAVE, LEAD, TRUST | content/source/carousel/052_중문댐퍼스위치처럼끄는기능일까요.md | 06/15 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고 재작성, Hook Score 8점, G05/Q005+Q006 |
 | 053 | 중문, 이사 전에 해야 할까요? 이사 후에 해야 할까요? | 캐러셀 | SAVE, SHARE, LEAD, TRUST | content/source/carousel/053_중문이사전에해야할까요이사후에해야할까요.md | 06/16 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 9점, G06/Q001 |
+| 054 | 중문 설치, 하루면 끝날까요? | 캐러셀 | SAVE, LEAD, TRUST | content/source/carousel/054_중문설치하루면끝날까요.md | 06/17 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 8점, G07/Q003 |
+| 055 | 가구 들어올 때 3연동중문 잠깐 뗄 수 있을까요? | 캐러셀 | SAVE, SHARE, LEAD, TRUST | content/source/carousel/055_가구들어올때3연동중문잠깐뗄수있을까요.md | 06/17 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 8점, G08/Q008 |
+| 056 | 중문 견적, 사진만 보내고 직접 재라고 하면 놓치는 것 | 캐러셀 | SAVE, SHARE, LEAD, TRUST | content/source/carousel/056_중문견적사진만보내고직접재라고하면놓치는것.md | 06/17 | - | - | - | - | - | - | - | - | - | - | - | - | - | seed 승격 v5 MD 원고, Hook Score 9점, C10 |
+| 057 | 문이 끼고 안 닫히는데, 문짝만 바꿔도 될까요? | 캐러셀 | SAVE, SHARE, LEAD, TRUST | content/source/carousel/057_문이끼고안닫히는데문짝만바꿔도될까요.md | 06/17 | - | - | - | - | - | - | - | - | - | - | - | - | - | 고객질문 기반 v5 MD 원고, Hook Score 9점, G09/Q013 |
 
 
 

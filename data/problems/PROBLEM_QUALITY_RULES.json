@@ -122,6 +122,15 @@
     "C07": { "status": "used", "semantic_cluster": "as_warranty", "purchase_reason": "A/S와 보증 주체 확인이 구매 결정에 중요하다.", "allowed_angle": "A/S 체크.", "used_ids": ["035"], "reuse_allowed": false },
     "C08": { "status": "hold", "semantic_cluster": "moving_restoration_cost", "purchase_reason": "이사 원상복구는 문장군 직접 구매 이유와 거리가 있다.", "allowed_angle": "방문/문틀 원상복구 실제 문의 근거가 있을 때만.", "avoid_angle": "인테리어 일반 원상복구 비용.", "reject_reason": "구체적 제품 연결이 약하다." },
     "C09": { "status": "used", "semantic_cluster": "installment_budget", "purchase_reason": "시공비 부담을 무이자 할부로 낮춘다.", "allowed_angle": "월 부담 완화.", "used_ids": ["032", "033"], "reuse_allowed": false },
+    "C10": {
+      "status": "used",
+      "semantic_cluster": "photo_quote_self_measurement_risk",
+      "purchase_reason": "사진과 고객 자가실측만으로 중문 견적을 잡으면 수직·수평·폭·간섭 조건을 놓칠 수 있어 무료 방문실측 견적상담으로 자연스럽게 이어진다.",
+      "allowed_angle": "유선상 사진 상담과 고객 자가실측의 한계를 짚고, 현장 실측에서 확인해야 하는 폭·수직·수평·스위치·신발장 간섭을 안내하는 각도.",
+      "avoid_angle": "다른 업체 비방, 사진 견적 자체를 전부 위험하다고 단정, 방문실측만 하면 모든 오차가 사라진다는 표현.",
+      "used_ids": ["056"],
+      "reuse_allowed": false
+    },
     "F01": { "status": "used", "semantic_cluster": "child_finger_safety", "purchase_reason": "손끼임 옵션과 중문/도어 안전 상담.", "allowed_angle": "손끼임 방지.", "used_ids": ["018"], "reuse_allowed": false },
     "F02": { "status": "duplicate_hold", "semantic_cluster": "pet_hallway_noise", "purchase_reason": "반려동물 현관 대기는 N01/036과 겹친다.", "allowed_angle": "기존 반려견 소음과 완전히 다른 현장 사례가 있을 때만.", "avoid_angle": "강아지 현관 대기/짖음 반복.", "reject_reason": "기존 반려견 현관 소음 원고와 의미 중복." },
     "F03": { "status": "duplicate_hold", "semantic_cluster": "child_entry_safety", "purchase_reason": "아이 현관 안전은 038 육아/현관 소음과 인접하다.", "allowed_angle": "실제 현관 구조와 안전 옵션 중심으로 재기획 후 사용자 승인 필요.", "avoid_angle": "아이 현관 불안 일반론.", "reject_reason": "기존 육아 현관 원고와 겹칠 위험." },
@@ -238,6 +247,33 @@
       "allowed_angle": "중문은 언제든 설치 가능하지만 철거 여부, 도배·장판 계획, 큰 짐 반입 순서에 따라 좋은 타이밍이 달라진다는 설명.",
       "avoid_angle": "중문은 반드시 이사 전, 입주청소 전이 정답, 이사 후 설치 불가, 철거 흔적 남김없는 복구처럼 들리는 단정.",
       "used_ids": ["053"],
+      "reuse_allowed": false
+    },
+    "G07": {
+      "status": "used",
+      "semantic_cluster": "middle_door_install_day_duration",
+      "purchase_reason": "설치 당일 집에 얼마나 있어야 하는지 궁금한 고객에게 제품 종류와 철거 여부별 소요 시간을 안내하면 상담 불안을 줄일 수 있다.",
+      "allowed_angle": "일반 3연동·원슬라이딩·스윙중문 2~3시간, 철거 시 30분~1시간 추가, 3연동 ㄱ자 중문 약 4시간이라는 기준을 현장 조건 단서와 함께 안내.",
+      "avoid_angle": "모든 현장이 같은 시간에 끝난다는 단정, 하루 안에 끝난다는 보장, 철거가 있어도 시간이 같다는 표현.",
+      "used_ids": ["054"],
+      "reuse_allowed": false
+    },
+    "G08": {
+      "status": "used",
+      "semantic_cluster": "three_panel_middle_door_temporary_removal",
+      "purchase_reason": "가구 반입이나 수리 때문에 중문 문짝을 잠시 뗄 수 있는지 묻는 고객에게 제품별 가능 범위와 주의점을 안내할 수 있다.",
+      "allowed_angle": "고객 직접 탈부착 안내는 3연동중문으로 한정하고, 위로 들어 아래를 먼저 빼는 방식과 손상 주의점을 설명.",
+      "avoid_angle": "모든 중문 탈부착 가능, 이전설치 가능, 원슬라이딩·스윙중문까지 같은 방식으로 확대, 손상 위험 없음처럼 보이는 표현.",
+      "used_ids": ["055"],
+      "reuse_allowed": false
+    },
+    "G09": {
+      "status": "used",
+      "semantic_cluster": "old_door_frame_slab_only_fit_adjustment",
+      "purchase_reason": "기존 문이 끼고 소리 나고 잘 닫히지 않는 고객은 문틀까지 교체해야 하는지, 문짝만 교체해도 되는지 비용과 공사 범위가 불안하다.",
+      "allowed_angle": "문틀 변형이 심하지 않으면 새 문짝을 현장 문틀 상태에 맞춰 전동대패로 미세 조정해 문짝만 교체 가능한 경우가 많다는 설명.",
+      "avoid_angle": "문짝만 교체하면 항상 해결, 문틀 교체가 필요 없는 것처럼 단정, 도배장판 손상 우려가 전혀 없다는 표현.",
+      "used_ids": ["057"],
       "reuse_allowed": false
     }
   }

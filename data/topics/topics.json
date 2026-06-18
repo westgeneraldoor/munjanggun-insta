@@ -1,5 +1,5 @@
 {
-  "version": "2026-06-16",
+  "version": "2026-06-17",
   "source_mode": "bridge",
   "note": "Phase 1 bridge catalog. 신규 운영은 topics.json 상태 모델을 기준으로 보되, 기존 PROBLEM_BANK/PROBLEM_QUALITY_RULES와 동기화하여 안전하게 전환한다.",
   "state_machine": [
@@ -388,6 +388,27 @@
       "reuse_allowed": false
     },
     {
+      "code": "C10",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "비용",
+      "category_key": "cost",
+      "situation": "사진·유선 견적과 고객 자가실측 한계",
+      "hook_type": "실수방지",
+      "hook_example": "\"중문 견적, 사진만 보내고 직접 재라고 하면 놓치는 것\"",
+      "semantic_cluster": "photo_quote_self_measurement_risk",
+      "duplicate_signature_base": "photo_quote_self_measurement_risk",
+      "purchase_reason": "사진과 고객 자가실측만으로 중문 견적을 잡으면 수직·수평·폭·간섭 조건을 놓칠 수 있어 무료 방문실측 견적상담으로 자연스럽게 이어진다.",
+      "allowed_angle": "유선상 사진 상담과 고객 자가실측의 한계를 짚고, 현장 실측에서 확인해야 하는 폭·수직·수평·스위치·신발장 간섭을 안내하는 각도.",
+      "avoid_angle": "다른 업체 비방, 사진 견적 자체를 전부 위험하다고 단정, 방문실측만 하면 모든 오차가 사라진다는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "056"
+      ],
+      "reuse_allowed": false
+    },
+    {
       "code": "D01",
       "state": "used",
       "legacy_status": "used",
@@ -689,6 +710,69 @@
       "reject_reason": "",
       "used_ids": [
         "053"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G07",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "중문 설치 당일 소요 시간",
+      "hook_type": "실수방지",
+      "hook_example": "\"중문 설치, 하루면 끝날까요?\"",
+      "semantic_cluster": "middle_door_install_day_duration",
+      "duplicate_signature_base": "middle_door_install_day_duration",
+      "purchase_reason": "설치 당일 집에 얼마나 있어야 하는지 궁금한 고객에게 제품 종류와 철거 여부별 소요 시간을 안내하면 상담 불안을 줄일 수 있다.",
+      "allowed_angle": "일반 3연동·원슬라이딩·스윙중문 2~3시간, 철거 시 30분~1시간 추가, 3연동 ㄱ자 중문 약 4시간이라는 기준을 현장 조건 단서와 함께 안내.",
+      "avoid_angle": "모든 현장이 같은 시간에 끝난다는 단정, 하루 안에 끝난다는 보장, 철거가 있어도 시간이 같다는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "054"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G08",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "3연동중문 문짝 임시 탈부착",
+      "hook_type": "실수방지",
+      "hook_example": "\"가구 들어올 때 3연동중문 잠깐 뗄 수 있을까요?\"",
+      "semantic_cluster": "three_panel_middle_door_temporary_removal",
+      "duplicate_signature_base": "three_panel_middle_door_temporary_removal",
+      "purchase_reason": "가구 반입이나 수리 때문에 중문 문짝을 잠시 뗄 수 있는지 묻는 고객에게 제품별 가능 범위와 주의점을 안내할 수 있다.",
+      "allowed_angle": "고객 직접 탈부착 안내는 3연동중문으로 한정하고, 위로 들어 아래를 먼저 빼는 방식과 손상 주의점을 설명.",
+      "avoid_angle": "모든 중문 탈부착 가능, 이전설치 가능, 원슬라이딩·스윙중문까지 같은 방식으로 확대, 손상 위험 없음처럼 보이는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "055"
+      ],
+      "reuse_allowed": false
+    },
+    {
+      "code": "G09",
+      "state": "used",
+      "legacy_status": "used",
+      "source": "problem_bank",
+      "category": "고객 상담 질문 기반 가이드",
+      "category_key": "unknown",
+      "situation": "오래된 문틀에 문짝만 교체 가능한지 판단",
+      "hook_type": "실수방지",
+      "hook_example": "\"문이 끼고 안 닫히는데, 문짝만 바꿔도 될까요?\"",
+      "semantic_cluster": "old_door_frame_slab_only_fit_adjustment",
+      "duplicate_signature_base": "old_door_frame_slab_only_fit_adjustment",
+      "purchase_reason": "기존 문이 끼고 소리 나고 잘 닫히지 않는 고객은 문틀까지 교체해야 하는지, 문짝만 교체해도 되는지 비용과 공사 범위가 불안하다.",
+      "allowed_angle": "문틀 변형이 심하지 않으면 새 문짝을 현장 문틀 상태에 맞춰 전동대패로 미세 조정해 문짝만 교체 가능한 경우가 많다는 설명.",
+      "avoid_angle": "문짝만 교체하면 항상 해결, 문틀 교체가 필요 없는 것처럼 단정, 도배장판 손상 우려가 전혀 없다는 표현.",
+      "reject_reason": "",
+      "used_ids": [
+        "057"
       ],
       "reuse_allowed": false
     },
